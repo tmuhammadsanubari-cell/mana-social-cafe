@@ -29,7 +29,7 @@ npm run seed                          # buat dokumen yang belum ada; isian staf 
 npm run seed:replace                  # timpa semua dokumen seed dengan isi file
 ```
 
-ID dokumen tetap (`menuItem-buah-batu-nasi-goreng-mana`, `outlet-dago`), jadi impor ulang tidak menggandakan. Foto produk hanya diunggah bila dataset bukan `production` (Q-07). Jam buka diisi sama untuk 7 hari karena PRD 11.3 belum membedakan per hari.
+ID dokumen tetap (`menuItem-buah-batu-nasi-goreng-mana`, `outlet-dago`), jadi impor ulang tidak menggandakan. Foto produk hanya diunggah bila dataset bukan `production`, kecuali lewat `npm run seed:production -w apps/studio` (mengisi `production` beserta foto; dipakai 2026-11-26 atas keputusan pengguna, Q-07 belum dijawab). Jam buka diisi sama untuk 7 hari karena PRD 11.3 belum membedakan per hari.
 
 ## Belum lengkap
 

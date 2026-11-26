@@ -27,7 +27,7 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 | Buat proyek Sanity, dataset `staging` dan `production`, isi `apps/studio/.env` | PRD 16.1 | done (`ibk6rfdz`, dua dataset publik, login CLI lewat GitHub) |
 | Impor seed ke `staging`, deploy Studio | Kriteria M-01 | done (Studio dua workspace: Produksi dan Staging) |
 | Undang staf, uji ubah satu harga di Studio | Kriteria M-01 | todo |
-| Impor seed ke `production` | PRD 11.5 | todo (setelah uji di `staging`; set `SANITY_STUDIO_DATASET=production` lalu `npm run seed`) |
+| Impor seed ke `production` | PRD 11.5 | done 2026-11-26 (113 dokumen, 58 foto, `npm run seed:production -w apps/studio`) |
 | knip dan jscpd di CI | PRD 13.8 | todo (ditambah saat ada kode di `src/lib`) |
 
 ## M-02 MVP, semua fitur Must (target 2026-12-31)
@@ -91,7 +91,7 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 - ~~**Jumlah item menu tidak cocok.**~~ Selesai 2026-11-26 setelah dicocokkan dengan PDF: 31 makanan + 44 minuman = 75 item dalam 19 kategori, sesuai FR-05. Add-On (2 entri) jadi chip, bukan item. Now Blooming jadi catatan di Classic Series, bukan kategori. Dipakai juga untuk seed.
 - ~~**Desain menyimpang dari PRD.**~~ PRD diperbarui ke v1.1 pada 2026-11-26 atas persetujuan pengguna (ADR 0001, 0002): hero tanpa tombol, tautan menu PDF, pita kategori di desktop. Dago dua mode (ADR 0003) tidak mengubah PRD.
 - ~~**Pemilih outlet di Beranda.**~~ PRD v1.1 mengikuti desain: dua chip dan satu panel (FR-02, US-01.AC2, US-01.AC3, ADR 0004).
-- **Foto produk** di `seed/images/menu/` hanya untuk desain dan pengembangan sampai Q-07 dijawab. Skrip impor tidak mengunggahnya ke dataset `production`.
+- **Foto produk** di `seed/images/menu/` hanya untuk desain dan pengembangan sampai Q-07 dijawab. 2026-11-26: atas keputusan pengguna, foto juga diunggah ke dataset `production` agar pemilik melihat Studio sudah lengkap. Q-07 tetap perlu dijawab sebelum situs publik menampilkan foto ini (ADR 0002).
 - **Deskripsi menu** di seed baru 4 item (contoh Lampiran A). Sisanya ada di PDF sebagai gambar. Lihat `seed/README.md`.
 - **Paket gratis Sanity tanpa peran Editor.** Semua staf jadi Administrator di Sanity; Studio mengunci Pengaturan Situs dan hapus Outlet untuk yang bukan admin situs (ADR 0006). Bila Q-11 butuh kontrol akses sungguhan, pertimbangkan paket Growth.
 
@@ -99,7 +99,7 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 
 Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
 
-- 2026-11-26: scaffold M-01. npm workspaces, Astro 7 dan Sanity 6 (ADR 0005), skema E-01 sampai E-12, penjaga Editor di Studio (ADR 0006), seed menu 75 item, cottage DUMMY, outlet dan Pengaturan Situs, skrip impor, CI GitHub Actions. Lint, format, type check, 20 uji unit, build web, dan build Studio hijau lokal. Repo privat di GitHub, CI hijau. Lanjutan: proyek Sanity `ibk6rfdz`, dataset `staging` terisi 113 dokumen dan 58 foto, Studio tayang di mana-social-cafe.sanity.studio. Tersisa: undang staf dan uji ubah satu harga, impor ke `production`.
+- 2026-11-26: scaffold M-01. npm workspaces, Astro 7 dan Sanity 6 (ADR 0005), skema E-01 sampai E-12, penjaga Editor di Studio (ADR 0006), seed menu 75 item, cottage DUMMY, outlet dan Pengaturan Situs, skrip impor, CI GitHub Actions. Lint, format, type check, 20 uji unit, build web, dan build Studio hijau lokal. Repo privat di GitHub, CI hijau. Lanjutan: proyek Sanity `ibk6rfdz`, dataset `staging` terisi 113 dokumen dan 58 foto, Studio tayang di mana-social-cafe.sanity.studio. Dataset `production` juga terisi, termasuk foto produk atas keputusan pengguna. Tersisa: undang staf dan uji ubah satu harga.
 
 - 2026-11-26: desain UI Ronde 1 sampai 5 selesai di canvas. Disalin ke repo: `tokens.css` (design system v1), `docs/design/` (README, design system, keputusan, 19 tangkapan layar), ADR 0001 sampai 0003, 58 foto produk di `seed/images/menu/`. PRD diperbarui ke v1.1 (FR-01, FR-05, US-01.AC1, US-04.AC5, 8.10). Pemilih outlet chip juga masuk PRD (FR-02, US-01.AC2/AC3, ADR 0004). Tersisa: scaffold M-01.
 - 2026-11-26: struktur folder, `CLAUDE.md`, dan dokumen pendukung dibuat. Belum ada kode aplikasi.

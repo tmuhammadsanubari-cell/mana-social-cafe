@@ -14,5 +14,6 @@ S-04 memakai gaya PDF: pita judul kuning, teks asli, foto produk dari PDF, tab M
 - Pita kategori di atas menggantikan navigasi kiri di desktop; ini menyimpang dari PRD 8.10.
 - URL Google Drive disimpan di `SiteSettings` (bukan ditulis di kode) dan perlu field baru, misalnya `menu_pdf_url`, di skema E-11 SiteSettings (PRD 11.3).
 - 58 foto produk hasil potongan PDF ada di `seed/images/menu/` hanya untuk desain dan pengembangan. Foto tidak boleh tampil di produksi sebelum Q-07 (izin dan file asli) dijawab; tanpa foto, kartu tetap tampil dengan teks saja.
+- Tambahan 2026-11-26: atas keputusan pengguna, foto sudah diunggah ke dataset Sanity `production` supaya pemilik melihat Studio lengkap. Aturan di atas tetap berlaku untuk tampilan situs publik sampai Q-07 dijawab.
 - Cara hitung menu: 75 item (31 makanan + 44 minuman) dalam 19 kategori, Add-On sebagai chip, Now Blooming sebagai catatan di Classic Series. Sesuai angka FR-05.
 - PRD diperbarui ke v1.1 (2026-11-26) dengan persetujuan pengguna: FR-05, US-04.AC5 baru, kasus tepi 7.4, 8.8, 8.10, E-11, dan matriks 21.

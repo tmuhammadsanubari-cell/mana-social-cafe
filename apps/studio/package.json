@@ -9,7 +9,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "seed": "sanity exec scripts/importSeed.ts --with-user-token",
-    "seed:replace": "sanity exec scripts/importSeed.ts --with-user-token -- --replace"
+    "seed:replace": "sanity exec scripts/importSeed.ts --with-user-token -- --replace",
+    "seed:production": "sanity exec scripts/importSeed.ts --with-user-token -- --production --with-images"
   },
   "dependencies": {
     "@sanity/vision": "^6.25.0",

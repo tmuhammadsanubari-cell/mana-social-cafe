@@ -1,9 +1,11 @@
 // Impor data awal dari seed/ ke Sanity (PRD 11.5). Jalankan dari apps/studio:
 //   npm run seed                 -> hanya membuat dokumen yang belum ada; isian staf tidak tersentuh
 //   npm run seed:replace         -> menimpa semua dokumen seed dengan isi file (hati-hati)
-// Dataset diambil dari SANITY_STUDIO_DATASET (bawaan: staging).
+//   npm run seed:production      -> seperti seed, ke dataset production, termasuk foto produk
+// Tanpa --production, dataset diambil dari SANITY_STUDIO_DATASET (bawaan: staging).
 // Memakai token login kamu (sanity login), jadi tidak ada token yang disimpan.
-// Foto produk hanya diunggah ke dataset selain production sampai izin Q-07 dijawab.
+// Foto produk ke production hanya dengan --with-images (dipakai seed:production atas keputusan
+// pengguna 2026-11-26, walau izin Q-07 belum dijawab).
 
 import { createReadStream } from "node:fs";
 import { readFile } from "node:fs/promises";
@@ -17,7 +19,11 @@ const SEED_DIR = path.resolve(process.cwd(), "../../seed");
 const IMAGE_DIR = path.join(SEED_DIR, "images/menu");
 
 const replace = process.argv.includes("--replace");
-const client = getCliClient({ apiVersion: API_VERSION });
+const withImages = process.argv.includes("--with-images");
+const cliClient = getCliClient({ apiVersion: API_VERSION });
+const client = process.argv.includes("--production")
+  ? cliClient.withConfig({ dataset: "production" })
+  : cliClient;
 const log = (line: string) => process.stdout.write(`${line}\n`);
 
 async function readJson<T>(file: string): Promise<T> {
@@ -60,8 +66,8 @@ async function main() {
     `Dataset ${dataset}: ${documents.length} dokumen seed ${replace ? "ditimpa" : "dibuat bila belum ada"}.`,
   );
 
-  if (dataset === "production") {
-    log("Foto produk dilewati di production sampai izin Q-07 dijawab.");
+  if (dataset === "production" && !withImages) {
+    log("Foto produk dilewati di production. Tambahkan --with-images untuk mengunggahnya.");
     return;
   }
   const uploaded = await uploadImages(images);
