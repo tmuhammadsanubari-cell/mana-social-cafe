@@ -1,0 +1,11 @@
+# Aturan bawaan gitleaks ditambah pengecualian sempit untuk data seed.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Field key di seed/*.json adalah slug item menu (misalnya barista-signature-v4), bukan rahasia"
+targetRules = ["generic-api-key"]
+regexTarget = "line"
+regexes = ['''^\s*(\{ )?"key": "[a-z0-9-]+",''']
+paths = ['''^seed/[^/]+\.json$''']
+condition = "AND"

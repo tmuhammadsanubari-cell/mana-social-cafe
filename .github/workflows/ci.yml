@@ -41,6 +41,10 @@ jobs:
 
   secrets:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # gitleaks-action membaca daftar commit pull request.
+      pull-requests: read
     steps:
       - uses: actions/checkout@v7
         with:

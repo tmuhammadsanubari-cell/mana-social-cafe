@@ -5,6 +5,13 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    ignore:
+      # @types/node mengikuti versi Node di .nvmrc (24), bukan versi terbaru.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      # Ditahan di 6.0 sampai typescript-eslint dan @astrojs/check mendukung 7 (ADR 0005).
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
