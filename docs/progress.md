@@ -6,9 +6,9 @@ Status: `todo` · `doing` · `done` · `blocked (alasan)`
 
 ## Milestone aktif
 
-**M-01 Fondasi**, target 2026-12-12.
+**M-02 MVP**, target 2026-12-31. M-01 selesai 2026-11-26.
 
-## M-01 Fondasi (target 2026-12-12)
+## M-01 Fondasi (target 2026-12-12): selesai 2026-11-26
 
 Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item menu terimpor; CI hijau.
 
@@ -26,7 +26,8 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 | Isi tabel Perintah di `CLAUDE.md` | - | done |
 | Buat proyek Sanity, dataset `staging` dan `production`, isi `apps/studio/.env` | PRD 16.1 | done (`ibk6rfdz`, dua dataset publik, login CLI lewat GitHub) |
 | Impor seed ke `staging`, deploy Studio | Kriteria M-01 | done (Studio dua workspace: Produksi dan Staging) |
-| Undang staf, uji ubah satu harga di Studio | Kriteria M-01 | todo |
+| Uji ubah satu harga di Studio | Kriteria M-01 | done 2026-11-26 (pengguna, Staging: Es Kopi Susu Mana 28000 ke 29000 dan kembali) |
+| Undang staf, uji Pengaturan Situs terkunci dengan akun bukan admin | US-11.AC3, ADR 0006 | todo (menunggu editor ditunjuk, Q-11) |
 | Impor seed ke `production` | PRD 11.5 | done 2026-11-26 (113 dokumen, 58 foto, `npm run seed:production -w apps/studio`) |
 | knip dan jscpd di CI | PRD 13.8 | todo (ditambah saat ada kode di `src/lib`) |
 
@@ -98,6 +99,8 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 ## Catatan sesi
 
 Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
+
+- 2026-11-26: M-01 selesai. Ketiga kriteria terpenuhi: ubah harga di Studio berhasil (diuji pengguna), 75 item terimpor ke `staging` dan `production`, CI hijau. Catatan: login CLI Sanity wajib lewat GitHub (`npx sanity login --provider github`); akun Google pengguna adalah identitas Sanity lain tanpa akses proyek. Berikutnya: M-02, mulai US-01.
 
 - 2026-11-26: scaffold M-01. npm workspaces, Astro 7 dan Sanity 6 (ADR 0005), skema E-01 sampai E-12, penjaga Editor di Studio (ADR 0006), seed menu 75 item, cottage DUMMY, outlet dan Pengaturan Situs, skrip impor, CI GitHub Actions. Lint, format, type check, 20 uji unit, build web, dan build Studio hijau lokal. Repo privat di GitHub, CI hijau. Lanjutan: proyek Sanity `ibk6rfdz`, dataset `staging` terisi 113 dokumen dan 58 foto, Studio tayang di mana-social-cafe.sanity.studio. Dataset `production` juga terisi, termasuk foto produk atas keputusan pengguna. Tersisa: undang staf dan uji ubah satu harga.
 
