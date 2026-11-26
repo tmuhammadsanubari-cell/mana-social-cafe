@@ -1,0 +1,6 @@
+# Prettier memakai LF; samakan di Windows dan CI.
+* text=auto eol=lf
+*.jpg binary
+*.png binary
+*.webp binary
+*.pdf binary

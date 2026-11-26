@@ -1,0 +1,28 @@
+{
+  "source": "PRD 7.7. Unit, kapasitas, harga, dan fasilitas DUMMY; nama tipe dari Trip.com; jam check-in dan check-out dari Trip.com",
+  "outlet": "dago",
+  "room_types": [
+    {
+      "key": "couple-cottage",
+      "name": "Couple Cottage",
+      "units": 4,
+      "capacity": 2,
+      "price_per_night_idr": 850000,
+      "facilities": ["Kasur queen", "Kamar mandi dalam", "Air panas", "WiFi"],
+      "check_in_time": "15:00",
+      "check_out_time": "12:00",
+      "is_placeholder": true
+    },
+    {
+      "key": "family-cottage",
+      "name": "Family Cottage",
+      "units": 2,
+      "capacity": 4,
+      "price_per_night_idr": 1350000,
+      "facilities": ["2 kasur", "Kamar mandi dalam", "Air panas", "WiFi"],
+      "check_in_time": "15:00",
+      "check_out_time": "12:00",
+      "is_placeholder": true
+    }
+  ]
+}

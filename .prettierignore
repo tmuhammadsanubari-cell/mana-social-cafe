@@ -1,0 +1,9 @@
+# Dokumen dan data seed ditulis tangan: tabel Markdown dan item menu satu baris tidak diformat ulang.
+*.md
+docs/
+seed/
+package-lock.json
+dist/
+.astro/
+.sanity/
+coverage/

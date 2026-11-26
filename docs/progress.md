@@ -1,0 +1,103 @@
+# Progres proyek
+
+Perbarui file ini setiap kali story selesai, keputusan diambil, atau pemilik menjawab pertanyaan. Claude membaca file ini di awal setiap sesi.
+
+Status: `todo` · `doing` · `done` · `blocked (alasan)`
+
+## Milestone aktif
+
+**M-01 Fondasi**, target 2026-12-12.
+
+## M-01 Fondasi (target 2026-12-12)
+
+Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item menu terimpor; CI hijau.
+
+| Tugas | Rujukan | Status |
+|-------|---------|--------|
+| Cek versi stabil Astro, Sanity, dan batas paket gratis; catat ADR | PRD 13.2, A-06, R-07 | done (ADR 0005; Astro 7, PRD 13.2 diubah) |
+| `git init` dan push ke GitHub (minta izin pengguna dulu) | PRD 16.2 | doing (izin diberikan 2026-11-26, repo privat) |
+| Scaffold `apps/web` (Astro, TypeScript strict) | PRD 13.2, 13.4 | done |
+| Scaffold `apps/studio` dan skema E-01 sampai E-12 | PRD 11.3 | done (lokal; proyek Sanity belum dibuat) |
+| Peran Editor dan Administrator di Sanity | PRD 12.2, US-11.AC3 | done di kode (ADR 0006: penjaga Studio di paket gratis); uji manual dua akun menunggu proyek Sanity |
+| `seed/menu-buah-batu-2026-06.json` dan skrip impor | PRD 11.5, seed/README.md | done (75 item, 19 kategori, teruji); impor ke Sanity menunggu proyek Sanity |
+| `seed/cottage-dummy.json` dengan `is_placeholder = true` | PRD 7.7 | done |
+| Token desain di `tokens.css` | PRD 8.2 | done (design system v1, lihat `docs/design/`) |
+| Lint, format, type check, Vitest, gitleaks di GitHub Actions | PRD 13.8, 16.2 | done (`.github/workflows/ci.yml`); hijau lokal, CI menunggu push |
+| Isi tabel Perintah di `CLAUDE.md` | - | done |
+| Buat proyek Sanity, dataset `staging` dan `production`, isi `apps/studio/.env` | PRD 16.1 | todo (butuh `npx sanity login` oleh pengguna) |
+| Impor seed ke `staging`, deploy Studio, undang staf, uji ubah satu harga | Kriteria M-01 | todo |
+| knip dan jscpd di CI | PRD 13.8 | todo (ditambah saat ada kode di `src/lib`) |
+
+## M-02 MVP, semua fitur Must (target 2026-12-31)
+
+| Story | Fitur | FR | Status |
+|-------|-------|----|--------|
+| US-01 | Hero dan pemilih outlet | FR-01, FR-02 | todo |
+| US-02 | Jam buka dan status buka | FR-03 | todo |
+| US-03 | Lokasi dan petunjuk arah | FR-04 | todo |
+| US-04 | Menu Buah Batu | FR-05 | todo |
+| US-05 | Galeri ruang | FR-06 | todo |
+| US-06 | Fasilitas outlet | FR-07 | todo |
+| US-07 | Tombol WhatsApp | FR-08 | todo |
+| US-08 | Info cottage Dago | FR-09 | todo |
+| US-09 | Permintaan booking cottage | FR-10 | todo |
+| US-10 | Tautan Instagram | FR-11 | todo |
+| US-11 | Editor konten | FR-12 | todo |
+| US-12 | SEO dan data terstruktur | FR-13 | todo |
+| US-13 | Analitik dengan persetujuan cookie | FR-21 | todo |
+
+## M-03 Should, UAT, rilis produksi (target 2027-01-15)
+
+| Story | Fitur | FR | Status |
+|-------|-------|----|--------|
+| US-14 | Rekomendasi menu | FR-14 | todo |
+| US-15 | Testimoni Google | FR-15 | todo |
+| US-16 | Tentang ManA | FR-16 | todo |
+| US-17 | Tautan GoFood | FR-17 | todo |
+| US-18 | FAQ | FR-18 | todo |
+| - | Ganti data cottage DUMMY dengan data asli | Q-01 | blocked (menunggu pemilik) |
+| - | Gerbang rilis PRD 15 terpenuhi | PRD 15 | todo |
+
+## M-04 Pasca-rilis (target 2027-03-15)
+
+| Story | Fitur | FR | Status |
+|-------|-------|----|--------|
+| US-19 | Banner promo | FR-19 | todo |
+| US-20 | Event dan komunitas | FR-20 | todo |
+
+## Pertanyaan terbuka untuk pemilik
+
+Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyakan ke pengguna apakah PRD perlu diperbarui.
+
+| ID | Topik | Menghambat | Jawaban |
+|----|-------|------------|---------|
+| Q-01 | Data cottage asli, catatan akses jalan, tautan Trip.com | FR-09, FR-10 | belum |
+| Q-02 | Menu Dago | FR-05 | belum |
+| Q-03 | Nomor WhatsApp terpisah dan jam balas | FR-08, FR-10 | belum |
+| Q-04 | Domain | FR-13 | belum |
+| Q-05 | Kuning final #F9EE54 atau #DACF56; lisensi web Acumin | PRD 8.2 | belum |
+| Q-06 | Jadwal sesi foto ruang | FR-06 | belum |
+| Q-07 | Izin dan file asli foto produk menu | FR-05, FR-14 | belum |
+| Q-08 | Pajak di harga; harga Barista Signature V4 dan Strawberry Blossom | FR-05 | belum |
+| Q-09 | Akun TikTok resmi | FR-11 | belum |
+| Q-10 | URL GoFood; delivery Dago | FR-17 | belum |
+| Q-11 | Pemilik produk dan editor konten setelah rilis | FR-12 | belum |
+| Q-12 | Kalimat positioning hero | FR-01 | belum |
+
+## Temuan yang perlu dicek
+
+- ~~**Jumlah item menu tidak cocok.**~~ Selesai 2026-11-26 setelah dicocokkan dengan PDF: 31 makanan + 44 minuman = 75 item dalam 19 kategori, sesuai FR-05. Add-On (2 entri) jadi chip, bukan item. Now Blooming jadi catatan di Classic Series, bukan kategori. Dipakai juga untuk seed.
+- ~~**Desain menyimpang dari PRD.**~~ PRD diperbarui ke v1.1 pada 2026-11-26 atas persetujuan pengguna (ADR 0001, 0002): hero tanpa tombol, tautan menu PDF, pita kategori di desktop. Dago dua mode (ADR 0003) tidak mengubah PRD.
+- ~~**Pemilih outlet di Beranda.**~~ PRD v1.1 mengikuti desain: dua chip dan satu panel (FR-02, US-01.AC2, US-01.AC3, ADR 0004).
+- **Foto produk** di `seed/images/menu/` hanya untuk desain dan pengembangan sampai Q-07 dijawab. Skrip impor tidak mengunggahnya ke dataset `production`.
+- **Deskripsi menu** di seed baru 4 item (contoh Lampiran A). Sisanya ada di PDF sebagai gambar. Lihat `seed/README.md`.
+- **Paket gratis Sanity tanpa peran Editor.** Semua staf jadi Administrator di Sanity; Studio mengunci Pengaturan Situs dan hapus Outlet untuk yang bukan admin situs (ADR 0006). Bila Q-11 butuh kontrol akses sungguhan, pertimbangkan paket Growth.
+
+## Catatan sesi
+
+Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
+
+- 2026-11-26: scaffold M-01. npm workspaces, Astro 7 dan Sanity 6 (ADR 0005), skema E-01 sampai E-12, penjaga Editor di Studio (ADR 0006), seed menu 75 item, cottage DUMMY, outlet dan Pengaturan Situs, skrip impor, CI GitHub Actions. Lint, format, type check, 20 uji unit, build web, dan build Studio hijau lokal. Tersisa: proyek Sanity (login pengguna), impor seed, deploy Studio, CI pertama di GitHub.
+
+- 2026-11-26: desain UI Ronde 1 sampai 5 selesai di canvas. Disalin ke repo: `tokens.css` (design system v1), `docs/design/` (README, design system, keputusan, 19 tangkapan layar), ADR 0001 sampai 0003, 58 foto produk di `seed/images/menu/`. PRD diperbarui ke v1.1 (FR-01, FR-05, US-01.AC1, US-04.AC5, 8.10). Pemilih outlet chip juga masuk PRD (FR-02, US-01.AC2/AC3, ADR 0004). Tersisa: scaffold M-01.
+- 2026-11-26: struktur folder, `CLAUDE.md`, dan dokumen pendukung dibuat. Belum ada kode aplikasi.

@@ -1,0 +1,114 @@
+/*
+ * Token desain ManA Social Cafe v1 (PRD 8.2, 8.7). Dikunci 2026-11-26 setelah Ronde 4 desain.
+ * Rujukan visual dan aturan pakai: docs/design/design-system.md.
+ * Semua komponen memakai token ini, bukan nilai langsung.
+ *
+ * Kuning final menunggu Q-05 (#DACF56 dari menu atau #F9EE54 dari file logo):
+ * ganti --color-brand, --color-brand-hover, dan --color-brand-press bersamaan.
+ * Breakpoint PRD 8.10 (640 px, 1024 px) tidak bisa memakai custom property di media query; tulis langsung.
+ */
+:root {
+  /* Warna inti */
+  --color-ink: #2d2c1e; /* teks utama, tombol gelap, latar cottage dan banner cookie */
+  --color-bg: #efefef; /* latar halaman ("paper" di canvas) */
+  --color-surface: #ffffff; /* kartu, panel */
+
+  /* Aksen: hanya tombol utama, chip outlet aktif, hero, pita judul menu */
+  --color-brand: #dacf56;
+  --color-brand-hover: #d1c652; /* gelap 4% */
+  --color-brand-press: #c8be4f; /* gelap 8% */
+  --color-on-brand: var(--color-ink); /* 8,75:1 */
+
+  /* Pendukung */
+  --color-cream: #ece7aa; /* motif, placeholder foto, footer, label "Data contoh" */
+  --color-ink-muted: #5a5847; /* teks sekunder: 6,25:1 di bg, 7,19:1 di surface, 5,67:1 di cream */
+  --color-ink-hover: #45432f;
+  --color-ink-press: #1f1e14;
+  --color-line-strong: #7d7a63; /* garis input dan select: 4,34:1 di surface */
+  --color-line: #d6d4c4; /* pembatas dekoratif */
+  --color-line-soft: #e2e0d2; /* latar nonaktif, garis kartu tipis */
+  --color-tint: #f1f0ea; /* hover tombol garis dan chip, latar input error */
+  --color-on-dark: #efefef; /* 12,25:1 di ink */
+  --color-on-dark-muted: #c9c6af; /* 8,17:1 di ink */
+
+  /* Tipografi. Ganti Archivo dengan Acumin bila lisensi web ada (Q-05) */
+  --font-display: "Anton", Impact, "Arial Narrow", sans-serif; /* judul, huruf kapital */
+  --font-body: "Acumin Variable Concept", "Archivo", system-ui, sans-serif;
+
+  --text-sm: 0.875rem; /* 14 px: label, keterangan */
+  --text-base: 1rem; /* 16 px: isi, tombol. Isi tidak boleh lebih kecil */
+  --text-lg: 1.25rem; /* 20 px: isi besar, harga, status, tombol L */
+  --text-xl: 1.75rem; /* 28 px: h3, judul panel, h2 ponsel */
+  --text-2xl: 2.5rem; /* 40 px: h2, display ponsel */
+  --text-3xl: 4rem; /* 64 px: display hero dan nama outlet */
+
+  --leading-display: 1;
+  --leading-heading: 1.1;
+  --leading-body: 1.5;
+  --tracking-kicker: 0.08em; /* kicker 14 px tebal kapital */
+
+  /* Spasi */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  /* Radius (3 nilai) */
+  --radius-sm: 8px; /* item menu ponsel, garis fokus tautan */
+  --radius-md: 12px; /* tombol, kartu, input, chip, foto */
+  --radius-full: 999px; /* titik status, tombol WhatsApp ponsel */
+
+  /* Elevasi (2 level) */
+  --shadow-1: 0 8px 24px rgba(45, 44, 30, 0.12); /* panel outlet, menu ponsel, daftar select */
+  --shadow-2: 0 6px 20px rgba(45, 44, 30, 0.25); /* WhatsApp melayang, banner cookie */
+
+  /* Fokus */
+  --focus-width: 3px;
+  --focus-offset: 2px;
+
+  /* Ikon */
+  --icon-sm: 20px;
+  --icon-md: 24px;
+  --icon-stroke: 1.5;
+
+  /* Ukuran kontrol */
+  --tap-min: 44px;
+  --button-l: 56px; /* teks --text-lg */
+  --button-m: 52px;
+  --button-s: 48px; /* juga tinggi chip outlet */
+  --fab-size: 56px; /* WhatsApp melayang di ponsel */
+
+  /* Gerak */
+  --duration-press: 120ms;
+  --duration-fade: 150ms;
+  --duration-scroll: 300ms;
+  --press-darken: 8%;
+
+  /* Tata letak. PRD 8.10: lebar konten maks 1200 px */
+  --content-max: 1200px;
+  --gutter: clamp(16px, 4vw, 40px);
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--color-ink);
+  outline-offset: var(--focus-offset);
+}
+
+[data-dark] :focus-visible {
+  outline-color: var(--color-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}

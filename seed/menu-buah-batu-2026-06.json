@@ -1,0 +1,228 @@
+{
+  "source": "Menu Digital ManA Social Cafe Juni 2026; Lampiran A docs/prompt-ui-ux-mana-social-cafe.md",
+  "outlet": "buah-batu",
+  "categories": [
+    {
+      "key": "new-menu-beef",
+      "name": "New Menu: Beef",
+      "section": "food",
+      "items": [
+        { "key": "nasi-beef-oseng-daun-jeruk", "name": "Nasi Beef Oseng Daun Jeruk", "price_idr": 45000, "is_spicy": true, "is_new": true, "image": "beef-oseng.webp" },
+        { "key": "nasi-beef-teriyaki", "name": "Nasi Beef Teriyaki", "price_idr": 45000, "is_new": true, "image": "beef-teriyaki.webp" }
+      ]
+    },
+    {
+      "key": "new-menu-light-meal",
+      "name": "New Menu: Light meal",
+      "section": "food",
+      "items": [
+        { "key": "pisang-madu-mana", "name": "Pisang Madu ManA", "price_idr": 29000, "is_new": true, "image": "pisang-madu.webp" }
+      ]
+    },
+    {
+      "key": "all-about-rice-asian",
+      "name": "All About Rice: Asian",
+      "section": "food",
+      "items": [
+        { "key": "nasi-goreng-mana", "name": "Nasi Goreng ManA", "price_idr": 40000, "description": "Nasi goreng khas ManA disajikan dengan topping telur, sosis, dan bakso sapi.", "image": "nasgor-mana.webp" },
+        { "key": "pattaya-mango-chicken", "name": "Pattaya Mango Chicken", "price_idr": 39000, "image": "pattaya.webp" },
+        { "key": "chicken-manchurian", "name": "Chicken Manchurian", "price_idr": 39000, "is_spicy": true, "image": "manchurian.webp" },
+        { "key": "chicken-nanban", "name": "Chicken Nanban", "price_idr": 39000, "image": "nanban.webp" }
+      ]
+    },
+    {
+      "key": "all-about-rice-nusantara",
+      "name": "All About Rice: Nusantara",
+      "section": "food",
+      "items": [
+        { "key": "nasi-goreng-tektek", "name": "Nasi Goreng Tektek", "price_idr": 40000, "is_spicy": true, "image": "nasgor-tektek.webp" },
+        { "key": "nasi-goreng-kampung", "name": "Nasi Goreng Kampung", "price_idr": 40000, "image": "nasgor-kampung.webp" },
+        { "key": "nasi-ayam-sambal-iris", "name": "Nasi Ayam Sambal Iris", "price_idr": 39000, "is_spicy": true, "image": "sambal-iris.webp" },
+        { "key": "nasi-ayam-saus-kari", "name": "Nasi Ayam Saus Kari", "price_idr": 39000, "image": "saus-kari.webp" }
+      ]
+    },
+    {
+      "key": "the-noodles",
+      "name": "The Noodles",
+      "section": "food",
+      "items": [
+        { "key": "yamien-manis", "name": "Yamien Manis", "price_idr": 40000, "image": "yamien-manis.webp" },
+        { "key": "yamien-asin", "name": "Yamien Asin", "price_idr": 40000, "image": "yamien-asin.webp" },
+        { "key": "mie-tek-tek", "name": "Mie Tek Tek", "price_idr": 39000, "image": "mie-tektek.webp" },
+        { "key": "mie-kari", "name": "Mie Kari", "price_idr": 39000, "image": "mie-kari.webp" }
+      ]
+    },
+    {
+      "key": "the-spaghetti",
+      "name": "The Spaghetti",
+      "section": "food",
+      "items": [
+        { "key": "bolognese", "name": "Bolognese", "price_idr": 40000, "image": "bolognese.webp" },
+        { "key": "aglio-e-olio", "name": "Aglio e Olio", "price_idr": 40000, "is_spicy": true, "image": "aglio.webp" },
+        { "key": "carbonara", "name": "Carbonara", "price_idr": 40000, "image": "carbonara.webp" }
+      ]
+    },
+    {
+      "key": "light-meals",
+      "name": "Light Meals",
+      "section": "food",
+      "items": [
+        { "key": "french-fries", "name": "French Fries", "price_idr": 30000, "image": "french-fries.webp" },
+        { "key": "cheesy-fries", "name": "Cheesy Fries", "price_idr": 33000, "image": "cheesy-fries.webp" },
+        { "key": "roti-bakar", "name": "Roti Bakar", "price_idr": 29000, "image": "roti-bakar.webp" },
+        { "key": "tahu-lada-garam", "name": "Tahu Lada Garam", "price_idr": 30000, "is_spicy": true, "image": "tahu-lada.webp" },
+        { "key": "gyoza-chilli-oil", "name": "Gyoza Chilli Oil", "price_idr": 30000, "is_spicy": true, "image": "gyoza.webp" },
+        { "key": "pisang-goreng-mana", "name": "Pisang Goreng ManA", "price_idr": 29000, "description": "Pisang goreng khas ManA yang disajikan dengan parutan keju cheddar dan gula palem.", "image": "pisang-goreng.webp" },
+        { "key": "bakso-goreng", "name": "Bakso Goreng", "price_idr": 29000, "image": "bakso-goreng.webp" },
+        { "key": "cireng", "name": "Cireng", "price_idr": 29000, "image": "cireng.webp" },
+        { "key": "mix-platter", "name": "Mix Platter", "price_idr": 57000, "description": "Kombinasi kentang goreng, chicken popcorn, jamur krispi, disajikan dengan saus mayones dan sambal.", "image": "mix-platter.webp" }
+      ]
+    },
+    {
+      "key": "its-dessert",
+      "name": "It's Dessert",
+      "section": "food",
+      "items": [
+        { "key": "tiramisu", "name": "Tiramisu", "price_idr": 30000, "image": "tiramisu.webp" },
+        { "key": "tiramisu-matcha", "name": "Tiramisu Matcha", "price_idr": 30000, "image": "tiramisu-matcha.webp" },
+        { "key": "panna-cotta", "name": "Panna Cotta", "price_idr": 26000, "options": "strawberry/matcha/chocolate", "image": "panna-cotta.webp" },
+        { "key": "fudgy-brownies", "name": "Fudgy Brownies", "price_idr": 30000, "image": "brownies.webp" }
+      ]
+    },
+    {
+      "key": "coffee-classic-series",
+      "name": "Coffee: Classic Series",
+      "section": "drink",
+      "subtitle": "hot/ice",
+      "image": "classic.webp",
+      "add_ons": [
+        { "key": "strawberry-blossom", "name": "Biji Strawberry Blossom", "price_idr": 4000, "badge": "Now Blooming", "note": "upgrade untuk classic coffee", "image": "blooming.webp" }
+      ],
+      "items": [
+        { "key": "black", "name": "Black", "price_idr": 27000 },
+        { "key": "white", "name": "White", "price_idr": 28000 },
+        { "key": "flavoured-latte", "name": "Flavoured Latte", "price_idr": 30000 },
+        { "key": "dirty-latte", "name": "Dirty Latte", "price_idr": 30000 },
+        { "key": "filter-coffee-biji-lokal", "name": "Filter Coffee biji lokal", "price_idr": 32000 },
+        { "key": "filter-coffee-biji-impor", "name": "Filter Coffee biji impor", "price_idr": 38000 },
+        { "key": "vietnamese", "name": "Vietnamese", "price_idr": 24000 }
+      ]
+    },
+    {
+      "key": "coffee-kopsu-series",
+      "name": "Coffee: Kopsu Series",
+      "section": "drink",
+      "items": [
+        { "key": "es-kopi-susu-mana", "name": "Es Kopi Susu Mana", "price_idr": 28000, "description": "Palm sugar with vanilla choco ice cream hint.", "image": "kopsu-mana.webp" },
+        { "key": "es-kopi-susu-original", "name": "Es Kopi Susu Original", "price_idr": 26000, "image": "kopsu-original.webp" },
+        { "key": "es-kopi-susu-caramel", "name": "Caramel", "price_idr": 28000, "image": "kopsu-caramel.webp" },
+        { "key": "es-kopi-susu-seasalt", "name": "Seasalt", "price_idr": 31000, "image": "kopsu-seasalt.webp" },
+        { "key": "es-kopi-susu-salted-caramel", "name": "Salted Caramel", "price_idr": 31000, "image": "kopsu-salted.webp" },
+        { "key": "es-kopi-susu-cinnamon", "name": "Cinnamon", "price_idr": 32000, "image": "kopsu-cinnamon.webp" }
+      ]
+    },
+    {
+      "key": "mana-black-series",
+      "name": "ManA Black Series",
+      "section": "drink",
+      "subtitle": "kaleng",
+      "items": [
+        { "key": "black-series-mango", "name": "Mango", "price_idr": 30000, "badge": "Must Try", "image": "black-mango.webp" },
+        { "key": "black-series-apple", "name": "Apple", "price_idr": 30000, "badge": "Must Try", "image": "black-apple.webp" },
+        { "key": "black-series-lemon", "name": "Lemon", "price_idr": 30000, "badge": "Must Try", "image": "black-lemon.webp" },
+        { "key": "black-series-lychee", "name": "Lychee", "price_idr": 30000, "badge": "Must Try", "image": "black-lychee.webp" }
+      ]
+    },
+    {
+      "key": "barista-signature-v4",
+      "name": "Barista Signature V4",
+      "section": "drink",
+      "items": [
+        { "key": "upside-cloud", "name": "Upside Cloud", "price_idr": null, "image": "upside.webp" },
+        { "key": "harvest-bloom", "name": "Harvest Bloom", "price_idr": null, "image": "harvest.webp" }
+      ]
+    },
+    {
+      "key": "mocktail-session",
+      "name": "Mocktail Session",
+      "section": "drink",
+      "items": [
+        { "key": "berry-bliss", "name": "Berry Bliss", "price_idr": 30000, "image": "berry-bliss.webp" },
+        { "key": "tropical-coco-mango", "name": "Tropical Coco Mango", "price_idr": 30000, "image": "tropical.webp" },
+        { "key": "slow-berry", "name": "Slow Berry", "price_idr": 30000, "image": "slow-berry.webp" },
+        { "key": "lemonade-coffee", "name": "Lemonade Coffee", "price_idr": 30000, "image": "lemonade-coffee.webp" },
+        { "key": "milkyway", "name": "Milkyway", "price_idr": 30000, "image": "milkyway.webp" },
+        { "key": "candy-cloud", "name": "Candy Cloud", "price_idr": 30000, "image": "candy-cloud.webp" },
+        { "key": "strawberry-cinnamon", "name": "Strawberry Cinnamon", "price_idr": 35000, "options": "blended", "image": "straw-cinnamon.webp" }
+      ]
+    },
+    {
+      "key": "matcha-series",
+      "name": "Matcha Series",
+      "section": "drink",
+      "items": [
+        { "key": "mango-midori", "name": "Mango Midori", "price_idr": 38000, "image": "mango-midori.webp" },
+        { "key": "dirty-matcha", "name": "Dirty Matcha", "price_idr": 38000, "image": "dirty-matcha.webp" },
+        { "key": "kyoto-matcha", "name": "Kyoto Matcha", "price_idr": 38000, "image": "kyoto-matcha.webp" }
+      ]
+    },
+    {
+      "key": "artisan-tea-by-tema",
+      "name": "Artisan Tea by TEMA",
+      "section": "drink",
+      "image": "tea.webp",
+      "items": [
+        { "key": "artisan-tea-hot", "name": "Hot", "price_idr": 28000, "options": "varian: tanya barista" },
+        { "key": "artisan-tea-iced", "name": "Iced", "price_idr": 28000, "options": "varian: tanya barista" }
+      ]
+    },
+    {
+      "key": "mana-milk",
+      "name": "ManA Milk",
+      "section": "drink",
+      "subtitle": "hot/ice",
+      "image": "milk.webp",
+      "items": [
+        { "key": "milk-choco-candy", "name": "Choco Candy", "price_idr": 30000 },
+        { "key": "milk-chocolate", "name": "Chocolate", "price_idr": 30000 },
+        { "key": "milk-matcha", "name": "Matcha", "price_idr": 30000 },
+        { "key": "milk-red-velvet", "name": "Red Velvet", "price_idr": 30000 }
+      ]
+    },
+    {
+      "key": "yakult-drink",
+      "name": "Yakult Drink",
+      "section": "drink",
+      "image": "yakult.webp",
+      "items": [
+        { "key": "yakult-mixed-berry", "name": "Mixed Berry", "price_idr": 28000 },
+        { "key": "yakult-green-apple", "name": "Green Apple", "price_idr": 28000 },
+        { "key": "yakult-lychee", "name": "Lychee", "price_idr": 28000 }
+      ]
+    },
+    {
+      "key": "others",
+      "name": "Others",
+      "section": "drink",
+      "subtitle": "hot/ice",
+      "items": [
+        { "key": "lychee-tea", "name": "Lychee Tea", "price_idr": 26000 },
+        { "key": "lemon-tea", "name": "Lemon Tea", "price_idr": 26000 },
+        { "key": "thai-tea", "name": "Thai Tea", "price_idr": 26000 },
+        { "key": "milk-tea", "name": "Milk Tea", "price_idr": 26000 },
+        { "key": "tea", "name": "Tea", "price_idr": 23000 },
+        { "key": "air-mineral-550-ml", "name": "Air Mineral 550 ml", "price_idr": 13000 }
+      ]
+    },
+    {
+      "key": "add-on",
+      "name": "Add-On",
+      "section": "drink",
+      "add_ons": [
+        { "key": "extra-shot", "name": "Extra shot", "price_idr": 5000 },
+        { "key": "oatside", "name": "Oatside (susu oat)", "price_idr": 7000 }
+      ],
+      "items": []
+    }
+  ]
+}

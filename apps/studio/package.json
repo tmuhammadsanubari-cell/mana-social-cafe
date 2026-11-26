@@ -1,0 +1,26 @@
+{
+  "name": "@mana/studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "seed": "sanity exec scripts/importSeed.ts --with-user-token",
+    "seed:replace": "sanity exec scripts/importSeed.ts --with-user-token -- --replace"
+  },
+  "dependencies": {
+    "@sanity/vision": "^6.25.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sanity": "^6.25.0",
+    "styled-components": "^6.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "vitest": "^5.1.2"
+  }
+}
