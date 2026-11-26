@@ -3,6 +3,7 @@ import { dataset, projectId } from "./env";
 
 export default defineCliConfig({
   api: { projectId, dataset },
-  // Alamat Studio: https://<studioHost>.sanity.studio. Ganti bila nama ini sudah dipakai orang lain.
+  // Studio tayang di https://mana-social-cafe.sanity.studio
   studioHost: "mana-social-cafe",
+  deployment: { appId: "ka331xcm7z2kmdl7fgped88i" },
 });

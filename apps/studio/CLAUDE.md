@@ -32,7 +32,7 @@ Paket gratis Sanity tidak punya peran Editor. Semua staf berperan Administrator 
 
 | Path | Isi |
 |------|-----|
-| `sanity.config.ts`, `sanity.cli.ts`, `env.ts` | Konfigurasi Studio dan variabel lingkungan |
+| `sanity.config.ts`, `sanity.cli.ts`, `env.ts` | Konfigurasi Studio (dua workspace: `/production` dan `/staging`) dan variabel lingkungan. Studio tayang di https://mana-social-cafe.sanity.studio |
 | `structure.ts` | Menu kiri Studio; Pengaturan Situs sebagai satu dokumen tetap |
 | `access/` | `isSiteAdmin` dan aturan tombol aksi dokumen |
 | `schemas/fields.ts` | Field bersama: referensi outlet, urutan, jam `HH:mm`, foto maks 10 MB, `is_placeholder` |
