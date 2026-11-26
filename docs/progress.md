@@ -15,14 +15,14 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 | Tugas | Rujukan | Status |
 |-------|---------|--------|
 | Cek versi stabil Astro, Sanity, dan batas paket gratis; catat ADR | PRD 13.2, A-06, R-07 | done (ADR 0005; Astro 7, PRD 13.2 diubah) |
-| `git init` dan push ke GitHub (minta izin pengguna dulu) | PRD 16.2 | doing (izin diberikan 2026-11-26, repo privat) |
+| `git init` dan push ke GitHub (minta izin pengguna dulu) | PRD 16.2 | done (repo privat `tmuhammadsanubari-cell/mana-social-cafe`) |
 | Scaffold `apps/web` (Astro, TypeScript strict) | PRD 13.2, 13.4 | done |
 | Scaffold `apps/studio` dan skema E-01 sampai E-12 | PRD 11.3 | done (lokal; proyek Sanity belum dibuat) |
 | Peran Editor dan Administrator di Sanity | PRD 12.2, US-11.AC3 | done di kode (ADR 0006: penjaga Studio di paket gratis); uji manual dua akun menunggu proyek Sanity |
 | `seed/menu-buah-batu-2026-06.json` dan skrip impor | PRD 11.5, seed/README.md | done (75 item, 19 kategori, teruji); impor ke Sanity menunggu proyek Sanity |
 | `seed/cottage-dummy.json` dengan `is_placeholder = true` | PRD 7.7 | done |
 | Token desain di `tokens.css` | PRD 8.2 | done (design system v1, lihat `docs/design/`) |
-| Lint, format, type check, Vitest, gitleaks di GitHub Actions | PRD 13.8, 16.2 | done (`.github/workflows/ci.yml`); hijau lokal, CI menunggu push |
+| Lint, format, type check, Vitest, gitleaks di GitHub Actions | PRD 13.8, 16.2 | done (`.github/workflows/ci.yml`); CI hijau di `main` 2026-11-26 |
 | Isi tabel Perintah di `CLAUDE.md` | - | done |
 | Buat proyek Sanity, dataset `staging` dan `production`, isi `apps/studio/.env` | PRD 16.1 | todo (butuh `npx sanity login` oleh pengguna) |
 | Impor seed ke `staging`, deploy Studio, undang staf, uji ubah satu harga | Kriteria M-01 | todo |
@@ -97,7 +97,7 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 
 Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
 
-- 2026-11-26: scaffold M-01. npm workspaces, Astro 7 dan Sanity 6 (ADR 0005), skema E-01 sampai E-12, penjaga Editor di Studio (ADR 0006), seed menu 75 item, cottage DUMMY, outlet dan Pengaturan Situs, skrip impor, CI GitHub Actions. Lint, format, type check, 20 uji unit, build web, dan build Studio hijau lokal. Tersisa: proyek Sanity (login pengguna), impor seed, deploy Studio, CI pertama di GitHub.
+- 2026-11-26: scaffold M-01. npm workspaces, Astro 7 dan Sanity 6 (ADR 0005), skema E-01 sampai E-12, penjaga Editor di Studio (ADR 0006), seed menu 75 item, cottage DUMMY, outlet dan Pengaturan Situs, skrip impor, CI GitHub Actions. Lint, format, type check, 20 uji unit, build web, dan build Studio hijau lokal. Repo privat di GitHub, CI hijau. Tersisa: proyek Sanity (login pengguna), impor seed, deploy Studio, uji ubah satu harga dengan akun staf.
 
 - 2026-11-26: desain UI Ronde 1 sampai 5 selesai di canvas. Disalin ke repo: `tokens.css` (design system v1), `docs/design/` (README, design system, keputusan, 19 tangkapan layar), ADR 0001 sampai 0003, 58 foto produk di `seed/images/menu/`. PRD diperbarui ke v1.1 (FR-01, FR-05, US-01.AC1, US-04.AC5, 8.10). Pemilih outlet chip juga masuk PRD (FR-02, US-01.AC2/AC3, ADR 0004). Tersisa: scaffold M-01.
 - 2026-11-26: struktur folder, `CLAUDE.md`, dan dokumen pendukung dibuat. Belum ada kode aplikasi.
