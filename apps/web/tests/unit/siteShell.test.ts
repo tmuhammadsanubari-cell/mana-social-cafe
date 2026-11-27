@@ -47,6 +47,20 @@ describe("parseSiteShell", () => {
     expect(outlet.facilities).toContainEqual({ label: "Tanpa AC", isAvailable: true });
   });
 
+  it("FR-04: memetakan koordinat peta", () => {
+    expect(getOutlet(parseSiteShell(fixture), "dago").coordinates).toEqual({
+      latitude: -6.853527158415028,
+      longitude: 107.64640213744224,
+    });
+  });
+
+  it("kasus tepi 7.3: koordinat yang belum diisi tetap valid", () => {
+    const raw = changed((copy) =>
+      copy.outlets.forEach((outlet) => Object.assign(outlet, { latitude: null, longitude: null })),
+    );
+    expect(getOutlet(parseSiteShell(raw), "dago").coordinates).toBeNull();
+  });
+
   it("outlet tanpa foto dan fasilitas tetap valid", () => {
     expect(getOutlet(parseSiteShell(fixture), "dago")).toMatchObject({ photo: null, facilities: [] });
   });
@@ -85,6 +99,9 @@ describe("parseSiteShell menolak konten rusak (PRD 13.6)", () => {
     ["jam salah format", changed((copy) => (copy.outlets[0]!.hours[0]!.opens_at = "8 pagi")), "HH:mm"],
     ["hari di luar 1 sampai 7", changed((copy) => (copy.outlets[0]!.hours[0]!.weekday = 8)), "hari"],
     ["Instagram kosong", changed((copy) => (copy.settings.instagram_url = "")), "instagram_url"],
+    ["hanya latitude terisi", changed((c) => Object.assign(c.outlets[0]!, { longitude: null })), "bersama"],
+    ["latitude di luar rentang", changed((c) => (c.outlets[0]!.latitude = 107.6)), "latitude"],
+    ["longitude di luar rentang", changed((c) => (c.outlets[0]!.longitude = 200)), "longitude"],
     [
       "URL bukan http",
       changed((copy) => (copy.outlets[0]!.maps_url = "javascript:alert(1)")),
