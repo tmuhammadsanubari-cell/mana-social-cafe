@@ -3,8 +3,8 @@
 | Key | Value |
 |-----|-------|
 | Product | Website landing page ManA Social Cafe (Buah Batu dan Dago termasuk cottage) |
-| Version | 1.1 |
-| Date | 2026-11-26 |
+| Version | 1.2 |
+| Date | 2026-11-27 |
 | Status | Draft |
 | Tier | Standard |
 | Language | Bahasa Indonesia |
@@ -168,7 +168,7 @@ Must berjumlah 14 dari 21 fitur (67%), di atas batas sehat 60%. Pemotongan yang 
 | FR-01 | Beranda menampilkan logo manA Social Cafe dan satu kalimat positioning di hero, langsung diikuti pemilih outlet. Foto ruang tampil di panel outlet. Hero tidak memuat tombol; menu dibuka lewat navigasi utama | Must | G-01 | US-01 | Confirmed (laporan riset bagian 11); diubah di v1.1 (ADR 0001) |
 | FR-02 | Beranda menampilkan pemilih outlet: dua chip (Buah Batu, Dago) dan satu panel untuk outlet yang dipilih, berisi nama, foto ruang, alamat, jam hari ini, status buka, fasilitas utama, tombol "Petunjuk Arah", tautan WhatsApp, dan tautan ke halaman outlet. Buah Batu terpilih secara bawaan | Must | G-01 | US-01 | Confirmed (keputusan cakupan 26 Nov 2026); diubah di v1.1 (ADR 0004) |
 | FR-03 | Sistem menampilkan jam buka per outlet dari CMS dan menghitung status "Buka", "Segera tutup", atau "Tutup" sesuai BR-01 | Must | G-05 | US-02 | Confirmed |
-| FR-04 | Setiap outlet punya tombol "Petunjuk Arah" yang membuka Google Maps ke alamat outlet, plus peta tersemat yang dimuat saat digulir ke area peta | Must | G-01 | US-03 | Confirmed |
+| FR-04 | Setiap outlet punya tombol "Petunjuk Arah" yang membuka Google Maps ke alamat outlet, plus peta tersemat OpenStreetMap yang dimuat saat digulir ke area peta | Must | G-01 | US-03 | Confirmed; peta diubah di v1.2 (ADR 0010) |
 | FR-05 | Halaman menu menampilkan 19 kategori dan 75 item menu Buah Batu dengan harga, deskripsi, penanda pedas, penanda menu baru, dan add-on, sesuai BR-02, plus tombol "Lihat menu versi PDF" yang membuka file menu PDF (URL dari SiteSettings) di tab baru | Must | G-05 | US-04 | Confirmed (menu digital Juni 2026); tautan PDF ditambahkan di v1.1 (ADR 0002) |
 | FR-06 | Setiap outlet punya galeri foto ruang (minimal 6, maksimal 24 foto) dengan teks alternatif | Must | G-01 | US-05 | Confirmed (laporan riset bagian 7) |
 | FR-07 | Setiap outlet menampilkan daftar fasilitas, termasuk yang tidak tersedia (misalnya "Tanpa AC") dan zona merokok | Must | G-01 | US-06 | Confirmed |
@@ -260,14 +260,14 @@ Bagian pertama beranda memperkenalkan merek dan langsung meminta pengunjung memi
 
 - **US-03.AC1:** Diberikan pengunjung di halaman Buah Batu, ketika ia menekan "Petunjuk Arah", maka tab baru membuka Google Maps dengan tujuan "ManA Social Cafe, Jl. Buah Batu No.127, Bandung 40265".
 - **US-03.AC2:** Diberikan pengunjung di halaman Dago, ketika ia menekan "Petunjuk Arah", maka tujuan Google Maps adalah "Jl. Cibengang No.21, Ciburial, Cimenyan".
-- **US-03.AC3:** Diberikan halaman outlet dimuat, ketika pengunjung belum menggulir ke area peta, maka peta tersemat belum dimuat (tidak ada permintaan jaringan ke Google Maps).
+- **US-03.AC3:** Diberikan halaman outlet dimuat, ketika pengunjung belum menggulir ke area peta, maka peta tersemat belum dimuat (tidak ada permintaan jaringan ke OpenStreetMap).
 - **US-03.AC4:** Diberikan tombol "Petunjuk Arah" ditekan, ketika pengunjung sudah menyetujui cookie analitik, maka event `click_directions` tercatat dengan properti `outlet`.
 
 #### Kasus tepi dan status UI untuk 7.3
 
 | Status | Pemicu | Perilaku | Pesan yang tampil |
 |--------|--------|----------|-------------------|
-| Peta gagal dimuat | Google Maps tidak merespons | Area peta diganti alamat teks dan tombol "Petunjuk Arah" tetap aktif | "Peta tidak dapat dimuat. Gunakan tombol Petunjuk Arah." |
+| Peta gagal dimuat | OpenStreetMap tidak merespons, atau koordinat outlet belum diisi | Area peta diganti alamat teks dan tombol "Petunjuk Arah" tetap aktif | "Peta tidak dapat dimuat. Gunakan tombol Petunjuk Arah." |
 
 **Catatan:** jalan ke Dago menanjak dan sempit (ulasan Google); halaman Dago memuat catatan akses dari pemilik (Q-01).
 
@@ -750,6 +750,8 @@ erDiagram
         string name
         string address
         string maps_url
+        float latitude
+        float longitude
         string gofood_url
         boolean temporarily_closed
     }
@@ -822,6 +824,8 @@ Promo (E-09), FaqItem (E-10), dan SiteSettings (E-11) berdiri sendiri; FaqItem p
 | name | string | wajib, maks 40 karakter | "ManA Buah Batu", "ManA Dago" | Assumed |
 | address | string | wajib | Jl. Buah Batu No.127, Cijagra, Lengkong, Bandung 40265 / Jl. Cibengang No.21, Ciburial, Cimenyan | Confirmed |
 | maps_url | url | wajib | Tautan arah Google Maps | Confirmed |
+| latitude | number | opsional, -90 sampai 90; diisi bersama longitude | Titik peta tersemat. Buah Batu -6.9360055924259605; Dago -6.853527158415028 | Confirmed (pengguna, 27 Nov 2026) |
+| longitude | number | opsional, -180 sampai 180; diisi bersama latitude | Titik peta tersemat. Buah Batu 107.62226864418093; Dago 107.64640213744224 | Confirmed (pengguna, 27 Nov 2026) |
 | gofood_url | url | opsional | Hanya Buah Batu (Q-10) | Confirmed |
 | temporarily_closed | boolean | default false | Status tutup sementara | Suggested |
 
@@ -898,7 +902,8 @@ Peran Sanity:
 | Layanan | Tujuan | Jika gagal | Source |
 |---------|--------|------------|--------|
 | WhatsApp (wa.me) | Reservasi, pertanyaan, booking cottage | Tidak ada fallback di website; nomor ditampilkan sebagai teks agar bisa disalin | Confirmed |
-| Google Maps (tautan arah dan Maps Embed) | Petunjuk arah dan peta | Peta diganti alamat teks; tombol arah tetap tautan biasa | Confirmed |
+| Google Maps (tautan arah) | Petunjuk arah | Tautan biasa, tanpa kunci API | Confirmed |
+| OpenStreetMap (peta sematan) | Peta di halaman outlet | Peta diganti alamat teks; tombol arah tetap berfungsi | Confirmed |
 | GoFood | Pemesanan delivery Buah Batu | Tombol disembunyikan jika URL kosong | Confirmed |
 | Google Analytics 4 | Event konversi | Situs tetap berfungsi; data hilang selama gangguan | Suggested |
 | Sanity | CMS | Situs produksi tetap melayani build terakhir; pembaruan tertunda | Assumed |
@@ -942,6 +947,7 @@ flowchart LR
     Visitor["Pengunjung"] --> CDN
     CDN --> WA["wa.me"]
     CDN --> Maps["Google Maps"]
+    CDN --> OSM["OpenStreetMap"]
     CDN --> GoFood["GoFood"]
     CDN --> GA["Google Analytics 4"]
     CMS -->|"ekspor harian"| Backup[("Penyimpanan cadangan")]
@@ -973,7 +979,6 @@ mana-website/
 | PUBLIC_SANITY_PROJECT_ID | ID proyek Sanity | abc123xy | no |
 | PUBLIC_SANITY_DATASET | Dataset yang dibaca | production | no |
 | PUBLIC_GA4_MEASUREMENT_ID | ID GA4 | G-XXXXXXXXXX | no |
-| PUBLIC_MAPS_EMBED_KEY | Kunci Maps Embed API, dibatasi ke domain situs | (dari Google Cloud) | no, tetapi dibatasi domain |
 | BUILD_ENV | `preview` atau `production`, menentukan BR-06 | production | no |
 | SANITY_DEPLOY_TOKEN | Deploy Studio dan ekspor cadangan di CI | (rahasia) | yes |
 
@@ -1016,7 +1021,7 @@ mana-website/
 | Otorisasi | Ya | Peran Editor dan Administrator (12.2) | Uji US-11.AC3 | Suggested |
 | Penyimpanan secret | Ya | Variabel lingkungan hosting dan GitHub Secrets | gitleaks | Assumed |
 | Validasi input | Ya, form cottage di browser | Validasi BR-04; input di-encode saat masuk teks wa.me | Uji unit `cottage.ts` | Suggested |
-| XSS | Ya | Astro meng-escape output; konten CMS rich text dirender lewat komponen aman; Content Security Policy membatasi skrip ke domain sendiri, Google Analytics, dan Google Maps | Uji header CSP di CI | Suggested |
+| XSS | Ya | Astro meng-escape output; konten CMS rich text dirender lewat komponen aman; Content Security Policy membatasi skrip ke domain sendiri dan Google Analytics, serta iframe ke OpenStreetMap | Uji header CSP di CI | Suggested |
 | Enkripsi | Ya | HTTPS wajib dengan HSTS | Pemeriksaan header | Assumed |
 | Data pribadi (UU PDP No. 27/2022) | Ya, terbatas | Tidak ada data pribadi disimpan; data form cottage hanya dikirim pengunjung sendiri ke WhatsApp; analitik dengan persetujuan; halaman kebijakan privasi | Uji US-09.AC4, US-13.AC1 | Suggested |
 | Pemindaian dependensi | Ya | Dependabot mingguan, `npm audit` di CI | CI | Assumed |
@@ -1119,7 +1124,7 @@ Asumsi tim 1 developer dan 1 desainer paruh waktu, mulai 1 Des 2026 [Assumed].
 | R-04 | Foto ruang dan cottage profesional tidak tersedia saat M-02 | Timeline | High | Medium | Pakai foto produk dari menu digital; jadwalkan sesi foto sebelum M-03 (Q-06) | Pemilik |
 | R-05 | Lisensi web font Acumin tidak tersedia | Teknis | Medium | Low | Cadangan Archivo sudah ditetapkan di 8.2 | Desainer |
 | R-06 | Banyak pengunjung menolak cookie sehingga metrik di bawah angka sebenarnya | Produk | High | Medium | Bandingkan dengan Search Console dan jumlah pesan "(dari website)" | Pemilik |
-| R-07 | Biaya Maps Embed API atau paket CMS berubah | Dependensi | Low | Medium | Verifikasi harga di M-01; fallback tautan Maps tanpa embed | Developer |
+| R-07 | Biaya paket CMS berubah, atau layanan peta publik OpenStreetMap tidak tersedia | Dependensi | Low | Medium | Verifikasi harga di M-01; peta punya cadangan alamat teks dan tautan Google Maps | Developer |
 
 ## 20. Asumsi, dependensi, dan pertanyaan terbuka
 
@@ -1208,3 +1213,4 @@ Asumsi tim 1 developer dan 1 desainer paruh waktu, mulai 1 Des 2026 [Assumed].
 |---------|------|-----------|---------|
 | 1.0 | 2026-11-26 | Draf awal dari laporan riset, menu digital Juni 2026, dan jawaban default pengguna | Tim proyek, disusun bersama Claude |
 | 1.1 | 2026-11-26 | Disesuaikan dengan desain UI final (`docs/design/`): hero tanpa tombol dan foto ruang pindah ke panel outlet (FR-01, US-01.AC1, kasus tepi 7.1, 8.2, 8.6, 8.8; ADR 0001); tombol "Lihat menu versi PDF" (FR-05, US-04.AC5, kasus tepi 7.4, 8.8, E-11, matriks 21; ADR 0002); navigasi kategori menu di desktop berupa pita atas (8.10; ADR 0002); pemilih outlet beranda berupa dua chip dan satu panel (FR-02, US-01.AC2, US-01.AC3, US-02.AC1 sampai AC3, kasus tepi 7.1, 8.3, 8.6, 8.10; ADR 0004) | Tim proyek, disusun bersama Claude |
+| 1.2 | 2026-11-27 | Peta tersemat memakai OpenStreetMap, bukan Maps Embed API, karena API itu mensyaratkan kartu pembayaran (FR-04, US-03.AC3, kasus tepi 7.3, 11.2, 11.3, 12.3, 13.3, 13.5, 14, R-07; ADR 0010). Tombol "Petunjuk Arah" tetap membuka Google Maps | Tim proyek, disusun bersama Claude |
