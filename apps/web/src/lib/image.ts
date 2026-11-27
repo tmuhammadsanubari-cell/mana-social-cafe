@@ -12,6 +12,17 @@ function resized(url: string, width: number): string {
   return result.toString();
 }
 
+const THUMB_WIDTH = 480;
+const THUMB_SMALL_WIDTH = 240;
+
+/** Foto produk di halaman menu tampil kecil. */
+export function thumbSources(url: string): { src: string; srcset: string } {
+  return {
+    src: resized(url, THUMB_WIDTH),
+    srcset: [THUMB_SMALL_WIDTH, THUMB_WIDTH].map((width) => `${resized(url, width)} ${width}w`).join(", "),
+  };
+}
+
 export function photoSources(url: string): { src: string; srcset: string } {
   return {
     src: resized(url, DEFAULT_WIDTH),

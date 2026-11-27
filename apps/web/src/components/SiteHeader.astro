@@ -2,7 +2,7 @@
 // Header semua halaman (PRD 8.4). Menu ponsel memakai Popover API: Escape dan klik di luar
 // menutupnya tanpa JavaScript.
 import logo from "../assets/brand/logo-dark.svg";
-import { NAV_ITEMS, isActivePath } from "../lib/navigation";
+import { isActivePath, navItemsFor } from "../lib/navigation";
 
 const { pathname } = Astro.url;
 ---
@@ -21,7 +21,7 @@ const { pathname } = Astro.url;
         <span class="when-open">Tutup</span>
       </button>
       <ul id="site-nav" class="links" popover>
-        {NAV_ITEMS.map((item) => (
+        {navItemsFor(pathname).map((item) => (
           <li>
             <a href={item.href} aria-current={isActivePath(pathname, item.href) ? "page" : undefined}>
               {item.label}
@@ -32,6 +32,16 @@ const { pathname } = Astro.url;
     </nav>
   </div>
 </header>
+
+<script>
+  // Tautan ke bagian di halaman yang sama tidak memuat ulang, jadi menu ponsel ditutup di sini.
+  const menu = document.getElementById("site-nav");
+  menu?.querySelectorAll('a[href*="#"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      if (menu.matches(":popover-open")) menu.hidePopover();
+    });
+  });
+</script>
 
 <style>
   .site-header {

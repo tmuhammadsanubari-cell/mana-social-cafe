@@ -1,0 +1,78 @@
+---
+// Judul halaman menu, ringkasan harga, tombol PDF (US-04.AC5), dan catatan menu Dago.
+import type { MenuCategory, Outlet, SiteSettings } from "../lib/content/types";
+import { summaryText } from "../lib/menu";
+import { generalMessage, whatsAppUrl } from "../lib/whatsapp";
+
+interface Props {
+  categories: MenuCategory[];
+  dago: Outlet;
+  settings: SiteSettings;
+}
+
+const { categories, dago, settings } = Astro.props;
+const dagoHref = settings.whatsappNumber
+  ? whatsAppUrl(settings.whatsappNumber, generalMessage(dago.name))
+  : null;
+---
+
+<div class="intro container">
+  <h1>Menu ManA Buah Batu</h1>
+  <p class="summary">{summaryText(categories)}</p>
+  <p class="dago">
+    Menu ManA Dago sedang disiapkan.{" "}
+    {dagoHref ? (
+      <a href={dagoHref} target="_blank" rel="noopener">
+        Tanyakan menu hari ini lewat WhatsApp
+      </a>
+    ) : (
+      "Tanyakan menu hari ini lewat WhatsApp"
+    )}
+    .
+  </p>
+  {settings.menuPdfUrl && (
+    <a class="button button-dark" href={settings.menuPdfUrl} target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zm-1 0v5h6M8 13h8M8 17h8" />
+      </svg>
+      Lihat menu versi PDF
+    </a>
+  )}
+</div>
+
+<style>
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding-block: var(--space-8);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .summary {
+    font-size: var(--text-lg);
+  }
+
+  .dago {
+    color: var(--color-ink-muted);
+  }
+
+  .dago a {
+    color: var(--color-ink);
+    font-weight: 700;
+  }
+
+  svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: var(--icon-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

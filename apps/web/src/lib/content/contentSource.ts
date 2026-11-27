@@ -1,11 +1,12 @@
 // Sumber konten saat build: Sanity, atau data uji tetap untuk E2E dan CI (ADR 0007).
 import { createClient } from "@sanity/client";
+import menuFixture from "./fixtures/menu.json";
 import siteShellFixture from "./fixtures/siteShell.json";
 import { readSanityConfig } from "./sanityConfig";
 import { ContentError, type RawRecord } from "./validate";
 
 export interface ContentQuery {
-  name: "siteShell";
+  name: "siteShell" | "menu";
   groq: string;
 }
 
@@ -16,7 +17,7 @@ export interface ContentSource {
 // Tanggal versi API Sanity, disamakan dengan apps/studio/env.ts.
 const API_VERSION = "2026-11-26";
 
-const fixtures: Record<ContentQuery["name"], unknown> = { siteShell: siteShellFixture };
+const fixtures: Record<ContentQuery["name"], unknown> = { siteShell: siteShellFixture, menu: menuFixture };
 
 function fixtureSource(env: RawRecord): ContentSource {
   if (env.BUILD_ENV === "production") {

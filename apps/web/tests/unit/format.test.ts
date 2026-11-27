@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { formatClock, summarizeHours, weeklyRows } from "../../src/lib/formatHours";
 import { instagramLabel } from "../../src/lib/instagram";
-import { isActivePath } from "../../src/lib/navigation";
+import { isActivePath, navItemsFor } from "../../src/lib/navigation";
 
 const week = (days: number[], opensAt = "08:00", closesAt = "23:00") =>
   days.map((weekday) => ({ weekday, opensAt, closesAt }));
@@ -49,6 +49,18 @@ describe("instagramLabel", () => {
 
   it("tanpa nama akun, label tetap bermakna", () => {
     expect(instagramLabel("https://www.instagram.com/")).toBe("Instagram");
+  });
+});
+
+describe("navItemsFor", () => {
+  const menuHref = (pathname: string) => navItemsFor(pathname).find((item) => item.label === "Menu")?.href;
+
+  it("kasus tepi 7.4: Menu di halaman Dago menuju catatan menu Dago", () => {
+    expect(menuHref("/dago/")).toBe("/dago#menu-dago");
+  });
+
+  it.each(["/", "/buah-batu", "/menu"])("Menu dari %s menuju menu Buah Batu", (pathname) => {
+    expect(menuHref(pathname)).toBe("/menu");
   });
 });
 
