@@ -87,7 +87,7 @@ Jalankan dari root proyek.
 |--------|----------|
 | Dev server web | `npm run dev` |
 | Uji unit (web dan Studio) | `npm run test` |
-| Uji E2E | _belum ada, dibuat di M-02_ |
+| Uji E2E (data uji tetap, ADR 0007) | `npm run test:e2e` (pertama kali: `npx playwright install chromium firefox webkit` di `apps/web`). Tanpa unduhan: set `PLAYWRIGHT_CHANNEL=chrome` lalu `npm run test:e2e -- --project=chromium` |
 | Lint, format, type check | `npm run lint`, `npm run format:check`, `npm run typecheck` |
 | Semua pemeriksaan CI lokal | `npm run check` |
 | Build produksi (`BUILD_ENV=production`) | `BUILD_ENV=production npm run build` |
