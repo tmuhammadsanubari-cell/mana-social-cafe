@@ -1,40 +1,31 @@
 import { describe, expect, it } from "vitest";
 import { trackEvent } from "../../src/lib/analytics";
-import fixture from "../../src/lib/content/fixtures/siteShell.json";
-import { getOutlet, parseSiteShell } from "../../src/lib/content/siteShell";
-import { accessNote, mapEmbedUrl, mapQuery } from "../../src/lib/maps";
+import { accessNote, osmEmbedUrl } from "../../src/lib/maps";
 
-const shell = parseSiteShell(fixture);
-const buahBatu = getOutlet(shell, "buah-batu");
-const dago = getOutlet(shell, "dago");
+describe("osmEmbedUrl", () => {
+  const point = { latitude: -6.9360055924259605, longitude: 107.62226864418093 };
+  const url = new URL(osmEmbedUrl(point));
 
-describe("mapQuery", () => {
-  it("US-03.AC1: peta Buah Batu memakai tujuan tombol arah", () => {
-    expect(mapQuery(buahBatu)).toBe("ManA Social Cafe, Jl. Buah Batu No.127, Bandung 40265");
+  it("FR-04: memakai halaman sematan OpenStreetMap tanpa kunci", () => {
+    expect(url.origin + url.pathname).toBe("https://www.openstreetmap.org/export/embed");
+    expect(url.searchParams.get("layer")).toBe("mapnik");
+    expect([...url.searchParams.keys()].sort()).toEqual(["bbox", "layer", "marker"]);
   });
 
-  it("US-03.AC2: peta Dago memakai tujuan tombol arah", () => {
-    expect(mapQuery(dago)).toBe("Jl. Cibengang No.21, Ciburial, Cimenyan");
+  it("penanda memakai urutan latitude lalu longitude", () => {
+    expect(url.searchParams.get("marker")).toBe("-6.9360055924259605,107.62226864418093");
   });
 
-  it("tautan Maps tanpa tujuan memakai nama dan alamat outlet", () => {
-    const shortLink = { ...dago, mapsUrl: "https://maps.app.goo.gl/abc123" };
-    expect(mapQuery(shortLink)).toBe("ManA Dago, Jl. Cibengang No.21, Ciburial, Cimenyan");
-  });
-});
+  it("bbox memakai urutan longitude lalu latitude dan mengurung penanda", () => {
+    const [west = 0, south = 0, east = 0, north = 0] = (url.searchParams.get("bbox") ?? "")
+      .split(",")
+      .map(Number);
 
-describe("mapEmbedUrl", () => {
-  it("FR-04: memakai Maps Embed API dengan kunci situs", () => {
-    const url = new URL(mapEmbedUrl("kunci", dago) ?? "");
-
-    expect(url.origin + url.pathname).toBe("https://www.google.com/maps/embed/v1/place");
-    expect(url.searchParams.get("key")).toBe("kunci");
-    expect(url.searchParams.get("q")).toBe("Jl. Cibengang No.21, Ciburial, Cimenyan");
-    expect(url.searchParams.get("language")).toBe("id");
-  });
-
-  it.each([undefined, "", "  "])("tanpa kunci (%j) peta tidak disematkan", (key) => {
-    expect(mapEmbedUrl(key, dago)).toBeNull();
+    expect(west).toBeLessThan(point.longitude);
+    expect(east).toBeGreaterThan(point.longitude);
+    expect(south).toBeLessThan(point.latitude);
+    expect(north).toBeGreaterThan(point.latitude);
+    expect(east - west).toBeCloseTo(0.003, 6);
   });
 });
 

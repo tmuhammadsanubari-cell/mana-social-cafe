@@ -1,6 +1,6 @@
 // Query dan pemetaan konten outlet serta pengaturan situs (API-01, E-01, E-02, E-06, E-07, E-11).
 import type { ContentQuery, ContentSource } from "./contentSource";
-import { parseFacilities, parsePhoto } from "./outletExtras";
+import { parseCoordinates, parseFacilities, parsePhoto } from "./outletExtras";
 import { OUTLET_SLUGS, type DayHours, type Outlet, type OutletSlug, type SiteShell } from "./types";
 import {
   ContentError,
@@ -17,7 +17,7 @@ export const SITE_SHELL_QUERY: ContentQuery = {
   name: "siteShell",
   groq: `{
     "outlets": *[_type == "outlet"] | order(slug asc) {
-      slug, name, address, maps_url, gofood_url, temporarily_closed,
+      slug, name, address, maps_url, latitude, longitude, gofood_url, temporarily_closed,
       "hours": *[_type == "openingHours" && outlet._ref == ^._id] | order(weekday asc) {
         weekday, opens_at, closes_at
       },
@@ -71,6 +71,7 @@ function parseOutlet(value: unknown): Outlet {
     name: requiredText(record, "name", label),
     address: requiredText(record, "address", label),
     mapsUrl: requiredUrl(record, "maps_url", label),
+    coordinates: parseCoordinates(record, label),
     gofoodUrl: optionalUrl(record, "gofood_url", label),
     temporarilyClosed: record.temporarily_closed === true,
     hours: asList(record.hours ?? [], `Jam buka ${slug}`)
