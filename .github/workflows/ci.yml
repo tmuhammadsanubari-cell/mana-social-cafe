@@ -1,4 +1,4 @@
-# PRD 13.8 dan 16.2. E2E Playwright, Lighthouse CI, dan axe ditambahkan di M-02.
+# PRD 13.8 dan 16.2. Lighthouse CI ditambahkan di M-02.
 name: CI
 
 on:
@@ -33,11 +33,33 @@ jobs:
         run: npm run build -w apps/web
         env:
           BUILD_ENV: preview
+          # CI tidak bergantung pada isi CMS (ADR 0007).
+          CONTENT_SOURCE: fixture
       - name: Build Studio
         run: npm run build -w apps/studio -- --yes
         env:
           # ID proyek bukan rahasia (PRD 13.5); nilai palsu cukup untuk memastikan Studio terkompilasi.
           SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID || 'ci000000' }}
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Browser Playwright
+        run: npx playwright install --with-deps chromium firefox webkit
+        working-directory: apps/web
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report
+          retention-days: 7
 
   secrets:
     runs-on: ubuntu-latest
