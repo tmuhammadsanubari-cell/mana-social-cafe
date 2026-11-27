@@ -1,8 +1,14 @@
 ---
-// Kerangka S-01. Hero dan pemilih outlet dikerjakan di US-01.
+// S-01 Beranda. Rekomendasi, ulasan, Tentang ManA, promo, dan event menyusul di story masing-masing.
+import HomeHero from "../components/HomeHero.astro";
+import OutletPicker from "../components/OutletPicker.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteShell } from "../lib/content/getSiteShell";
+
+const shell = await getSiteShell();
 ---
 
-<BaseLayout title="ManA Social Cafe">
-  <h1>ManA Social Cafe</h1>
+<BaseLayout title="ManA Social Cafe" fullBleed>
+  <HomeHero />
+  <OutletPicker shell={shell} />
 </BaseLayout>

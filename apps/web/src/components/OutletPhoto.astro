@@ -1,0 +1,94 @@
+---
+// Foto ruang di panel outlet. Bila gagal dimuat, kotak cream berlabel nama outlet menggantikannya
+// (kasus tepi 7.1). Bila belum ada foto, placeholder Lampiran B.
+import type { Outlet } from "../lib/content/types";
+import { photoSources } from "../lib/image";
+import { OUTLET_PANEL_COPY } from "../lib/outletPanel";
+
+interface Props {
+  outlet: Outlet;
+  /** Foto yang tampil di layar pertama dimuat lebih dulu (NFR-01). */
+  priority?: boolean;
+}
+
+const { outlet, priority = false } = Astro.props;
+const sources = outlet.photo ? photoSources(outlet.photo.url) : null;
+---
+
+<div class="photo">
+  {sources ? (
+    <>
+      <span class="fallback" data-testid="photo-fallback">
+        {outlet.name}
+      </span>
+      <img
+        src={sources.src}
+        srcset={sources.srcset}
+        sizes="(min-width: 640px) 50vw, 100vw"
+        alt={outlet.photo?.alt}
+        loading={priority ? "eager" : "lazy"}
+        fetchpriority={priority ? "high" : undefined}
+        data-room-photo
+      />
+    </>
+  ) : (
+    <p class="placeholder">{OUTLET_PANEL_COPY[outlet.slug].photoPlaceholder}</p>
+  )}
+</div>
+
+<script>
+  const hide = (image: HTMLImageElement) => {
+    image.hidden = true;
+  };
+
+  document.querySelectorAll<HTMLImageElement>("[data-room-photo]").forEach((image) => {
+    // Gambar bisa sudah gagal sebelum skrip ini berjalan.
+    if (image.complete && image.naturalWidth === 0) hide(image);
+    else image.addEventListener("error", () => hide(image), { once: true });
+  });
+</script>
+
+<style>
+  .photo {
+    position: relative;
+    aspect-ratio: var(--photo-ratio);
+    background: var(--color-cream);
+  }
+
+  .fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: var(--space-4);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  img[hidden] {
+    display: none;
+  }
+
+  .placeholder {
+    position: absolute;
+    inset: auto 0 0;
+    margin: 0;
+    padding: var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  @media (min-width: 640px) {
+    .photo {
+      aspect-ratio: auto;
+      min-height: 100%;
+    }
+  }
+</style>

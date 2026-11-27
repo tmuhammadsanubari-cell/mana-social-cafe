@@ -3,7 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
 const PAGES = [
-  { path: "/", heading: "ManA Social Cafe" },
+  { path: "/", heading: "Dua tempat ngobrol di Bandung" },
   { path: "/buah-batu", heading: "ManA Buah Batu" },
   { path: "/dago", heading: "ManA Dago" },
   { path: "/menu", heading: "Menu ManA Buah Batu" },

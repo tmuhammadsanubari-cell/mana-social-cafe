@@ -12,9 +12,11 @@ import { getSiteShell } from "../lib/content/getSiteShell";
 
 interface Props {
   title: string;
+  /** true bila halaman mengatur sendiri lebar tiap bagiannya, misalnya Beranda. */
+  fullBleed?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, fullBleed = false } = Astro.props;
 const shell = await getSiteShell();
 ---
 
@@ -27,7 +29,7 @@ const shell = await getSiteShell();
   </head>
   <body>
     <SiteHeader />
-    <main class="container page">
+    <main class={fullBleed ? undefined : "container page"}>
       <slot />
     </main>
     <SiteFooter shell={shell} />

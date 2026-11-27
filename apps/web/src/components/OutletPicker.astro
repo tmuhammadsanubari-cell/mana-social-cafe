@@ -1,0 +1,127 @@
+---
+// Pemilih outlet: dua chip dan satu panel (FR-02, US-01.AC2, US-01.AC3, ADR 0004). Chip baru
+// ditampilkan oleh JavaScript; tanpa itu kedua panel tampil berurutan (kasus tepi 7.1).
+import type { SiteShell } from "../lib/content/types";
+import { OUTLET_PANEL_COPY } from "../lib/outletPanel";
+import OutletPanel from "./OutletPanel.astro";
+
+interface Props {
+  shell: SiteShell;
+}
+
+const { outlets, settings } = Astro.props.shell;
+---
+
+<section class="picker container" aria-labelledby="picker-title">
+  <div class="card" data-outlet-picker>
+    <div class="head">
+      <h2 id="picker-title">Mau ketemu di mana?</h2>
+      <div class="chips" role="group" aria-label="Pilih outlet" hidden>
+        {outlets.map((outlet, index) => (
+          <button
+            type="button"
+            aria-pressed={index === 0 ? "true" : "false"}
+            aria-controls={`panel-${outlet.slug}`}
+            data-outlet={outlet.slug}
+          >
+            {OUTLET_PANEL_COPY[outlet.slug].chip}
+          </button>
+        ))}
+      </div>
+    </div>
+    {outlets.map((outlet, index) => (
+      <OutletPanel outlet={outlet} settings={settings} priority={index === 0} />
+    ))}
+  </div>
+</section>
+
+<script>
+  function setUp(picker: HTMLElement): void {
+    const chips = picker.querySelectorAll<HTMLButtonElement>("button[data-outlet]");
+    const panels = picker.querySelectorAll<HTMLElement>("[data-panel]");
+
+    const select = (slug: string | undefined) => {
+      chips.forEach((chip) => chip.setAttribute("aria-pressed", String(chip.dataset.outlet === slug)));
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.panel !== slug;
+      });
+    };
+
+    chips.forEach((chip) => chip.addEventListener("click", () => select(chip.dataset.outlet)));
+    select(picker.querySelector<HTMLElement>('[aria-pressed="true"]')?.dataset.outlet);
+    picker.querySelector('[role="group"]')?.removeAttribute("hidden");
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-outlet-picker]").forEach(setUp);
+</script>
+
+<style>
+  .picker {
+    position: relative;
+    margin-top: calc(-1 * var(--picker-overlap));
+    margin-bottom: var(--space-16);
+  }
+
+  .card {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-1);
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-bottom: var(--border-divider) solid var(--color-line-soft);
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  .chips {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .chips[hidden] {
+    display: none;
+  }
+
+  button {
+    min-width: var(--tap-min);
+    min-height: var(--button-s);
+    padding-inline: var(--space-4);
+    border: var(--border-control) solid var(--color-ink);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color var(--duration-press);
+  }
+
+  button:hover {
+    background: var(--color-tint);
+  }
+
+  button[aria-pressed="true"] {
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  button:active {
+    background: var(--color-brand-press);
+  }
+
+  @media (min-width: 640px) {
+    .head {
+      padding-inline: var(--space-6);
+    }
+  }
+</style>

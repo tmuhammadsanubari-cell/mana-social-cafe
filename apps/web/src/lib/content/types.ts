@@ -10,6 +10,16 @@ export interface DayHours {
   closesAt: string;
 }
 
+export interface Photo {
+  url: string;
+  alt: string;
+}
+
+export interface Facility {
+  label: string;
+  isAvailable: boolean;
+}
+
 export interface Outlet {
   slug: OutletSlug;
   name: string;
@@ -19,6 +29,9 @@ export interface Outlet {
   temporarilyClosed: boolean;
   /** Hari yang jamnya belum diisi tidak ada di daftar (kasus tepi 7.2). */
   hours: DayHours[];
+  /** Foto galeri pertama; null bila belum ada foto (Q-06). */
+  photo: Photo | null;
+  facilities: Facility[];
 }
 
 export interface SiteSettings {
@@ -27,7 +40,7 @@ export interface SiteSettings {
   menuPdfUrl: string | null;
 }
 
-/** Konten yang dibutuhkan setiap halaman: navigasi dan footer. */
+/** Konten outlet dan pengaturan: navigasi, footer, Beranda, dan halaman outlet. */
 export interface SiteShell {
   outlets: Outlet[];
   settings: SiteSettings;

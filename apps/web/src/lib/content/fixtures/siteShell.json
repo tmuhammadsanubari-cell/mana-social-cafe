@@ -15,6 +15,18 @@
         { "weekday": 5, "opens_at": "08:00", "closes_at": "23:00" },
         { "weekday": 6, "opens_at": "08:00", "closes_at": "23:00" },
         { "weekday": 7, "opens_at": "08:00", "closes_at": "23:00" }
+      ],
+      "photo": {
+        "url": "https://foto.invalid/ruang-buah-batu.jpg",
+        "alt_text": "[DATA UJI] Void melingkar Buah Batu"
+      },
+      "facilities": [
+        { "label": "WiFi dan stopkontak", "is_available": true },
+        { "label": "Mushola dan toilet", "is_available": true },
+        { "label": "Lantai 2 bebas rokok", "is_available": true },
+        { "label": "Tanpa AC", "is_available": true },
+        { "label": "Zona merokok di lantai 1", "is_available": true },
+        { "label": "Parkir motor, mobil terbatas", "is_available": true }
       ]
     },
     {
@@ -32,7 +44,9 @@
         { "weekday": 5, "opens_at": "11:00", "closes_at": "22:00" },
         { "weekday": 6, "opens_at": "11:00", "closes_at": "22:00" },
         { "weekday": 7, "opens_at": "11:00", "closes_at": "22:00" }
-      ]
+      ],
+      "photo": null,
+      "facilities": []
     }
   ],
   "settings": {
