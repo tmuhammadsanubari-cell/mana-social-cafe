@@ -1,11 +1,13 @@
 {
-  "source": "PRD 11.3 (alamat, jam), US-03 (tujuan Maps), BR-03 (nomor WhatsApp), US-10 (Instagram), ADR 0002 (menu PDF)",
+  "source": "PRD 11.3 (alamat, jam), US-03 (tujuan Maps), PRD 11.3 (koordinat peta dari pengguna), BR-03 (nomor WhatsApp), US-10 (Instagram), ADR 0002 (menu PDF)",
   "outlets": [
     {
       "slug": "buah-batu",
       "name": "ManA Buah Batu",
       "address": "Jl. Buah Batu No.127, Cijagra, Lengkong, Bandung 40265",
       "maps_destination": "ManA Social Cafe, Jl. Buah Batu No.127, Bandung 40265",
+      "latitude": -6.9360055924259605,
+      "longitude": 107.62226864418093,
       "gofood_url": null,
       "opens_at": "08:00",
       "closes_at": "23:00"
@@ -15,6 +17,8 @@
       "name": "ManA Dago",
       "address": "Jl. Cibengang No.21, Ciburial, Cimenyan",
       "maps_destination": "Jl. Cibengang No.21, Ciburial, Cimenyan",
+      "latitude": -6.853527158415028,
+      "longitude": 107.64640213744224,
       "gofood_url": null,
       "opens_at": "11:00",
       "closes_at": "22:00"

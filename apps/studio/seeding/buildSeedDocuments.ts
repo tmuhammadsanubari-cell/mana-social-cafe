@@ -86,6 +86,8 @@ function siteBaseDocs(base: SiteBaseSeed): SanityDoc[] {
       name: outlet.name,
       address: outlet.address,
       maps_url: MAPS_DIR_URL + encodeURIComponent(outlet.maps_destination),
+      latitude: outlet.latitude,
+      longitude: outlet.longitude,
       gofood_url: outlet.gofood_url,
       temporarily_closed: false,
     });
