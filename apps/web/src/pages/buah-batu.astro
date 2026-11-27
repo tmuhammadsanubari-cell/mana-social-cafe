@@ -1,7 +1,8 @@
 ---
-// S-02. Arah, galeri, dan fasilitas dikerjakan di US-03, US-05, dan US-06.
+// S-02. Galeri dan fasilitas dikerjakan di US-05 dan US-06.
 import HoursTable from "../components/HoursTable.astro";
 import OutletIntro from "../components/OutletIntro.astro";
+import OutletLocation from "../components/OutletLocation.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getSiteShell } from "../lib/content/getSiteShell";
 import { getOutlet } from "../lib/content/siteShell";
@@ -13,4 +14,5 @@ const outlet = getOutlet(shell, "buah-batu");
 <BaseLayout title={outlet.name}>
   <OutletIntro outlet={outlet} instagramUrl={shell.settings.instagramUrl} />
   <HoursTable outlet={outlet} />
+  <OutletLocation outlet={outlet} />
 </BaseLayout>

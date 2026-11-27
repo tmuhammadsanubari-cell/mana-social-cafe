@@ -1,8 +1,9 @@
 ---
-// Bagian atas halaman outlet: nama, status, jam, dan alamat (S-02, S-03).
-// Tombol Petunjuk Arah dan WhatsApp menyusul di US-03 dan US-07.
+// Bagian atas halaman outlet: nama, status, jam, alamat, dan Petunjuk Arah (S-02, S-03).
+// Tombol WhatsApp menyusul di US-07.
 import type { Outlet } from "../lib/content/types";
 import { summarizeHours } from "../lib/formatHours";
+import DirectionsButton from "./DirectionsButton.astro";
 import OpenStatus from "./OpenStatus.astro";
 
 interface Props {
@@ -22,6 +23,7 @@ const { outlet, instagramUrl } = Astro.props;
     ))}
     <p class="address">{outlet.address}</p>
   </div>
+  <DirectionsButton outlet={outlet} />
 </div>
 
 <style>

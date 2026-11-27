@@ -105,6 +105,9 @@
   --hero-art-width: 320px; /* ilustrasi orang di hero */
   --picker-overlap: 48px; /* panel outlet menumpang di atas hero */
   --photo-ratio: 4 / 3; /* foto ruang di ponsel */
+
+  /* Halaman outlet */
+  --map-height: 320px;
 }
 
 :focus-visible {

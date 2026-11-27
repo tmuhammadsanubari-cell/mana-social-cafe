@@ -1,0 +1,64 @@
+---
+// Bagian "Cara ke sini" di halaman outlet (S-02, S-03, FR-04).
+import type { Outlet } from "../lib/content/types";
+import { accessNote } from "../lib/maps";
+import DirectionsButton from "./DirectionsButton.astro";
+import OutletMap from "./OutletMap.astro";
+
+interface Props {
+  outlet: Outlet;
+}
+
+const { outlet } = Astro.props;
+const note = accessNote(outlet.slug);
+---
+
+<section class="location" aria-labelledby="location-title">
+  <div class="info">
+    <h2 id="location-title">Cara ke sini</h2>
+    <p>{outlet.address}</p>
+    {note && (
+      <p class="note">
+        <strong>{note.summary}</strong> {note.detail}
+      </p>
+    )}
+    <DirectionsButton outlet={outlet} variant="outline" />
+  </div>
+  <OutletMap outlet={outlet} />
+</section>
+
+<style>
+  .location {
+    display: grid;
+    gap: var(--space-6);
+    margin-top: var(--space-16);
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  .note {
+    color: var(--color-ink-muted);
+  }
+
+  .note strong {
+    display: block;
+    color: var(--color-ink);
+  }
+
+  @media (min-width: 1024px) {
+    .location {
+      grid-template-columns: 1fr 2fr;
+      gap: var(--space-12);
+    }
+  }
+</style>

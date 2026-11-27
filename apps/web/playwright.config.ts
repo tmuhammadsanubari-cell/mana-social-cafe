@@ -24,7 +24,8 @@ export default defineConfig({
     command: `npm run build && npm run preview -- --port ${PORT}`,
     url: BASE_URL,
     reuseExistingServer: false,
-    env: { CONTENT_SOURCE: "fixture", BUILD_ENV: "preview" },
+    // Kunci Maps palsu: uji meniru Google, tidak ada permintaan yang keluar (US-03).
+    env: { CONTENT_SOURCE: "fixture", BUILD_ENV: "preview", PUBLIC_MAPS_EMBED_KEY: "kunci-uji" },
     timeout: 120_000,
   },
 });
