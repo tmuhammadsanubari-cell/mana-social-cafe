@@ -33,6 +33,15 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 
 ## M-02 MVP, semua fitur Must (target 2026-12-31)
 
+| Tugas fondasi | Rujukan | Status |
+|---------------|---------|--------|
+| Pembaca konten Sanity saat build, dengan validasi | API-01, PRD 13.6 | done (`apps/web/src/lib/content/`; build dari `staging` berhasil) |
+| Header, footer, dan kerangka halaman `/buah-batu`, `/dago`, `/menu` | PRD 8.4, 8.10 | done (tautan FAQ menyusul di US-18, kebijakan privasi di US-13) |
+| Playwright, axe, job E2E di CI | PRD 15, ADR 0007 | done di kode; lokal 17 uji lulus di Google Chrome. Firefox dan WebKit belum dijalankan (menunggu CI) |
+| Lighthouse CI dan deploy preview (Netlify atau Vercel) | Kriteria M-02, PRD 16.1 | todo |
+| `placeholderGuard.ts` (build produksi gagal bila ada data contoh) | BR-06 | todo (bersama US-08) |
+| knip dan jscpd di CI | PRD 13.8 | todo (`src/lib` sudah ada) |
+
 | Story | Fitur | FR | Status |
 |-------|-------|----|--------|
 | US-01 | Hero dan pemilih outlet | FR-01, FR-02 | todo |
@@ -99,6 +108,8 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 ## Catatan sesi
 
 Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
+
+- 2026-11-27: fondasi web M-02. Pembaca Sanity, header, footer, kerangka tiga halaman, data uji tetap (ADR 0007), Playwright dan job `e2e` di CI. Unduhan browser Playwright terlalu lambat, jadi E2E lokal memakai `PLAYWRIGHT_CHANNEL=chrome` (proyek `chromium` saja). US-10 baru sebagian (footer; AC-nya sudah ada di `shell.spec.ts`). Dikerjakan di branch `feat/m02-fondasi-web`. Berikutnya: US-02, lalu US-01.
 
 - 2026-11-26: M-01 selesai. Ketiga kriteria terpenuhi: ubah harga di Studio berhasil (diuji pengguna), 75 item terimpor ke `staging` dan `production`, CI hijau. Catatan: login CLI Sanity wajib lewat GitHub (`npx sanity login --provider github`); akun Google pengguna adalah identitas Sanity lain tanpa akses proyek. Berikutnya: M-02, mulai US-01.
 
