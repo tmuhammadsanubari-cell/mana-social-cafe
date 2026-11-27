@@ -1,0 +1,13 @@
+---
+// Kerangka S-04. Daftar menu dikerjakan di US-04.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteShell } from "../lib/content/getSiteShell";
+import { getOutlet } from "../lib/content/siteShell";
+
+const outlet = getOutlet(await getSiteShell(), "buah-batu");
+const title = `Menu ${outlet.name}`;
+---
+
+<BaseLayout title={title}>
+  <h1>{title}</h1>
+</BaseLayout>

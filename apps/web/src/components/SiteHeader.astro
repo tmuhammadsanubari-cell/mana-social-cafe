@@ -1,0 +1,172 @@
+---
+// Header semua halaman (PRD 8.4). Menu ponsel memakai Popover API: Escape dan klik di luar
+// menutupnya tanpa JavaScript.
+import logo from "../assets/brand/logo-dark.svg";
+import { NAV_ITEMS, isActivePath } from "../lib/navigation";
+
+const { pathname } = Astro.url;
+---
+
+<header class="site-header">
+  <div class="bar container">
+    <a class="brand" href="/">
+      <img src={logo.src} width={logo.width} height={logo.height} alt="ManA Social Cafe, ke Beranda" />
+    </a>
+    <nav aria-label="Utama">
+      <button type="button" class="toggle" popovertarget="site-nav">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <span class="when-closed">Menu</span>
+        <span class="when-open">Tutup</span>
+      </button>
+      <ul id="site-nav" class="links" popover>
+        {NAV_ITEMS.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isActivePath(pathname, item.href) ? "page" : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--header-height);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    min-width: var(--tap-min);
+    min-height: var(--tap-min);
+  }
+
+  .brand img {
+    width: auto;
+    height: var(--logo-height);
+  }
+
+  .toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--button-s);
+    padding-inline: var(--space-4);
+    border: var(--border-control) solid var(--color-ink);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .toggle svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: var(--icon-stroke);
+    stroke-linecap: round;
+  }
+
+  .when-open {
+    display: none;
+  }
+
+  nav:has(.links:popover-open) .toggle {
+    background: var(--color-ink);
+    color: var(--color-on-dark);
+  }
+
+  nav:has(.links:popover-open) :is(.when-closed, svg) {
+    display: none;
+  }
+
+  nav:has(.links:popover-open) .when-open {
+    display: inline;
+  }
+
+  .links {
+    list-style: none;
+  }
+
+  .links:popover-open {
+    inset: var(--header-height) var(--gutter) auto;
+    width: auto;
+    margin: 0;
+    padding: var(--space-2);
+    border: 0;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-1);
+  }
+
+  .links a {
+    display: flex;
+    align-items: center;
+    min-height: var(--button-s);
+    padding-inline: var(--space-3);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    background: var(--color-tint);
+  }
+
+  .links a[aria-current="page"] {
+    background: var(--color-cream);
+  }
+
+  @media (min-width: 640px) {
+    .toggle {
+      display: none;
+    }
+
+    .links,
+    .links:popover-open {
+      position: static;
+      display: flex;
+      gap: var(--space-1);
+      width: auto;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      overflow: visible;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      box-shadow: none;
+    }
+
+    .links a {
+      border-block: var(--nav-underline) solid transparent;
+      border-radius: 0;
+    }
+
+    .links a:hover {
+      background: transparent;
+      border-bottom-color: var(--color-ink-muted);
+    }
+
+    .links a[aria-current="page"] {
+      background: transparent;
+      border-bottom-color: var(--color-ink);
+    }
+  }
+</style>
