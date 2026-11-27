@@ -37,7 +37,7 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 |---------------|---------|--------|
 | Pembaca konten Sanity saat build, dengan validasi | API-01, PRD 13.6 | done (`apps/web/src/lib/content/`; build dari `staging` berhasil) |
 | Header, footer, dan kerangka halaman `/buah-batu`, `/dago`, `/menu` | PRD 8.4, 8.10 | done (tautan FAQ menyusul di US-18, kebijakan privasi di US-13) |
-| Playwright, axe, job E2E di CI | PRD 15, ADR 0007 | done di kode; lokal 17 uji lulus di Google Chrome. Firefox dan WebKit belum dijalankan (menunggu CI) |
+| Playwright, axe, job E2E di CI | PRD 15, ADR 0007 | done; 2026-11-27 CI lulus 51 uji di Chromium, Firefox, dan WebKit (PR #2). Lokal: 17 uji di Google Chrome |
 | Lighthouse CI dan deploy preview (Netlify atau Vercel) | Kriteria M-02, PRD 16.1 | todo |
 | `placeholderGuard.ts` (build produksi gagal bila ada data contoh) | BR-06 | todo (bersama US-08) |
 | knip dan jscpd di CI | PRD 13.8 | todo (`src/lib` sudah ada) |
