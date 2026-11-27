@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { todayHoursText } from "../../src/lib/formatHours";
-import { photoSources } from "../../src/lib/image";
+import { photoSources, thumbSources } from "../../src/lib/image";
 import { OUTLET_PANEL_COPY, facilityPlaceholder, mainFacilities } from "../../src/lib/outletPanel";
 import { generalMessage, whatsAppUrl } from "../../src/lib/whatsapp";
 
@@ -65,6 +65,16 @@ describe("panel outlet", () => {
 
   it("fasilitas yang belum diisi memakai placeholder berlabel", () => {
     expect(facilityPlaceholder("dago")).toBe("[FASILITAS DAGO DARI PEMILIK]");
+  });
+});
+
+describe("thumbSources", () => {
+  it("NFR-01: foto menu diminta dalam ukuran kecil", () => {
+    const { src, srcset } = thumbSources("https://cdn.sanity.io/images/p/d/abc.webp");
+
+    expect(src).toContain("w=480");
+    expect(srcset.split(", ")).toHaveLength(2);
+    expect(srcset).toContain("w=240&auto=format&fit=max 240w");
   });
 });
 

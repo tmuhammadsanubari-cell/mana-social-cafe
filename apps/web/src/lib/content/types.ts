@@ -47,6 +47,40 @@ export interface SiteSettings {
   menuPdfUrl: string | null;
 }
 
+export type MenuSection = "food" | "drink";
+
+export interface MenuItem {
+  name: string;
+  /** null tampil "Tanya barista" (BR-02). */
+  priceIdr: number | null;
+  description: string | null;
+  options: string | null;
+  isSpicy: boolean;
+  isNew: boolean;
+  badge: string | null;
+  isAvailable: boolean;
+  imageUrl: string | null;
+}
+
+/** Tambahan dan upgrade; tidak dihitung sebagai item menu (ADR 0002). */
+export interface MenuAddOn {
+  name: string;
+  priceIdr: number | null;
+  badge: string | null;
+  note: string | null;
+  imageUrl: string | null;
+}
+
+export interface MenuCategory {
+  name: string;
+  anchor: string;
+  section: MenuSection;
+  subtitle: string | null;
+  imageUrl: string | null;
+  items: MenuItem[];
+  addOns: MenuAddOn[];
+}
+
 /** Konten outlet dan pengaturan: navigasi, footer, Beranda, dan halaman outlet. */
 export interface SiteShell {
   outlets: Outlet[];

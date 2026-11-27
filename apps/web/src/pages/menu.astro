@@ -1,13 +1,23 @@
 ---
-// Kerangka S-04. Daftar menu dikerjakan di US-04.
+// S-04 Menu Buah Batu (FR-05, US-04). Tombol GoFood dikerjakan di US-17.
+import MenuCategory from "../components/MenuCategory.astro";
+import MenuIntro from "../components/MenuIntro.astro";
+import MenuNav from "../components/MenuNav.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getMenu } from "../lib/content/getMenu";
 import { getSiteShell } from "../lib/content/getSiteShell";
 import { getOutlet } from "../lib/content/siteShell";
+import { visibleCategories } from "../lib/menu";
 
-const outlet = getOutlet(await getSiteShell(), "buah-batu");
-const title = `Menu ${outlet.name}`;
+const shell = await getSiteShell();
+const categories = visibleCategories(await getMenu());
+const buahBatu = getOutlet(shell, "buah-batu");
 ---
 
-<BaseLayout title={title}>
-  <h1>{title}</h1>
+<BaseLayout title={`Menu ${buahBatu.name}`} fullBleed>
+  <MenuIntro categories={categories} dago={getOutlet(shell, "dago")} settings={shell.settings} />
+  <MenuNav categories={categories} />
+  {categories.map((category) => (
+    <MenuCategory category={category} />
+  ))}
 </BaseLayout>

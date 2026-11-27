@@ -108,6 +108,11 @@
 
   /* Halaman outlet */
   --map-height: 320px;
+
+  /* Halaman menu */
+  --menu-card-min: 150px; /* lebar kartu terkecil: dua kolom di ponsel 360 px */
+  --menu-photo-width: 280px; /* foto kategori di samping daftar */
+  --layer-sticky: 10;
 }
 
 :focus-visible {

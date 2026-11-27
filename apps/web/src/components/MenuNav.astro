@@ -1,0 +1,124 @@
+---
+// Pita yang menempel di atas: tab Makanan dan Minuman serta navigasi kategori (US-04.AC2, ADR 0002).
+// Tanpa JavaScript tab tersembunyi dan semua tautan kategori berfungsi sebagai tautan biasa.
+import type { MenuCategory } from "../lib/content/types";
+import { MENU_SECTIONS } from "../lib/menu";
+
+interface Props {
+  categories: MenuCategory[];
+}
+
+const { categories } = Astro.props;
+---
+
+<nav class="menu-nav" aria-label="Kategori menu" data-menu-nav>
+  <div class="bar container">
+    <div class="tabs" role="group" aria-label="Jenis menu" hidden>
+      {MENU_SECTIONS.map((section, index) => (
+        <button type="button" aria-pressed={index === 0 ? "true" : "false"} data-tab={section.id}>
+          {section.label}
+        </button>
+      ))}
+    </div>
+    <ul class="links">
+      {categories.map((category) => (
+        <li data-section={category.section}>
+          <a href={`#${category.anchor}`} data-category-link={category.name}>
+            {category.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  import "./menuNavScript";
+</script>
+
+<style>
+  .menu-nav {
+    position: sticky;
+    top: 0;
+    z-index: var(--layer-sticky);
+    border-block: var(--border-divider) solid var(--color-line);
+    background: var(--color-bg);
+  }
+
+  .bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+  }
+
+  .tabs {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .tabs[hidden],
+  li[hidden] {
+    display: none;
+  }
+
+  button,
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--tap-min);
+    min-height: var(--tap-min);
+    padding-inline: var(--space-4);
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background-color var(--duration-press);
+  }
+
+  button {
+    border: var(--border-control) solid var(--color-ink);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  button[aria-pressed="true"] {
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  .links {
+    position: relative;
+    display: flex;
+    gap: var(--space-2);
+    margin: 0;
+    padding: var(--space-1);
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  a {
+    background: var(--color-surface);
+    font-size: var(--text-sm);
+    text-decoration: none;
+  }
+
+  a:hover {
+    background: var(--color-tint);
+  }
+
+  a[aria-current="true"] {
+    background: var(--color-ink);
+    color: var(--color-on-dark);
+  }
+
+  @media (min-width: 1024px) {
+    .bar {
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-4);
+    }
+  }
+</style>

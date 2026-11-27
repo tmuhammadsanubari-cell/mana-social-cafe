@@ -1,0 +1,104 @@
+---
+// Satu kategori menu dengan pita judul kuning (gaya PDF, ADR 0002).
+import type { MenuCategory } from "../lib/content/types";
+import { thumbSources } from "../lib/image";
+import MenuAddOns from "./MenuAddOns.astro";
+import MenuEntry from "./MenuEntry.astro";
+
+interface Props {
+  category: MenuCategory;
+}
+
+const { category } = Astro.props;
+// Kategori tanpa foto produk tampil sebagai daftar, juga saat foto disembunyikan di produksi.
+const layout = category.items.some((item) => item.imageUrl) ? "card" : "row";
+const photo = category.imageUrl ? thumbSources(category.imageUrl) : null;
+const titleId = `${category.anchor}-title`;
+---
+
+<section
+  id={category.anchor}
+  class="category"
+  aria-labelledby={titleId}
+  data-category
+  data-section={category.section}
+>
+  <div class="band">
+    <div class="container">
+      <h2 id={titleId} tabindex="-1">
+        {category.name}
+      </h2>
+      {category.subtitle && <p>{category.subtitle}</p>}
+    </div>
+  </div>
+  <div class:list={["body", "container", { "with-photo": photo }]}>
+    <div>
+      {category.items.length > 0 && (
+        <ul class={layout}>
+          {category.items.map((item) => (
+            <MenuEntry item={item} layout={layout} />
+          ))}
+        </ul>
+      )}
+      {category.addOns.length > 0 && <MenuAddOns addOns={category.addOns} />}
+    </div>
+    {photo && <img src={photo.src} srcset={photo.srcset} sizes="280px" alt="" loading="lazy" />}
+  </div>
+</section>
+
+<style>
+  .category[hidden] {
+    display: none;
+  }
+
+  .band {
+    padding-block: var(--space-3);
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  .body {
+    display: grid;
+    gap: var(--space-6);
+    padding-block: var(--space-6) var(--space-12);
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--menu-card-min), 1fr));
+    gap: var(--space-6) var(--space-4);
+  }
+
+  img {
+    justify-self: center;
+    width: min(100%, var(--menu-photo-width));
+    height: auto;
+    /* Rasio tetap supaya foto yang baru dimuat tidak menggeser daftar (NFR-02). */
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
+
+  @media (min-width: 640px) {
+    .with-photo {
+      grid-template-columns: minmax(0, 1fr) var(--menu-photo-width);
+      align-items: start;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .card {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

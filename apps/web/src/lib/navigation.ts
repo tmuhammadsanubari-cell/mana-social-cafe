@@ -7,6 +7,12 @@ export const NAV_ITEMS = [
 
 const TRAILING_SLASH = /\/+$/;
 
+/** Kasus tepi 7.4: di halaman Dago, "Menu" menuju catatan menu Dago, bukan menu Buah Batu. */
+export function navItemsFor(pathname: string): ReadonlyArray<{ label: string; href: string }> {
+  if (!isActivePath(pathname, "/dago")) return NAV_ITEMS;
+  return NAV_ITEMS.map((item) => (item.href === "/menu" ? { ...item, href: "/dago#menu-dago" } : item));
+}
+
 export function isActivePath(pathname: string, href: string): boolean {
   return pathname.replace(TRAILING_SLASH, "") === href;
 }

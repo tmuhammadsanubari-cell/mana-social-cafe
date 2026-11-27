@@ -1,0 +1,1041 @@
+{
+  "categories": [
+    {
+      "id": "menuCategory-buah-batu-new-menu-beef",
+      "name": "New Menu: Beef",
+      "section": "food",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Nasi Beef Oseng Daun Jeruk",
+          "price_idr": 45000,
+          "description": null,
+          "options": null,
+          "is_spicy": true,
+          "is_new": true,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/beef-oseng.webp"
+        },
+        {
+          "name": "Nasi Beef Teriyaki",
+          "price_idr": 45000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": true,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/beef-teriyaki.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-new-menu-light-meal",
+      "name": "New Menu: Light meal",
+      "section": "food",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Pisang Madu ManA",
+          "price_idr": 29000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": true,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/pisang-madu.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-all-about-rice-asian",
+      "name": "All About Rice: Asian",
+      "section": "food",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Nasi Goreng ManA",
+          "price_idr": 40000,
+          "description": "Nasi goreng khas ManA disajikan dengan topping telur, sosis, dan bakso sapi.",
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/nasgor-mana.webp"
+        },
+        {
+          "name": "Pattaya Mango Chicken",
+          "price_idr": 39000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/pattaya.webp"
+        },
+        {
+          "name": "Chicken Manchurian",
+          "price_idr": 39000,
+          "description": null,
+          "options": null,
+          "is_spicy": true,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/manchurian.webp"
+        },
+        {
+          "name": "Chicken Nanban",
+          "price_idr": 39000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/nanban.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-all-about-rice-nusantara",
+      "name": "All About Rice: Nusantara",
+      "section": "food",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Nasi Goreng Tektek",
+          "price_idr": 40000,
+          "description": null,
+          "options": null,
+          "is_spicy": true,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/nasgor-tektek.webp"
+        },
+        {
+          "name": "Nasi Goreng Kampung",
+          "price_idr": 40000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/nasgor-kampung.webp"
+        },
+        {
+          "name": "Nasi Ayam Sambal Iris",
+          "price_idr": 39000,
+          "description": null,
+          "options": null,
+          "is_spicy": true,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/sambal-iris.webp"
+        },
+        {
+          "name": "Nasi Ayam Saus Kari",
+          "price_idr": 39000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/saus-kari.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-the-noodles",
+      "name": "The Noodles",
+      "section": "food",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Yamien Manis",
+          "price_idr": 40000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/yamien-manis.webp"
+        },
+        {
+          "name": "Yamien Asin",
+          "price_idr": 40000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/yamien-asin.webp"
+        },
+        {
+          "name": "Mie Tek Tek",
+          "price_idr": 39000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/mie-tektek.webp"
+        },
+        {
+          "name": "Mie Kari",
+          "price_idr": 39000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/mie-kari.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-the-spaghetti",
+      "name": "The Spaghetti",
+      "section": "food",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Bolognese",
+          "price_idr": 40000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/bolognese.webp"
+        },
+        {
+          "name": "Aglio e Olio",
+          "price_idr": 40000,
+          "description": null,
+          "options": null,
+          "is_spicy": true,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/aglio.webp"
+        },
+        {
+          "name": "Carbonara",
+          "price_idr": 40000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/carbonara.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-light-meals",
+      "name": "Light Meals",
+      "section": "food",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "French Fries",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/french-fries.webp"
+        },
+        {
+          "name": "Cheesy Fries",
+          "price_idr": 33000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/cheesy-fries.webp"
+        },
+        {
+          "name": "Roti Bakar",
+          "price_idr": 29000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/roti-bakar.webp"
+        },
+        {
+          "name": "Tahu Lada Garam",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": true,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/tahu-lada.webp"
+        },
+        {
+          "name": "Gyoza Chilli Oil",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": true,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/gyoza.webp"
+        },
+        {
+          "name": "Pisang Goreng ManA",
+          "price_idr": 29000,
+          "description": "Pisang goreng khas ManA yang disajikan dengan parutan keju cheddar dan gula palem.",
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/pisang-goreng.webp"
+        },
+        {
+          "name": "Bakso Goreng",
+          "price_idr": 29000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/bakso-goreng.webp"
+        },
+        {
+          "name": "Cireng",
+          "price_idr": 29000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/cireng.webp"
+        },
+        {
+          "name": "Mix Platter",
+          "price_idr": 57000,
+          "description": "Kombinasi kentang goreng, chicken popcorn, jamur krispi, disajikan dengan saus mayones dan sambal.",
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/mix-platter.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-its-dessert",
+      "name": "It's Dessert",
+      "section": "food",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Tiramisu",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/tiramisu.webp"
+        },
+        {
+          "name": "Tiramisu Matcha",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/tiramisu-matcha.webp"
+        },
+        {
+          "name": "Panna Cotta",
+          "price_idr": 26000,
+          "description": null,
+          "options": "strawberry/matcha/chocolate",
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/panna-cotta.webp"
+        },
+        {
+          "name": "Fudgy Brownies",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/brownies.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-coffee-classic-series",
+      "name": "Coffee: Classic Series",
+      "section": "drink",
+      "subtitle": "hot/ice",
+      "image": "https://foto.invalid/menu/classic.webp",
+      "add_ons": [
+        {
+          "name": "Biji Strawberry Blossom",
+          "price_idr": 4000,
+          "badge": "Now Blooming",
+          "note": "upgrade untuk classic coffee",
+          "image": "https://foto.invalid/menu/blooming.webp"
+        }
+      ],
+      "items": [
+        {
+          "name": "Black",
+          "price_idr": 27000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "White",
+          "price_idr": 28000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Flavoured Latte",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Dirty Latte",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Filter Coffee biji lokal",
+          "price_idr": 32000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Filter Coffee biji impor",
+          "price_idr": 38000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Vietnamese",
+          "price_idr": 24000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-coffee-kopsu-series",
+      "name": "Coffee: Kopsu Series",
+      "section": "drink",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Es Kopi Susu Mana",
+          "price_idr": 28000,
+          "description": "Palm sugar with vanilla choco ice cream hint.",
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/kopsu-mana.webp"
+        },
+        {
+          "name": "Es Kopi Susu Original",
+          "price_idr": 26000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/kopsu-original.webp"
+        },
+        {
+          "name": "Caramel",
+          "price_idr": 28000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/kopsu-caramel.webp"
+        },
+        {
+          "name": "Seasalt",
+          "price_idr": 31000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/kopsu-seasalt.webp"
+        },
+        {
+          "name": "Salted Caramel",
+          "price_idr": 31000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/kopsu-salted.webp"
+        },
+        {
+          "name": "Cinnamon",
+          "price_idr": 32000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/kopsu-cinnamon.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-mana-black-series",
+      "name": "ManA Black Series",
+      "section": "drink",
+      "subtitle": "kaleng",
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Mango",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": "Must Try",
+          "is_available": true,
+          "image": "https://foto.invalid/menu/black-mango.webp"
+        },
+        {
+          "name": "Apple",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": "Must Try",
+          "is_available": true,
+          "image": "https://foto.invalid/menu/black-apple.webp"
+        },
+        {
+          "name": "Lemon",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": "Must Try",
+          "is_available": true,
+          "image": "https://foto.invalid/menu/black-lemon.webp"
+        },
+        {
+          "name": "Lychee",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": "Must Try",
+          "is_available": true,
+          "image": "https://foto.invalid/menu/black-lychee.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-barista-signature-v4",
+      "name": "Barista Signature V4",
+      "section": "drink",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Upside Cloud",
+          "price_idr": null,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/upside.webp"
+        },
+        {
+          "name": "Harvest Bloom",
+          "price_idr": null,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/harvest.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-mocktail-session",
+      "name": "Mocktail Session",
+      "section": "drink",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Berry Bliss",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/berry-bliss.webp"
+        },
+        {
+          "name": "Tropical Coco Mango",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/tropical.webp"
+        },
+        {
+          "name": "Slow Berry",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/slow-berry.webp"
+        },
+        {
+          "name": "Lemonade Coffee",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/lemonade-coffee.webp"
+        },
+        {
+          "name": "Milkyway",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/milkyway.webp"
+        },
+        {
+          "name": "Candy Cloud",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/candy-cloud.webp"
+        },
+        {
+          "name": "Strawberry Cinnamon",
+          "price_idr": 35000,
+          "description": null,
+          "options": "blended",
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/straw-cinnamon.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-matcha-series",
+      "name": "Matcha Series",
+      "section": "drink",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Mango Midori",
+          "price_idr": 38000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/mango-midori.webp"
+        },
+        {
+          "name": "Dirty Matcha",
+          "price_idr": 38000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/dirty-matcha.webp"
+        },
+        {
+          "name": "Kyoto Matcha",
+          "price_idr": 38000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": "https://foto.invalid/menu/kyoto-matcha.webp"
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-artisan-tea-by-tema",
+      "name": "Artisan Tea by TEMA",
+      "section": "drink",
+      "subtitle": null,
+      "image": "https://foto.invalid/menu/tea.webp",
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Hot",
+          "price_idr": 28000,
+          "description": null,
+          "options": "varian: tanya barista",
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Iced",
+          "price_idr": 28000,
+          "description": null,
+          "options": "varian: tanya barista",
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-mana-milk",
+      "name": "ManA Milk",
+      "section": "drink",
+      "subtitle": "hot/ice",
+      "image": "https://foto.invalid/menu/milk.webp",
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Choco Candy",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Chocolate",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Matcha",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Red Velvet",
+          "price_idr": 30000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-yakult-drink",
+      "name": "Yakult Drink",
+      "section": "drink",
+      "subtitle": null,
+      "image": "https://foto.invalid/menu/yakult.webp",
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Mixed Berry",
+          "price_idr": 28000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Green Apple",
+          "price_idr": 28000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Lychee",
+          "price_idr": 28000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-others",
+      "name": "Others",
+      "section": "drink",
+      "subtitle": "hot/ice",
+      "image": null,
+      "add_ons": [],
+      "items": [
+        {
+          "name": "Lychee Tea",
+          "price_idr": 26000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Lemon Tea",
+          "price_idr": 26000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Thai Tea",
+          "price_idr": 26000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Milk Tea",
+          "price_idr": 26000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Tea",
+          "price_idr": 23000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        },
+        {
+          "name": "Air Mineral 550 ml",
+          "price_idr": 13000,
+          "description": null,
+          "options": null,
+          "is_spicy": false,
+          "is_new": false,
+          "badge": null,
+          "is_available": true,
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "menuCategory-buah-batu-add-on",
+      "name": "Add-On",
+      "section": "drink",
+      "subtitle": null,
+      "image": null,
+      "add_ons": [
+        {
+          "name": "Extra shot",
+          "price_idr": 5000,
+          "badge": null,
+          "note": null,
+          "image": null
+        },
+        {
+          "name": "Oatside (susu oat)",
+          "price_idr": 7000,
+          "badge": null,
+          "note": null,
+          "image": null
+        }
+      ],
+      "items": []
+    }
+  ]
+}
