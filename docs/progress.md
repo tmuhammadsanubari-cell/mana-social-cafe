@@ -10,11 +10,11 @@ Status: `todo` · `doing` · `done` · `blocked (alasan)`
 
 ## Untuk sesi berikutnya
 
-Commit dan buka PR **US-05** (perubahan masih di working tree `main`, belum di-commit), tunggu CI di tiga browser, lalu mulai **US-06 (fasilitas)**: `/implement-story US-06`.
+Merge **PR #9** (US-05, CI hijau) ke `main` bila pengguna setuju, lalu mulai **US-06 (fasilitas)**: `/implement-story US-06`.
 
 - US-01 sampai US-04 sudah di `main` (US-03.AC4 menunggu US-13).
-- Commit US-05 harus menyertakan `seed/images/galeri buah batu/` dan `seed/images/galeri dago/` (sekitar 25 MB): uji seed Studio memeriksa file-nya ada.
 - `seed/images/cottage/` belum di-commit dan belum diimpor; dipakai di US-08.
+- Di Firefox Playwright, pencarian elemen lewat peran yang langsung disusul `evaluate` atau axe bisa membuat halaman crash ("Page crashed"), juga di halaman tanpa galeri. Pakai pemilih CSS di langkah itu; lihat `tiles` di `gallery.spec.ts`.
 - Dataset `production` belum berisi galeri. Menulis ke Sanity dan deploy Studio butuh persetujuan pengguna.
 
 ## M-01 Fondasi (target 2026-12-12): selesai 2026-11-26
@@ -57,7 +57,7 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 | US-02 | Jam buka dan status buka | FR-03 | done di S-02 dan S-03 (CI lulus 87 uji di tiga browser, PR #3). S-01 terpasang bersama US-01; tautan tanya jam saat jam kosong di US-07 |
 | US-03 | Lokasi dan petunjuk arah | FR-04 | done kecuali AC4: AC1 sampai AC3 dan kasus tepi 7.3 lulus (CI 159 uji di tiga browser, PR #5). AC4: kait event terpasang dan teruji dengan `gtag` tiruan; pengiriman ke GA4 diverifikasi di US-13. Peta memakai OpenStreetMap (PRD 1.2, ADR 0010; CI 159 uji di tiga browser) |
 | US-04 | Menu Buah Batu | FR-05 | done (CI 207 uji di tiga browser, PR #8). Foto produk ditahan di build produksi (Q-07, ADR 0011) |
-| US-05 | Galeri ruang | FR-06 | doing: AC1, AC2, dan kasus tepi 7.5 lulus lokal (Chrome); CI Firefox dan WebKit belum dijalankan. Galeri `/buah-batu`, `/dago`, dan Beranda (ADR 0012). Foto sementara, 8 buatan AI (Q-06) |
+| US-05 | Galeri ruang | FR-06 | done: AC1, AC2, dan kasus tepi 7.5 (CI 258 uji di tiga browser, PR #9). Galeri `/buah-batu`, `/dago`, dan Beranda (ADR 0012). Foto sementara, 8 buatan AI (Q-06) |
 | US-06 | Fasilitas outlet | FR-07 | todo |
 | US-07 | Tombol WhatsApp | FR-08 | todo |
 | US-08 | Info cottage Dago | FR-09 | todo |
@@ -126,6 +126,7 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 
 Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
 
+- 2026-11-28: US-05 di-commit di branch `feat/us-05-galeri` dan dibuka sebagai PR #9. CI pertama gagal: 4 uji galeri crash di Firefox. Direproduksi lokal (Firefox Playwright sekarang terpasang), dipersempit ke urutan pencarian lewat peran lalu `evaluate`; dua uji diubah memakai pemilih CSS, kode situs tidak berubah. CI kedua lulus 258 uji di Chromium, Firefox, dan WebKit. Tersisa: merge, lalu US-06.
 - 2026-11-27: US-05. Galeri dan tampilan penuh di `/buah-batu`, `/dago`, dan Beranda (`gallery.ts`, ADR 0012), `seed/gallery.json` dan `seed:gallery`; 14 foto diunggah ke `staging`. Studio tidak di-deploy karena skema tidak berubah. 135 uji unit web, 25 uji Studio, dan 86 uji E2E Chromium lulus (uji galeri diulang 5 kali, stabil); lint, format, dan type check hijau; tampilan dari build `staging` diperiksa. Belum di-commit. Berikutnya: PR, CI, lalu US-06.
 - 2026-11-27: PR #8 (US-04) di-merge ke `main`, CI hijau. Pengguna memutuskan memakai semua foto galeri dulu; US-05 dikerjakan di sesi baru.
 - 2026-11-27: PR #6 ditutup (digantikan #7). US-04: halaman `/menu` dengan tab Makanan dan Minuman, pita kategori menempel, harga (`formatPrice.ts`, BR-02), tambahan, tombol menu PDF, catatan menu Dago, dan event `view_menu` serta `select_menu_category` (ADR 0011). 119 uji unit web, 21 uji Studio, dan 69 uji E2E Chromium lulus. Build produksi tidak memuat foto produk. CI lulus 207 uji di Chromium, Firefox, dan WebKit (PR #8, branch `feat/us-04-menu`). Berikutnya: US-05.
