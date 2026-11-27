@@ -1,0 +1,109 @@
+---
+// Jam buka mingguan, lengkap di HTML statis (kasus tepi 7.2). Penanda hari ini butuh JavaScript.
+import type { Outlet } from "../lib/content/types";
+import { weeklyRows } from "../lib/formatHours";
+
+interface Props {
+  outlet: Outlet;
+}
+
+const { outlet } = Astro.props;
+---
+
+<section class="hours" aria-labelledby="hours-title">
+  <div>
+    <h2 id="hours-title">Jam buka</h2>
+    <p>Semua jam dalam WIB.</p>
+  </div>
+  <table>
+    <caption>{`Jam buka ${outlet.name}`}</caption>
+    <tbody>
+      {weeklyRows(outlet.hours).map((row) => (
+        <tr data-weekday={row.weekday}>
+          <th scope="row">
+            {row.day}
+            <span class="today" hidden>
+              {" "}
+              · hari ini
+            </span>
+          </th>
+          <td>{row.range ?? "Belum tersedia"}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</section>
+
+<script>
+  import { toWib } from "../lib/wib";
+
+  const { weekday } = toWib(new Date());
+  document.querySelectorAll<HTMLElement>(`tr[data-weekday="${weekday}"]`).forEach((row) => {
+    row.setAttribute("aria-current", "date");
+    row.querySelector(".today")?.removeAttribute("hidden");
+  });
+</script>
+
+<style>
+  .hours {
+    display: grid;
+    gap: var(--space-6);
+    margin-top: var(--space-16);
+  }
+
+  h2 {
+    margin: 0 0 var(--space-2);
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-ink-muted);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  caption {
+    padding-bottom: var(--space-2);
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    text-align: left;
+  }
+
+  tbody {
+    background: var(--color-surface);
+  }
+
+  th,
+  td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: var(--border-divider) solid var(--color-line-soft);
+    text-align: left;
+  }
+
+  th {
+    font-weight: 400;
+  }
+
+  td {
+    text-align: right;
+  }
+
+  tr[aria-current="date"] {
+    background: var(--color-cream);
+    font-weight: 700;
+  }
+
+  tr[aria-current="date"] th {
+    font-weight: 700;
+  }
+
+  @media (min-width: 1024px) {
+    .hours {
+      grid-template-columns: 1fr 2fr;
+      gap: var(--space-12);
+    }
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+// Bagian atas halaman outlet: nama, status, jam, dan alamat (S-02, S-03).
+// Tombol Petunjuk Arah dan WhatsApp menyusul di US-03 dan US-07.
+import type { Outlet } from "../lib/content/types";
+import { summarizeHours } from "../lib/formatHours";
+import OpenStatus from "./OpenStatus.astro";
+
+interface Props {
+  outlet: Outlet;
+  instagramUrl: string;
+}
+
+const { outlet, instagramUrl } = Astro.props;
+---
+
+<div class="intro">
+  <h1>{outlet.name}</h1>
+  <OpenStatus outlet={outlet} instagramUrl={instagramUrl} />
+  <div>
+    {summarizeHours(outlet.hours).map((line) => (
+      <p class="summary">{line}</p>
+    ))}
+    <p class="address">{outlet.address}</p>
+  </div>
+</div>
+
+<style>
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .summary {
+    font-weight: 700;
+  }
+
+  .address {
+    color: var(--color-ink-muted);
+  }
+</style>

@@ -98,6 +98,7 @@
   --logo-height: 40px;
   --logo-footer-height: 56px;
   --border-control: 2px; /* garis tombol dan chip */
+  --border-divider: 1px; /* pembatas baris tabel dan daftar */
   --nav-underline: 3px; /* penanda halaman aktif di desktop */
 }
 

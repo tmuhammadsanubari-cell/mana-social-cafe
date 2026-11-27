@@ -1,0 +1,101 @@
+---
+// Status buka (FR-03, BR-01). Dihitung di browser agar sesuai waktu sekarang; tanpa
+// JavaScript elemen tetap tersembunyi dan tabel jam yang dipakai (kasus tepi 7.2).
+import type { Outlet } from "../lib/content/types";
+import { temporarilyClosedText } from "../lib/openStatus";
+
+interface Props {
+  outlet: Outlet;
+  instagramUrl: string;
+}
+
+const { outlet, instagramUrl } = Astro.props;
+const closed = outlet.temporarilyClosed;
+---
+
+<p
+  class="open-status"
+  data-testid="open-status"
+  data-kind={closed ? "closed" : undefined}
+  data-hours={closed ? undefined : JSON.stringify(outlet.hours)}
+  hidden={!closed}
+>
+  {/* Bentuk ikon ikut berubah (penuh, setengah, kosong), jadi tidak bergantung warna. */}
+  <svg viewBox="0 0 16 16" aria-hidden="true">
+    <circle class="ring" cx="8" cy="8" r="6"></circle>
+    <path class="half" d="M8 2a6 6 0 0 0 0 12z"></path>
+  </svg>
+  <span data-status-text>{closed ? temporarilyClosedText(instagramUrl) : ""}</span>
+</p>
+
+<script>
+  import type { DayHours } from "../lib/content/types";
+  import { getOpenStatus, statusText } from "../lib/openStatus";
+
+  const REFRESH_MS = 15_000;
+
+  function update(element: HTMLElement): void {
+    const hours = JSON.parse(element.dataset.hours ?? "[]") as DayHours[];
+    const status = getOpenStatus(hours, new Date());
+    const label = element.querySelector("[data-status-text]");
+    if (label) label.textContent = statusText(status);
+    element.dataset.kind = status.kind;
+    element.hidden = false;
+  }
+
+  const elements = document.querySelectorAll<HTMLElement>("[data-hours]");
+  const refresh = () => elements.forEach(update);
+
+  refresh();
+  window.setInterval(refresh, REFRESH_MS);
+  // Timer di tab latar bisa tertunda, jadi dihitung ulang saat tab dibuka lagi.
+  document.addEventListener("visibilitychange", refresh);
+</script>
+
+<style>
+  .open-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    font-size: var(--text-lg);
+    font-weight: 700;
+  }
+
+  .open-status[hidden] {
+    display: none;
+  }
+
+  svg {
+    flex: none;
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+  }
+
+  .ring {
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: var(--icon-stroke);
+  }
+
+  .half {
+    display: none;
+    fill: currentcolor;
+  }
+
+  [data-kind="open"] .ring {
+    fill: currentcolor;
+  }
+
+  [data-kind="closingSoon"] .half {
+    display: inline;
+  }
+
+  /* Status tidak bisa dihitung, jadi tanpa ikon. */
+  [data-kind="unknown"] svg {
+    display: none;
+  }
+</style>
