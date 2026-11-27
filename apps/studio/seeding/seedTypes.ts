@@ -57,6 +57,8 @@ export interface SiteBaseSeed {
     name: string;
     address: string;
     maps_destination: string;
+    latitude: number | null;
+    longitude: number | null;
     gofood_url: string | null;
     opens_at: string;
     closes_at: string;

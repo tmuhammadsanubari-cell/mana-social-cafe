@@ -84,6 +84,17 @@ describe("seed outlet, jam, pengaturan, dan cottage", () => {
     expect(url.searchParams.get("destination")).toBe("ManA Social Cafe, Jl. Buah Batu No.127, Bandung 40265");
   });
 
+  it("FR-04: koordinat peta kedua outlet sesuai PRD 11.3", () => {
+    expect(byId("outlet-buah-batu")).toMatchObject({
+      latitude: -6.9360055924259605,
+      longitude: 107.62226864418093,
+    });
+    expect(byId("outlet-dago")).toMatchObject({
+      latitude: -6.853527158415028,
+      longitude: 107.64640213744224,
+    });
+  });
+
   it("BR-03: nomor WhatsApp di SiteSettings", () => {
     expect(byId("siteSettings").whatsapp_number).toBe("6285724785388");
   });

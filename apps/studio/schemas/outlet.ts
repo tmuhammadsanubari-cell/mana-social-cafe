@@ -4,6 +4,8 @@ import { siteAdminIdsRaw } from "../env";
 
 const NAME_MAX = 40;
 const RATING_MAX = 5;
+const LATITUDE_MAX = 90;
+const LONGITUDE_MAX = 180;
 const adminIds = parseSiteAdminIds(siteAdminIdsRaw);
 
 // E-01 Outlet (PRD 11.3)
@@ -40,6 +42,29 @@ export const outlet = defineType({
       description: "Tautan petunjuk arah yang dibuka tombol Petunjuk Arah.",
       type: "url",
       validation: (rule) => rule.required().error("Tautan Google Maps wajib diisi."),
+    }),
+    defineField({
+      name: "latitude",
+      title: "Latitude peta",
+      description:
+        "Titik peta di halaman outlet. Di Google Maps, klik kanan lokasinya, lalu salin angka pertama.",
+      type: "number",
+      validation: (rule) => [
+        rule.min(-LATITUDE_MAX).max(LATITUDE_MAX).error("Latitude harus antara -90 dan 90."),
+        rule.custom((value, context) =>
+          (value == null) === (context.document?.longitude == null)
+            ? true
+            : "Isi latitude dan longitude bersama, atau kosongkan keduanya.",
+        ),
+      ],
+    }),
+    defineField({
+      name: "longitude",
+      title: "Longitude peta",
+      description: "Angka kedua dari Google Maps. Bila kosong, halaman outlet hanya menampilkan alamat.",
+      type: "number",
+      validation: (rule) =>
+        rule.min(-LONGITUDE_MAX).max(LONGITUDE_MAX).error("Longitude harus antara -180 dan 180."),
     }),
     defineField({
       name: "gofood_url",
