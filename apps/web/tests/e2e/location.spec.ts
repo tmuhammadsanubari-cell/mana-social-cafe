@@ -115,7 +115,9 @@ for (const { id, path, outlet, name, destination } of OUTLETS) {
       await page.getByTestId("outlet-map").scrollIntoViewIfNeeded();
       await expect(page.locator("iframe")).toBeVisible();
 
-      const { violations } = await new AxeBuilder({ page }).exclude("iframe").analyze();
+      // Isi iframe milik Google (di sini tiruan) tidak diperiksa: menyuntik axe ke dalamnya
+      // pernah membuat halaman Firefox crash di CI.
+      const { violations } = await new AxeBuilder({ page }).options({ iframes: false }).analyze();
       expect(violations.filter((item) => ["serious", "critical"].includes(item.impact ?? ""))).toEqual([]);
       const overflow = await page.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
