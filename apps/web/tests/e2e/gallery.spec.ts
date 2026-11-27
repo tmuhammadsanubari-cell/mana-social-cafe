@@ -10,6 +10,9 @@ const CREAM = "rgb(236, 231, 170)"; // --color-cream, #ECE7AA (kasus tepi 7.5)
 
 const gallery = (page: Page, name = "Galeri Buah Batu") => page.getByRole("region", { name });
 const thumbs = (page: Page) => gallery(page).getByRole("list").getByRole("link");
+// Dipakai sebelum evaluate atau axe: di Firefox Playwright, pencarian lewat peran yang langsung
+// disusul evaluasi halaman membuat halaman crash ("Page crashed"), juga di halaman tanpa galeri.
+const tiles = (page: Page) => page.locator("[data-gallery-open]");
 const viewer = (page: Page) => page.getByRole("dialog", { name: "Foto Galeri Buah Batu" });
 const slide = (page: Page, index: number) => viewer(page).locator("img").nth(index);
 const button = (page: Page, name: string) => viewer(page).getByRole("button", { name });
@@ -151,9 +154,9 @@ for (const { width, columns } of [
   test(`PRD 8.10: lebar ${width} px memakai ${columns} kolom`, async ({ page }) => {
     await page.setViewportSize({ width, height: 800 });
     await visit(page);
-    await expect(thumbs(page)).toHaveCount(12);
+    await expect(tiles(page)).toHaveCount(12);
 
-    const lefts = await thumbs(page).evaluateAll((links) =>
+    const lefts = await tiles(page).evaluateAll((links) =>
       links.map((link) => Math.round(link.getBoundingClientRect().left)),
     );
     expect(new Set(lefts).size).toBe(columns);
@@ -187,13 +190,13 @@ test.describe("ponsel 360 px", () => {
 
 test("NFR-06: galeri dan tampilan penuh lolos axe", async ({ page }) => {
   await visit(page);
-  await expect(thumbs(page)).toHaveCount(12);
+  await expect(tiles(page)).toHaveCount(12);
   expect(await seriousViolations(page)).toEqual([]);
 
-  await thumbs(page).first().click();
-  await expect(viewer(page)).toBeVisible();
+  await tiles(page).first().click();
+  const dialog = page.locator("dialog[open]");
   // Tunggu fade selesai supaya axe tidak menilai kontras di tengah transisi.
-  await expect(viewer(page)).toHaveCSS("opacity", "1");
+  await expect(dialog).toHaveCSS("opacity", "1");
   expect(await seriousViolations(page)).toEqual([]);
 });
 
