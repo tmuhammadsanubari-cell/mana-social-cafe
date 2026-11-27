@@ -20,11 +20,18 @@ export interface Facility {
   isAvailable: boolean;
 }
 
+export interface Coordinates {
+  latitude: number;
+  longitude: number;
+}
+
 export interface Outlet {
   slug: OutletSlug;
   name: string;
   address: string;
   mapsUrl: string;
+  /** Titik peta tersemat; null bila belum diisi (kasus tepi 7.3). */
+  coordinates: Coordinates | null;
   gofoodUrl: string | null;
   temporarilyClosed: boolean;
   /** Hari yang jamnya belum diisi tidak ada di daftar (kasus tepi 7.2). */

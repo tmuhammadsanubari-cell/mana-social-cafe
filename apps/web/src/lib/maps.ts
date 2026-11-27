@@ -1,19 +1,19 @@
-// Peta tersemat dan catatan akses (FR-04, US-03). Tombol arah memakai tautan dari CMS apa adanya.
-import type { Outlet, OutletSlug } from "./content/types";
+// Peta tersemat dan catatan akses (FR-04, US-03). Tombol arah memakai tautan Google Maps dari CMS.
+import type { Coordinates, OutletSlug } from "./content/types";
 
-const EMBED_URL = "https://www.google.com/maps/embed/v1/place";
+const EMBED_URL = "https://www.openstreetmap.org/export/embed";
+/** Setengah lebar area peta dalam derajat, sekitar 165 m ke tiap arah. */
+const HALF_SPAN = 0.0015;
 
-/** Tujuan di tautan arah; tautan pendek tidak memuatnya, jadi dipakai nama dan alamat. */
-export function mapQuery(outlet: Outlet): string {
-  const destination = new URL(outlet.mapsUrl).searchParams.get("destination");
-  return destination ?? `${outlet.name}, ${outlet.address}`;
-}
-
-/** null bila kunci Maps Embed API belum diisi (PRD 13.5). */
-export function mapEmbedUrl(key: string | undefined, outlet: Outlet): string | null {
-  if (!key?.trim()) return null;
+/** bbox ditulis longitude lalu latitude, sedangkan marker latitude lalu longitude. */
+export function osmEmbedUrl({ latitude, longitude }: Coordinates): string {
+  const bbox = [longitude - HALF_SPAN, latitude - HALF_SPAN, longitude + HALF_SPAN, latitude + HALF_SPAN];
   const url = new URL(EMBED_URL);
-  url.search = new URLSearchParams({ key: key.trim(), q: mapQuery(outlet), language: "id" }).toString();
+  url.search = new URLSearchParams({
+    bbox: bbox.join(","),
+    layer: "mapnik",
+    marker: `${latitude},${longitude}`,
+  }).toString();
   return url.toString();
 }
 

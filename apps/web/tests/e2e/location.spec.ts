@@ -1,9 +1,10 @@
-// US-03: petunjuk arah dan peta tersemat (S-02, S-03). Google Maps selalu ditiru, jadi uji tidak
-// mengirim permintaan ke luar.
+// US-03: petunjuk arah dan peta tersemat (S-02, S-03). Google Maps dan OpenStreetMap selalu ditiru,
+// jadi uji tidak mengirim permintaan ke luar.
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
 const GOOGLE = /^https:\/\/[^/]*google[^/]*\//;
+const OSM = /^https:\/\/[^/]*openstreetmap\.org\//;
 const STUB = { contentType: "text/html", body: "<!doctype html><title>Peta tiruan</title>" };
 const FAILED = "Peta tidak dapat dimuat. Gunakan tombol Petunjuk Arah.";
 
@@ -14,6 +15,7 @@ const OUTLETS = [
     outlet: "buah-batu",
     name: "ManA Buah Batu",
     destination: "ManA Social Cafe, Jl. Buah Batu No.127, Bandung 40265",
+    marker: "-6.9360055924259605,107.62226864418093",
   },
   {
     id: "US-03.AC2",
@@ -21,26 +23,29 @@ const OUTLETS = [
     outlet: "dago",
     name: "ManA Dago",
     destination: "Jl. Cibengang No.21, Ciburial, Cimenyan",
+    marker: "-6.853527158415028,107.64640213744224",
   },
 ];
 
 const location = (page: Page) => page.getByRole("region", { name: "Cara ke sini" });
 const directions = (page: Page) => page.getByRole("main").getByRole("link", { name: "Petunjuk Arah" });
 
-/** Mencatat semua permintaan ke Google dan menjawabnya dengan halaman tiruan. */
-async function mockGoogle(page: Page) {
+/** Mencatat permintaan ke layanan peta dan menjawabnya dengan halaman tiruan. */
+async function mockMaps(page: Page) {
   const requests: string[] = [];
-  await page.context().route(GOOGLE, (route) => {
-    requests.push(route.request().url());
-    return route.fulfill(STUB);
-  });
+  for (const service of [GOOGLE, OSM]) {
+    await page.context().route(service, (route) => {
+      requests.push(route.request().url());
+      return route.fulfill(STUB);
+    });
+  }
   return requests;
 }
 
-for (const { id, path, outlet, name, destination } of OUTLETS) {
+for (const { id, path, outlet, name, destination, marker } of OUTLETS) {
   test.describe(`halaman ${path}`, () => {
     test(`${id}: Petunjuk Arah membuka Google Maps di tab baru`, async ({ page }) => {
-      await mockGoogle(page);
+      await mockMaps(page);
       await page.goto(path);
       await expect(directions(page)).toHaveCount(2);
 
@@ -59,7 +64,7 @@ for (const { id, path, outlet, name, destination } of OUTLETS) {
     });
 
     test("US-03.AC3: peta baru dimuat saat area peta digulir", async ({ page }) => {
-      const requests = await mockGoogle(page);
+      const requests = await mockMaps(page);
       await page.goto(path, { waitUntil: "networkidle" });
 
       expect(requests).toEqual([]);
@@ -71,12 +76,13 @@ for (const { id, path, outlet, name, destination } of OUTLETS) {
       await expect(page.locator(`iframe[title="Peta ${name}"]`)).toBeVisible();
       await expect.poll(() => requests.length).toBe(1);
       const url = new URL(requests[0] as string);
-      expect(url.pathname).toBe("/maps/embed/v1/place");
-      expect(url.searchParams.get("q")).toBe(destination);
+      expect(url.hostname).toBe("www.openstreetmap.org");
+      expect(url.pathname).toBe("/export/embed");
+      expect(url.searchParams.get("marker")).toBe(marker);
     });
 
     test("US-03.AC4: klik tercatat dengan properti outlet setelah setuju", async ({ page }) => {
-      await mockGoogle(page);
+      await mockMaps(page);
       // gtag baru ada setelah pengunjung setuju (US-13), jadi di sini ditiru.
       await page.addInitScript(() => {
         const calls: unknown[][] = [];
@@ -90,8 +96,8 @@ for (const { id, path, outlet, name, destination } of OUTLETS) {
       expect(calls).toEqual([["event", "click_directions", { outlet, page: path }]]);
     });
 
-    test("kasus tepi 7.3: Google Maps tidak merespons diganti alamat dan pesan", async ({ page }) => {
-      await page.context().route(GOOGLE, () => {
+    test("kasus tepi 7.3: peta tidak merespons diganti alamat dan pesan", async ({ page }) => {
+      await page.context().route(OSM, () => {
         // Sengaja tidak dijawab.
       });
       await page.clock.install();
@@ -133,7 +139,7 @@ for (const { id, path, outlet, name, destination } of OUTLETS) {
 }
 
 test("PRD 7.3: halaman Dago memuat catatan akses, Buah Batu tidak", async ({ page }) => {
-  await mockGoogle(page);
+  await mockMaps(page);
   await page.goto("/dago");
   await expect(location(page)).toContainText("Jalan menuju Dago menanjak dan sempit.");
   await expect(location(page)).toContainText("[CATATAN AKSES DARI PEMILIK");
@@ -143,7 +149,7 @@ test("PRD 7.3: halaman Dago memuat catatan akses, Buah Batu tidak", async ({ pag
 });
 
 test("US-03.AC4: tombol di panel Beranda juga tercatat", async ({ page }) => {
-  await mockGoogle(page);
+  await mockMaps(page);
   await page.route("https://foto.invalid/**", (route) => route.abort());
   await page.addInitScript(() => {
     const calls: unknown[][] = [];
