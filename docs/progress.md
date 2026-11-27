@@ -44,8 +44,8 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 
 | Story | Fitur | FR | Status |
 |-------|-------|----|--------|
-| US-01 | Hero dan pemilih outlet | FR-01, FR-02 | todo |
-| US-02 | Jam buka dan status buka | FR-03 | done di S-02 dan S-03 (CI lulus 87 uji di tiga browser, PR #3). S-01 dipasang di US-01; tautan tanya jam saat jam kosong di US-07 |
+| US-01 | Hero dan pemilih outlet | FR-01, FR-02 | done secara lokal (AC1 sampai AC3 lulus di Chromium); CI tiga browser menunggu push. Kalimat positioning masih sementara (Q-12); foto ruang masih placeholder (Q-06) |
+| US-02 | Jam buka dan status buka | FR-03 | done di S-02 dan S-03 (CI lulus 87 uji di tiga browser, PR #3). S-01 terpasang bersama US-01; tautan tanya jam saat jam kosong di US-07 |
 | US-03 | Lokasi dan petunjuk arah | FR-04 | todo |
 | US-04 | Menu Buah Batu | FR-05 | todo |
 | US-05 | Galeri ruang | FR-06 | todo |
@@ -94,7 +94,7 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 | Q-09 | Akun TikTok resmi | FR-11 | belum |
 | Q-10 | URL GoFood; delivery Dago | FR-17 | belum |
 | Q-11 | Pemilik produk dan editor konten setelah rilis | FR-12 | belum |
-| Q-12 | Kalimat positioning hero | FR-01 | belum |
+| Q-12 | Kalimat positioning hero | FR-01 | belum dari pemilik. Sementara memakai "Dua tempat ngobrol di Bandung", ditulis Claude atas persetujuan pengguna 2026-11-27; ganti setelah bertemu pemilik |
 
 ## Temuan yang perlu dicek
 
@@ -102,12 +102,17 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 - ~~**Desain menyimpang dari PRD.**~~ PRD diperbarui ke v1.1 pada 2026-11-26 atas persetujuan pengguna (ADR 0001, 0002): hero tanpa tombol, tautan menu PDF, pita kategori di desktop. Dago dua mode (ADR 0003) tidak mengubah PRD.
 - ~~**Pemilih outlet di Beranda.**~~ PRD v1.1 mengikuti desain: dua chip dan satu panel (FR-02, US-01.AC2, US-01.AC3, ADR 0004).
 - **Foto produk** di `seed/images/menu/` hanya untuk desain dan pengembangan sampai Q-07 dijawab. 2026-11-26: atas keputusan pengguna, foto juga diunggah ke dataset `production` agar pemilik melihat Studio sudah lengkap. Q-07 tetap perlu dijawab sebelum situs publik menampilkan foto ini (ADR 0002).
+- **Fasilitas belum ada di Sanity.** Tidak ada dokumen Fasilitas, jadi panel Beranda dari `staging` menampilkan `[FASILITAS ... DARI PEMILIK]`, termasuk Buah Batu yang daftarnya sudah ada di brief. Isi lewat seed di US-06.
+- **Galeri dan teaser cottage di Beranda belum punya story.** PRD 8.6 memintanya, tetapi US-05 dan US-08 hanya mencakup halaman outlet. Diputuskan 2026-11-27: dikerjakan bersama US-05 (galeri) dan US-08 (teaser cottage).
+- **Foto, video, dan daftar harga cottage** ditambahkan pengguna di `seed/images/cottage/` (18 JPG, 2 MP4, ekspor Instagram, belum di-commit). Dua gambar adalah daftar harga unggahan 2022: Couple 2 orang Rp500.000 (hari kerja) dan Rp600.000 (akhir pekan), Family 4 orang Rp1.000.000 dan Rp1.200.000, harga coret Rp1.000.000 dan Rp2.000.000; Family bisa tambah 2 orang x Rp75.000; fasilitas AC, TV, pemanas air, pengering rambut, handuk, sabun dan sampo, sarapan 2 orang, welcome drink. Ini berbeda dari data DUMMY (Rp850.000 dan Rp1.350.000) dan skema belum membedakan harga hari kerja dan akhir pekan. Data DUMMY tidak diubah sampai pemilik mengonfirmasi (Q-01).
 - **Deskripsi menu** di seed baru 4 item (contoh Lampiran A). Sisanya ada di PDF sebagai gambar. Lihat `seed/README.md`.
 - **Paket gratis Sanity tanpa peran Editor.** Semua staf jadi Administrator di Sanity; Studio mengunci Pengaturan Situs dan hapus Outlet untuk yang bukan admin situs (ADR 0006). Bila Q-11 butuh kontrol akses sungguhan, pertimbangkan paket Growth.
 
 ## Catatan sesi
 
 Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
+
+- 2026-11-27: US-01. Hero tanpa tombol dan pemilih outlet (dua chip, satu panel) di Beranda; `whatsapp.ts` (BR-03, dipakai ulang di US-07); sumber foto dan fasilitas panel di ADR 0008. US-01.AC1 sampai AC3 dan kasus tepi 7.1 lulus (70 uji unit web, 40 uji E2E Chromium; build dari `staging` berhasil). Kalimat pendamping hero dan kicker "Kafe kota" dari desain tidak dipakai karena belum disetujui pemilik. Di branch `feat/us-01-pemilih-outlet`. Berikutnya: US-03.
 
 - 2026-11-27: US-02. `openStatus.ts` (BR-01, WIB), status buka dan tabel jam di `/buah-batu` dan `/dago`. US-02.AC1 sampai AC4 lulus (53 uji unit web, 29 uji E2E Chromium). Kalimat "Jam hari libur dan Ramadan diumumkan di Instagram" dari desain tidak dipakai karena belum dikonfirmasi pemilik. Di branch `feat/us-02-status-buka`. Berikutnya: US-01.
 
