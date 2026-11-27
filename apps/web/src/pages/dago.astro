@@ -1,6 +1,7 @@
 ---
-// S-03. Galeri, fasilitas, dan cottage dikerjakan di US-05, US-06, US-08, dan US-09.
+// S-03. Fasilitas dan cottage dikerjakan di US-06, US-08, dan US-09.
 import DagoMenuNote from "../components/DagoMenuNote.astro";
+import Gallery from "../components/Gallery.astro";
 import HoursTable from "../components/HoursTable.astro";
 import OutletIntro from "../components/OutletIntro.astro";
 import OutletLocation from "../components/OutletLocation.astro";
@@ -17,4 +18,5 @@ const outlet = getOutlet(shell, "dago");
   <HoursTable outlet={outlet} />
   <DagoMenuNote outlet={outlet} settings={shell.settings} />
   <OutletLocation outlet={outlet} />
+  <Gallery id="gallery" title="Galeri Dago" photos={outlet.gallery} />
 </BaseLayout>

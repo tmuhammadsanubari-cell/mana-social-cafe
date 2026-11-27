@@ -1,9 +1,11 @@
 ---
 // S-01 Beranda. Rekomendasi, ulasan, Tentang ManA, promo, dan event menyusul di story masing-masing.
+import Gallery from "../components/Gallery.astro";
 import HomeHero from "../components/HomeHero.astro";
 import OutletPicker from "../components/OutletPicker.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getSiteShell } from "../lib/content/getSiteShell";
+import { homeGalleryPhotos } from "../lib/gallery";
 
 const shell = await getSiteShell();
 ---
@@ -11,4 +13,11 @@ const shell = await getSiteShell();
 <BaseLayout title="ManA Social Cafe" fullBleed>
   <HomeHero />
   <OutletPicker shell={shell} />
+  <Gallery
+    id="home-gallery"
+    title="Galeri"
+    photos={homeGalleryPhotos(shell.outlets)}
+    layout="collage"
+    class="container"
+  />
 </BaseLayout>

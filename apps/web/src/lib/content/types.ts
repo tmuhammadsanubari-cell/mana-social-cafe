@@ -36,8 +36,8 @@ export interface Outlet {
   temporarilyClosed: boolean;
   /** Hari yang jamnya belum diisi tidak ada di daftar (kasus tepi 7.2). */
   hours: DayHours[];
-  /** Foto galeri pertama; null bila belum ada foto (Q-06). */
-  photo: Photo | null;
+  /** Foto ruang menurut sort_order; yang pertama dipakai panel Beranda (ADR 0008). */
+  gallery: Photo[];
   facilities: Facility[];
 }
 

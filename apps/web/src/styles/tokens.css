@@ -109,6 +109,12 @@
   /* Halaman outlet */
   --map-height: 320px;
 
+  /* Galeri */
+  --gallery-ratio: 1; /* foto di halaman outlet; foto utuh di tampilan penuh */
+  --gallery-ratio-tall: 4 / 5; /* kolase Beranda */
+  --gallery-ratio-short: 3 / 2;
+  --gallery-card-width: 72%; /* kartu geser Beranda di ponsel, kartu berikutnya terlihat sebagian */
+
   /* Halaman menu */
   --menu-card-min: 150px; /* lebar kartu terkecil: dua kolom di ponsel 360 px */
   --menu-photo-width: 280px; /* foto kategori di samping daftar */

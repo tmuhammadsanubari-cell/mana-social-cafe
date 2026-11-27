@@ -1,6 +1,6 @@
 // Query dan pemetaan konten outlet serta pengaturan situs (API-01, E-01, E-02, E-06, E-07, E-11).
 import type { ContentQuery, ContentSource } from "./contentSource";
-import { parseCoordinates, parseFacilities, parsePhoto } from "./outletExtras";
+import { parseCoordinates, parseFacilities, parseGallery } from "./outletExtras";
 import { OUTLET_SLUGS, type DayHours, type Outlet, type OutletSlug, type SiteShell } from "./types";
 import {
   ContentError,
@@ -21,9 +21,8 @@ export const SITE_SHELL_QUERY: ContentQuery = {
       "hours": *[_type == "openingHours" && outlet._ref == ^._id] | order(weekday asc) {
         weekday, opens_at, closes_at
       },
-      "photo": *[_type == "galleryImage" && outlet._ref == ^._id] | order(sort_order asc)[0] {
-        "url": image.asset->url, alt_text
-      },
+      "gallery": *[_type == "galleryImage" && outlet._ref == ^._id && defined(image.asset)]
+        | order(sort_order asc) { "url": image.asset->url, alt_text },
       "facilities": *[_type == "facility" && outlet._ref == ^._id] | order(sort_order asc) {
         label, is_available
       }
@@ -77,7 +76,7 @@ function parseOutlet(value: unknown): Outlet {
     hours: asList(record.hours ?? [], `Jam buka ${slug}`)
       .map((day) => parseDay(day, slug))
       .filter((day) => day !== null),
-    photo: parsePhoto(record.photo, slug),
+    gallery: parseGallery(record.gallery, slug),
     facilities: parseFacilities(record.facilities, slug),
   };
 }

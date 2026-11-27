@@ -12,7 +12,8 @@ interface Props {
 }
 
 const { outlet, priority = false } = Astro.props;
-const sources = outlet.photo ? photoSources(outlet.photo.url) : null;
+const photo = outlet.gallery[0];
+const sources = photo ? photoSources(photo.url) : null;
 ---
 
 <div class="photo">
@@ -25,7 +26,7 @@ const sources = outlet.photo ? photoSources(outlet.photo.url) : null;
         src={sources.src}
         srcset={sources.srcset}
         sizes="(min-width: 640px) 50vw, 100vw"
-        alt={outlet.photo?.alt}
+        alt={photo?.alt}
         loading={priority ? "eager" : "lazy"}
         fetchpriority={priority ? "high" : undefined}
         data-room-photo

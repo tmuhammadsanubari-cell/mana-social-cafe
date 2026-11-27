@@ -18,10 +18,56 @@
         { "weekday": 6, "opens_at": "08:00", "closes_at": "23:00" },
         { "weekday": 7, "opens_at": "08:00", "closes_at": "23:00" }
       ],
-      "photo": {
-        "url": "https://foto.invalid/ruang-buah-batu.jpg",
-        "alt_text": "[DATA UJI] Void melingkar Buah Batu"
-      },
+      "gallery": [
+        {
+          "url": "https://foto.invalid/ruang-buah-batu.jpg",
+          "alt_text": "[DATA UJI] Void melingkar Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-2.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 2 Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-3.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 3 Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-4.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 4 Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-5.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 5 Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-6.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 6 Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-7.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 7 Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-8.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 8 Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-9.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 9 Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-10.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 10 Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-11.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 11 Buah Batu"
+        },
+        {
+          "url": "https://foto.invalid/ruang-buah-batu-12.jpg",
+          "alt_text": "[DATA UJI] Sudut ruang 12 Buah Batu"
+        }
+      ],
       "facilities": [
         { "label": "WiFi dan stopkontak", "is_available": true },
         { "label": "Mushola dan toilet", "is_available": true },
@@ -49,7 +95,7 @@
         { "weekday": 6, "opens_at": "11:00", "closes_at": "22:00" },
         { "weekday": 7, "opens_at": "11:00", "closes_at": "22:00" }
       ],
-      "photo": null,
+      "gallery": [],
       "facilities": []
     }
   ],

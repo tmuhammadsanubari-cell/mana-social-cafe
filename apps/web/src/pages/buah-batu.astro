@@ -1,5 +1,6 @@
 ---
-// S-02. Galeri dan fasilitas dikerjakan di US-05 dan US-06.
+// S-02. Fasilitas dikerjakan di US-06.
+import Gallery from "../components/Gallery.astro";
 import HoursTable from "../components/HoursTable.astro";
 import OutletIntro from "../components/OutletIntro.astro";
 import OutletLocation from "../components/OutletLocation.astro";
@@ -14,5 +15,6 @@ const outlet = getOutlet(shell, "buah-batu");
 <BaseLayout title={outlet.name}>
   <OutletIntro outlet={outlet} instagramUrl={shell.settings.instagramUrl} />
   <HoursTable outlet={outlet} />
+  <Gallery id="gallery" title="Galeri Buah Batu" photos={outlet.gallery} />
   <OutletLocation outlet={outlet} />
 </BaseLayout>

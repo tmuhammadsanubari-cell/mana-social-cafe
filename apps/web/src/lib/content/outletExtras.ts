@@ -24,12 +24,18 @@ export function parseCoordinates(record: RawRecord, label: string): Coordinates 
   return { latitude, longitude };
 }
 
-export function parsePhoto(value: unknown, label: string): Photo | null {
-  if (value === null || value === undefined) return null;
+function parsePhoto(value: unknown, label: string): Photo | null {
   const record = asRecord(value, `Foto ${label}`);
   const url = optionalUrl(record, "url", `Foto ${label}`);
   if (url === null) return null;
   return { url, alt: requiredText(record, "alt_text", `Foto ${label}`) };
+}
+
+/** Foto tanpa file dilewati; foto tanpa teks alternatif menggagalkan build (US-05.AC1). */
+export function parseGallery(value: unknown, label: string): Photo[] {
+  return asList(value ?? [], `Galeri ${label}`)
+    .map((item) => parsePhoto(item, label))
+    .filter((photo) => photo !== null);
 }
 
 export function parseFacilities(value: unknown, label: string): Facility[] {
