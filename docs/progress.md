@@ -46,7 +46,7 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 |-------|-------|----|--------|
 | US-01 | Hero dan pemilih outlet | FR-01, FR-02 | done (CI lulus 120 uji di tiga browser, PR #4). Kalimat positioning masih sementara (Q-12); foto ruang masih placeholder (Q-06) |
 | US-02 | Jam buka dan status buka | FR-03 | done di S-02 dan S-03 (CI lulus 87 uji di tiga browser, PR #3). S-01 terpasang bersama US-01; tautan tanya jam saat jam kosong di US-07 |
-| US-03 | Lokasi dan petunjuk arah | FR-04 | doing: AC1 sampai AC3 dan kasus tepi 7.3 lulus lokal (Chromium). AC4: kait event terpasang dan teruji dengan `gtag` tiruan; pengiriman ke GA4 diverifikasi di US-13. Peta asli ditunda: `PUBLIC_MAPS_EMBED_KEY` butuh akun penagihan dengan kartu |
+| US-03 | Lokasi dan petunjuk arah | FR-04 | done kecuali AC4: AC1 sampai AC3 dan kasus tepi 7.3 lulus (CI 159 uji di tiga browser, PR #5). AC4: kait event terpasang dan teruji dengan `gtag` tiruan; pengiriman ke GA4 diverifikasi di US-13. Peta asli ditunda: `PUBLIC_MAPS_EMBED_KEY` butuh akun penagihan dengan kartu |
 | US-04 | Menu Buah Batu | FR-05 | todo |
 | US-05 | Galeri ruang | FR-06 | todo |
 | US-06 | Fasilitas outlet | FR-07 | todo |
@@ -113,7 +113,7 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 
 Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
 
-- 2026-11-27: PR #4 (US-01) di-merge ke `main`. US-03: tombol "Petunjuk Arah" dan bagian "Cara ke sini" dengan peta di `/buah-batu` dan `/dago`, catatan akses Dago (placeholder Q-01), kait `click_directions` (ADR 0009). 83 uji unit web dan 53 uji E2E Chromium lulus. Di branch `feat/us-03-petunjuk-arah`. Berikutnya: US-04.
+- 2026-11-27: PR #4 (US-01) di-merge ke `main`. US-03: tombol "Petunjuk Arah" dan bagian "Cara ke sini" dengan peta di `/buah-batu` dan `/dago`, catatan akses Dago (placeholder Q-01), kait `click_directions` (ADR 0009). 83 uji unit web dan 53 uji E2E Chromium lulus. CI lulus 159 uji di Chromium, Firefox, dan WebKit (PR #5). Sempat ada uji axe peta yang tidak stabil di Firefox (halaman crash saat iframe peta terpasang), jadi uji itu sekarang berjalan tanpa iframe. Berikutnya: US-04.
 - 2026-11-27: US-01. Hero tanpa tombol dan pemilih outlet (dua chip, satu panel) di Beranda; `whatsapp.ts` (BR-03, dipakai ulang di US-07); sumber foto dan fasilitas panel di ADR 0008. US-01.AC1 sampai AC3 dan kasus tepi 7.1 lulus (70 uji unit web, 40 uji E2E Chromium; build dari `staging` berhasil). Kalimat pendamping hero dan kicker "Kafe kota" dari desain tidak dipakai karena belum disetujui pemilik. CI lulus 120 uji di Chromium, Firefox, dan WebKit (PR #4, branch `feat/us-01-pemilih-outlet`). Berikutnya: US-03.
 
 - 2026-11-27: US-02. `openStatus.ts` (BR-01, WIB), status buka dan tabel jam di `/buah-batu` dan `/dago`. US-02.AC1 sampai AC4 lulus (53 uji unit web, 29 uji E2E Chromium). Kalimat "Jam hari libur dan Ramadan diumumkan di Instagram" dari desain tidak dipakai karena belum dikonfirmasi pemilik. Di branch `feat/us-02-status-buka`. Berikutnya: US-01.
