@@ -1,0 +1,50 @@
+---
+// Tombol "Petunjuk Arah" (FR-04, US-03). Klik dicatat sebagai click_directions (PRD 17).
+import type { Outlet } from "../lib/content/types";
+
+interface Props {
+  outlet: Outlet;
+  /** Satu tombol kuning per layar atau per kartu; selebihnya bergaris. */
+  variant?: "primary" | "outline";
+}
+
+const { outlet, variant = "primary" } = Astro.props;
+---
+
+<a
+  class:list={["button", `button-${variant}`]}
+  href={outlet.mapsUrl}
+  target="_blank"
+  rel="noopener"
+  data-directions={outlet.slug}
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="m3 11 19-9-9 19-2-8z"></path>
+  </svg>
+  Petunjuk Arah
+</a>
+
+<script>
+  import { trackEvent } from "../lib/analytics";
+
+  document.querySelectorAll<HTMLElement>("[data-directions]").forEach((link) => {
+    link.addEventListener("click", () => {
+      trackEvent(window as Parameters<typeof trackEvent>[0], "click_directions", {
+        outlet: link.dataset.directions ?? "",
+        page: window.location.pathname,
+      });
+    });
+  });
+</script>
+
+<style>
+  svg {
+    flex: none;
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: var(--icon-stroke);
+    stroke-linejoin: round;
+  }
+</style>

@@ -3,6 +3,7 @@
 import type { Outlet, SiteSettings } from "../lib/content/types";
 import { OUTLET_PANEL_COPY } from "../lib/outletPanel";
 import { generalMessage, whatsAppUrl } from "../lib/whatsapp";
+import DirectionsButton from "./DirectionsButton.astro";
 import FacilityList from "./FacilityList.astro";
 import OpenStatus from "./OpenStatus.astro";
 import OutletPhoto from "./OutletPhoto.astro";
@@ -35,12 +36,7 @@ const whatsappHref = settings.whatsappNumber
     {!outlet.temporarilyClosed && <TodayHours outlet={outlet} />}
     <p class="address">{outlet.address}</p>
     <FacilityList outlet={outlet} />
-    <a class="button button-primary directions" href={outlet.mapsUrl} target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="m3 11 19-9-9 19-2-8z"></path>
-      </svg>
-      Petunjuk Arah
-    </a>
+    <DirectionsButton outlet={outlet} />
     <div class="links">
       {whatsappHref && (
         <a href={whatsappHref} target="_blank" rel="noopener">
@@ -94,17 +90,8 @@ const whatsappHref = settings.whatsappNumber
     color: var(--color-ink-muted);
   }
 
-  .directions {
+  .info :global(.button) {
     width: 100%;
-  }
-
-  .directions svg {
-    width: var(--icon-sm);
-    height: var(--icon-sm);
-    fill: none;
-    stroke: currentcolor;
-    stroke-width: var(--icon-stroke);
-    stroke-linejoin: round;
   }
 
   .links {

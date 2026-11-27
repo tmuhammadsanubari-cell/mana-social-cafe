@@ -1,0 +1,90 @@
+---
+// Peta tersemat (FR-04). Iframe baru dibuat saat area peta masuk layar (US-03.AC3). Alamat selalu
+// ada di baliknya, dipakai saat peta gagal dimuat atau tanpa JavaScript (kasus tepi 7.3).
+import type { Outlet } from "../lib/content/types";
+import { mapEmbedUrl } from "../lib/maps";
+
+interface Props {
+  outlet: Outlet;
+}
+
+const { outlet } = Astro.props;
+const src = mapEmbedUrl(import.meta.env.PUBLIC_MAPS_EMBED_KEY, outlet);
+---
+
+<div
+  class="map"
+  data-testid="outlet-map"
+  data-map-src={src ?? undefined}
+  data-map-title={`Peta ${outlet.name}`}
+>
+  <div class="fallback">
+    <p class="message" hidden={src !== null}>
+      Peta tidak dapat dimuat. Gunakan tombol Petunjuk Arah.
+    </p>
+    <p>{outlet.address}</p>
+  </div>
+</div>
+
+<script>
+  /** Batas tunggu sebelum Google Maps dianggap tidak merespons. */
+  const TIMEOUT_MS = 10_000;
+
+  function load(map: HTMLElement): void {
+    const frame = document.createElement("iframe");
+    frame.src = map.dataset.mapSrc ?? "";
+    frame.title = map.dataset.mapTitle ?? "Peta";
+    // Kunci Maps dibatasi per domain, jadi asal halaman harus ikut terkirim.
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.allowFullscreen = true;
+
+    const timer = window.setTimeout(() => {
+      frame.remove();
+      map.querySelector(".message")?.removeAttribute("hidden");
+    }, TIMEOUT_MS);
+    frame.addEventListener("load", () => window.clearTimeout(timer), { once: true });
+    map.append(frame);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries.filter((item) => item.isIntersecting)) {
+      observer.unobserve(entry.target);
+      load(entry.target as HTMLElement);
+    }
+  });
+
+  document.querySelectorAll("[data-map-src]").forEach((map) => observer.observe(map));
+</script>
+
+<style>
+  .map {
+    position: relative;
+    display: grid;
+    min-height: var(--map-height);
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--color-line-soft);
+  }
+
+  .fallback {
+    align-self: center;
+    padding: var(--space-6);
+    text-align: center;
+  }
+
+  p {
+    margin: 0 0 var(--space-2);
+  }
+
+  .message {
+    font-weight: 700;
+  }
+
+  .map :global(iframe) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

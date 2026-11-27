@@ -1,7 +1,8 @@
 ---
-// S-03. Arah, galeri, fasilitas, dan cottage dikerjakan di US-03, US-05, US-06, US-08, dan US-09.
+// S-03. Galeri, fasilitas, dan cottage dikerjakan di US-05, US-06, US-08, dan US-09.
 import HoursTable from "../components/HoursTable.astro";
 import OutletIntro from "../components/OutletIntro.astro";
+import OutletLocation from "../components/OutletLocation.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getSiteShell } from "../lib/content/getSiteShell";
 import { getOutlet } from "../lib/content/siteShell";
@@ -13,4 +14,5 @@ const outlet = getOutlet(shell, "dago");
 <BaseLayout title={outlet.name}>
   <OutletIntro outlet={outlet} instagramUrl={shell.settings.instagramUrl} />
   <HoursTable outlet={outlet} />
+  <OutletLocation outlet={outlet} />
 </BaseLayout>
