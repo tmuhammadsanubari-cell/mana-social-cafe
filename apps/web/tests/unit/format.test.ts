@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatClock, summarizeHours } from "../../src/lib/formatHours";
+import { formatClock, summarizeHours, weeklyRows } from "../../src/lib/formatHours";
 import { instagramLabel } from "../../src/lib/instagram";
 import { isActivePath } from "../../src/lib/navigation";
 
@@ -29,6 +29,16 @@ describe("summarizeHours", () => {
 
   it("kasus tepi 7.2: jam kosong tidak menghasilkan teks", () => {
     expect(summarizeHours([])).toEqual([]);
+  });
+});
+
+describe("weeklyRows", () => {
+  it("US-02: selalu tujuh hari, hari kosong ditandai", () => {
+    const rows = weeklyRows(week([2]));
+
+    expect(rows).toHaveLength(7);
+    expect(rows[0]).toEqual({ weekday: 1, day: "Senin", range: null });
+    expect(rows[1]).toEqual({ weekday: 2, day: "Selasa", range: "08.00–23.00" });
   });
 });
 
