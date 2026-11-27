@@ -37,6 +37,34 @@ describe("parseSiteShell", () => {
     expect(hours.map((day) => day.weekday)).toEqual([2, 3, 4, 5, 6, 7]);
   });
 
+  it("FR-02: memetakan foto ruang pertama dan fasilitas outlet", () => {
+    const outlet = getOutlet(parseSiteShell(fixture), "buah-batu");
+
+    expect(outlet.photo).toEqual({
+      url: "https://foto.invalid/ruang-buah-batu.jpg",
+      alt: "[DATA UJI] Void melingkar Buah Batu",
+    });
+    expect(outlet.facilities).toContainEqual({ label: "Tanpa AC", isAvailable: true });
+  });
+
+  it("outlet tanpa foto dan fasilitas tetap valid", () => {
+    expect(getOutlet(parseSiteShell(fixture), "dago")).toMatchObject({ photo: null, facilities: [] });
+  });
+
+  it("US-06.AC2: fasilitas yang dimatikan ditandai tidak tersedia", () => {
+    const raw = changed((copy) => {
+      copy.outlets[0]!.facilities[0]!.is_available = false;
+    });
+    expect(getOutlet(parseSiteShell(raw), "buah-batu").facilities[0]?.isAvailable).toBe(false);
+  });
+
+  it("foto tanpa file dianggap belum ada", () => {
+    const raw = changed((copy) => {
+      copy.outlets[0]!.photo!.url = "";
+    });
+    expect(getOutlet(parseSiteShell(raw), "buah-batu").photo).toBeNull();
+  });
+
   it("kasus tepi 7.6: nomor WhatsApp dan URL menu PDF boleh kosong", () => {
     const raw = changed((copy) => {
       copy.settings.whatsapp_number = "";

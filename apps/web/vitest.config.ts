@@ -1,8 +1,10 @@
-import { defineConfig } from "vitest/config";
+/// <reference types="vitest/config" />
+// getViteConfig membuat file .astro bisa dirender di uji lewat Container API.
+import { getViteConfig } from "astro/config";
 
 const LIB_COVERAGE_MIN = 90; // PRD 13.8 dan 15: cakupan src/lib minimal 90%
 
-export default defineConfig({
+export default getViteConfig({
   test: {
     include: ["tests/unit/**/*.test.ts"],
     passWithNoTests: true,

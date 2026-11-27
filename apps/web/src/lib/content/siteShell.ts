@@ -1,5 +1,6 @@
-// Query dan pemetaan konten navigasi serta footer (API-01, E-01, E-02, E-11).
+// Query dan pemetaan konten outlet serta pengaturan situs (API-01, E-01, E-02, E-06, E-07, E-11).
 import type { ContentQuery, ContentSource } from "./contentSource";
+import { parseFacilities, parsePhoto } from "./outletExtras";
 import { OUTLET_SLUGS, type DayHours, type Outlet, type OutletSlug, type SiteShell } from "./types";
 import {
   ContentError,
@@ -19,6 +20,12 @@ export const SITE_SHELL_QUERY: ContentQuery = {
       slug, name, address, maps_url, gofood_url, temporarily_closed,
       "hours": *[_type == "openingHours" && outlet._ref == ^._id] | order(weekday asc) {
         weekday, opens_at, closes_at
+      },
+      "photo": *[_type == "galleryImage" && outlet._ref == ^._id] | order(sort_order asc)[0] {
+        "url": image.asset->url, alt_text
+      },
+      "facilities": *[_type == "facility" && outlet._ref == ^._id] | order(sort_order asc) {
+        label, is_available
       }
     },
     "settings": *[_id == "siteSettings"][0] { whatsapp_number, instagram_url, menu_pdf_url }
@@ -69,6 +76,8 @@ function parseOutlet(value: unknown): Outlet {
     hours: asList(record.hours ?? [], `Jam buka ${slug}`)
       .map((day) => parseDay(day, slug))
       .filter((day) => day !== null),
+    photo: parsePhoto(record.photo, slug),
+    facilities: parseFacilities(record.facilities, slug),
   };
 }
 

@@ -1,0 +1,149 @@
+---
+// Panel satu outlet di Beranda (FR-02, US-01, ADR 0004).
+import type { Outlet, SiteSettings } from "../lib/content/types";
+import { OUTLET_PANEL_COPY } from "../lib/outletPanel";
+import { generalMessage, whatsAppUrl } from "../lib/whatsapp";
+import FacilityList from "./FacilityList.astro";
+import OpenStatus from "./OpenStatus.astro";
+import OutletPhoto from "./OutletPhoto.astro";
+import TodayHours from "./TodayHours.astro";
+
+interface Props {
+  outlet: Outlet;
+  settings: SiteSettings;
+  priority?: boolean;
+}
+
+const { outlet, settings, priority = false } = Astro.props;
+const titleId = `panel-title-${outlet.slug}`;
+const whatsappHref = settings.whatsappNumber
+  ? whatsAppUrl(settings.whatsappNumber, generalMessage(outlet.name))
+  : null;
+---
+
+<article
+  id={`panel-${outlet.slug}`}
+  class="panel"
+  aria-labelledby={titleId}
+  data-testid="outlet-panel"
+  data-panel={outlet.slug}
+>
+  <OutletPhoto outlet={outlet} priority={priority} />
+  <div class="info">
+    <h3 id={titleId}>{outlet.name}</h3>
+    <OpenStatus outlet={outlet} instagramUrl={settings.instagramUrl} />
+    {!outlet.temporarilyClosed && <TodayHours outlet={outlet} />}
+    <p class="address">{outlet.address}</p>
+    <FacilityList outlet={outlet} />
+    <a class="button button-primary directions" href={outlet.mapsUrl} target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m3 11 19-9-9 19-2-8z"></path>
+      </svg>
+      Petunjuk Arah
+    </a>
+    <div class="links">
+      {whatsappHref && (
+        <a href={whatsappHref} target="_blank" rel="noopener">
+          Tanya dulu via WhatsApp
+        </a>
+      )}
+      <a class="outlet-page" href={`/${outlet.slug}`}>
+        {OUTLET_PANEL_COPY[outlet.slug].linkLabel}
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .panel {
+    display: grid;
+  }
+
+  /* Tanpa JavaScript kedua panel tampil berurutan, jadi diberi pembatas. */
+  .panel + .panel {
+    border-top: var(--border-divider) solid var(--color-line);
+  }
+
+  .panel[hidden] {
+    display: none;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-6) var(--space-4);
+  }
+
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    line-height: var(--leading-display);
+    text-transform: uppercase;
+  }
+
+  .info :global(.open-status) {
+    padding: 0;
+  }
+
+  .address {
+    margin: 0;
+    color: var(--color-ink-muted);
+  }
+
+  .directions {
+    width: 100%;
+  }
+
+  .directions svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: var(--icon-stroke);
+    stroke-linejoin: round;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: var(--space-4);
+    width: 100%;
+  }
+
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap-min);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+  }
+
+  .outlet-page {
+    margin-left: auto;
+  }
+
+  @media (min-width: 640px) {
+    .panel {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .info {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .panel {
+      grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
+    }
+
+    h3 {
+      font-size: var(--text-3xl);
+    }
+  }
+</style>

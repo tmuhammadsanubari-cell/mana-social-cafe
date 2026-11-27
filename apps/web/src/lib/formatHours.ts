@@ -1,5 +1,7 @@
-// Teks jam buka untuk footer (PRD 8.4) dan tabel mingguan. Status buka (BR-01) ada di openStatus.ts.
+// Teks jam buka untuk footer (PRD 8.4), panel outlet, dan tabel mingguan. Status buka (BR-01) ada di
+// openStatus.ts.
 import type { DayHours } from "./content/types";
+import { toWib } from "./wib";
 
 const DAY_NAMES = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"] as const;
 
@@ -15,6 +17,13 @@ export function formatClock(time: string): string {
 
 function formatRange(day: DayHours): string {
   return `${formatClock(day.opensAt)}–${formatClock(day.closesAt)}`;
+}
+
+/** US-01.AC2: jam hari ini menurut WIB; null bila belum diisi. */
+export function todayHoursText(hours: readonly DayHours[], instant: Date): string | null {
+  const { weekday } = toWib(instant);
+  const today = hours.find((entry) => entry.weekday === weekday);
+  return today ? `Hari ini ${formatRange(today)} WIB` : null;
 }
 
 export interface WeeklyRow {

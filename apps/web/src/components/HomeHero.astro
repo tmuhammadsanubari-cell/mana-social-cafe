@@ -1,0 +1,60 @@
+---
+// Hero Beranda: kalimat positioning dan ilustrasi, tanpa tombol (FR-01, US-01.AC1, ADR 0001).
+// Logo ada di header yang menyatu dengan latar hero. Kalimat positioning masih sementara sampai
+// disetujui pemilik (Q-12, docs/progress.md).
+import { Image } from "astro:assets";
+import art from "../assets/brand/ilustrasi-orang.png";
+
+const ART_SMALL = 320;
+const ART_LARGE = 640;
+const ART_WIDTHS = [ART_SMALL, ART_LARGE];
+---
+
+<section class="hero" aria-labelledby="hero-title" data-testid="home-hero">
+  <div class="inner container">
+    <h1 id="hero-title">Dua tempat ngobrol di Bandung</h1>
+    <Image
+      class="art"
+      src={art}
+      alt=""
+      widths={ART_WIDTHS}
+      sizes="(min-width: 640px) 320px, 70vw"
+      format="webp"
+      loading="eager"
+    />
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) calc(var(--picker-overlap) + var(--space-6));
+    background: var(--color-brand) url("../assets/brand/motif-garis-krem.svg") center / cover no-repeat;
+    color: var(--color-on-brand);
+  }
+
+  .inner {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-6);
+  }
+
+  h1 {
+    justify-self: start;
+  }
+
+  .art {
+    width: min(70%, var(--hero-art-width));
+    height: auto;
+  }
+
+  @media (min-width: 640px) {
+    .inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+    }
+
+    .art {
+      width: var(--hero-art-width);
+    }
+  }
+</style>
