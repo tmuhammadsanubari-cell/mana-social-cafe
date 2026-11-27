@@ -52,5 +52,5 @@ Sumber: PRD bagian 8 dan brief `docs/prompt-ui-ux-mana-social-cafe.md` bagian 4,
 ## Responsif (PRD 8.10)
 
 - Di bawah 640 px: satu kolom, navigasi kategori menu bergulir horizontal dan menempel di atas.
-- 640 sampai 1023 px: kartu outlet berdampingan, galeri 2 kolom.
-- Mulai 1024 px: lebar konten maksimal 1200 px, galeri 3 kolom, navigasi kategori menu di sisi kiri.
+- 640 sampai 1023 px: di panel outlet Beranda foto dan info berdampingan, galeri 2 kolom.
+- Mulai 1024 px: lebar konten maksimal 1200 px, galeri 3 kolom, navigasi kategori menu tetap pita horizontal yang menempel di atas seperti di ponsel (ADR 0002).
