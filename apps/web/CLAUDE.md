@@ -34,6 +34,10 @@ Komponen yang ada di semua halaman: header, `WhatsAppButton` (FR-08), footer den
 
 Sebelum mengubah file di `lib`, baca BR terkait di PRD bagian 6 dan AC story-nya. Setiap contoh di kolom "Contoh" bagian 6 wajib menjadi kasus uji.
 
+## Membaca konten
+
+`src/lib/content/` memegang query GROQ, pemetaan, dan validasi. Halaman memanggil `getSiteShell()`. Konten yang tidak valid menggagalkan build (PRD 13.6). Query baru ditambahkan bersama data ujinya di `fixtures/` (ADR 0007).
+
 ## Pengujian
 
 - `tests/unit/`: Vitest untuk `src/lib`, cakupan minimal 90%. Nama uji diawali ID AC atau BR, misalnya `it("BR-01: 22.40 tampil Segera tutup", ...)`.

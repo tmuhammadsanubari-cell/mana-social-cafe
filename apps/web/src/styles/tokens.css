@@ -92,6 +92,13 @@
   /* Tata letak. PRD 8.10: lebar konten maks 1200 px */
   --content-max: 1200px;
   --gutter: clamp(16px, 4vw, 40px);
+
+  /* Header dan footer */
+  --header-height: 76px;
+  --logo-height: 40px;
+  --logo-footer-height: 56px;
+  --border-control: 2px; /* garis tombol dan chip */
+  --nav-underline: 3px; /* penanda halaman aktif di desktop */
 }
 
 :focus-visible {

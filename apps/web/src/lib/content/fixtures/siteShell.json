@@ -1,0 +1,43 @@
+{
+  "outlets": [
+    {
+      "slug": "buah-batu",
+      "name": "ManA Buah Batu",
+      "address": "Jl. Buah Batu No.127, Cijagra, Lengkong, Bandung 40265",
+      "maps_url": "https://www.google.com/maps/dir/?api=1&destination=ManA%20Social%20Cafe%2C%20Jl.%20Buah%20Batu%20No.127%2C%20Bandung%2040265",
+      "gofood_url": null,
+      "temporarily_closed": false,
+      "hours": [
+        { "weekday": 1, "opens_at": "08:00", "closes_at": "23:00" },
+        { "weekday": 2, "opens_at": "08:00", "closes_at": "23:00" },
+        { "weekday": 3, "opens_at": "08:00", "closes_at": "23:00" },
+        { "weekday": 4, "opens_at": "08:00", "closes_at": "23:00" },
+        { "weekday": 5, "opens_at": "08:00", "closes_at": "23:00" },
+        { "weekday": 6, "opens_at": "08:00", "closes_at": "23:00" },
+        { "weekday": 7, "opens_at": "08:00", "closes_at": "23:00" }
+      ]
+    },
+    {
+      "slug": "dago",
+      "name": "ManA Dago",
+      "address": "Jl. Cibengang No.21, Ciburial, Cimenyan",
+      "maps_url": "https://www.google.com/maps/dir/?api=1&destination=Jl.%20Cibengang%20No.21%2C%20Ciburial%2C%20Cimenyan",
+      "gofood_url": null,
+      "temporarily_closed": false,
+      "hours": [
+        { "weekday": 1, "opens_at": "11:00", "closes_at": "22:00" },
+        { "weekday": 2, "opens_at": "11:00", "closes_at": "22:00" },
+        { "weekday": 3, "opens_at": "11:00", "closes_at": "22:00" },
+        { "weekday": 4, "opens_at": "11:00", "closes_at": "22:00" },
+        { "weekday": 5, "opens_at": "11:00", "closes_at": "22:00" },
+        { "weekday": 6, "opens_at": "11:00", "closes_at": "22:00" },
+        { "weekday": 7, "opens_at": "11:00", "closes_at": "22:00" }
+      ]
+    }
+  ],
+  "settings": {
+    "whatsapp_number": "6285724785388",
+    "instagram_url": "https://www.instagram.com/mana.bandung/",
+    "menu_pdf_url": "https://drive.google.com/file/d/11J0ZPLBY_zVp2iFSTEs1H9k17RMwYzKc/view"
+  }
+}

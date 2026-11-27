@@ -1,0 +1,84 @@
+---
+// Footer semua halaman (PRD 8.4): alamat dan jam kedua outlet, Instagram (US-10), privasi.
+import logo from "../assets/brand/logo-dark.svg";
+import type { SiteShell } from "../lib/content/types";
+import { summarizeHours } from "../lib/formatHours";
+import { instagramLabel } from "../lib/instagram";
+
+interface Props {
+  shell: SiteShell;
+}
+
+const { outlets, settings } = Astro.props.shell;
+---
+
+<footer class="site-footer">
+  <div class="columns container">
+    <img class="logo" src={logo.src} width={logo.width} height={logo.height} alt="ManA Social Cafe" />
+    {outlets.map((outlet) => (
+      <div>
+        <p class="name">{outlet.name}</p>
+        <p>{outlet.address}</p>
+        {summarizeHours(outlet.hours).map((line) => (
+          <p>{line}</p>
+        ))}
+      </div>
+    ))}
+    <div>
+      <a class="social" href={settings.instagramUrl} target="_blank" rel="noopener">
+        {instagramLabel(settings.instagramUrl)}
+      </a>
+      {/* Menjadi tautan saat halaman kebijakan privasi dibuat (US-13). */}
+      <p class="muted">Kebijakan privasi (halaman menyusul)</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding-block: var(--space-12);
+    background: var(--color-cream);
+  }
+
+  .columns {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .logo {
+    width: auto;
+    height: var(--logo-footer-height);
+  }
+
+  p {
+    margin: 0 0 var(--space-1);
+  }
+
+  .name {
+    font-weight: 700;
+  }
+
+  .social {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap-min);
+    font-weight: 700;
+  }
+
+  .muted {
+    color: var(--color-ink-muted);
+  }
+
+  @media (min-width: 640px) {
+    .columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .columns {
+      grid-template-columns: auto repeat(3, minmax(0, 1fr));
+      gap: var(--space-12);
+    }
+  }
+</style>

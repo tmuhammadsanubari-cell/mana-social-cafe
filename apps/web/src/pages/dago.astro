@@ -1,0 +1,12 @@
+---
+// Kerangka S-03. Isi dikerjakan di US-02, US-03, US-05, US-06, US-08, dan US-09.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteShell } from "../lib/content/getSiteShell";
+import { getOutlet } from "../lib/content/siteShell";
+
+const outlet = getOutlet(await getSiteShell(), "dago");
+---
+
+<BaseLayout title={outlet.name}>
+  <h1>{outlet.name}</h1>
+</BaseLayout>

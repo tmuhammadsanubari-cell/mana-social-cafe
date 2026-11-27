@@ -1,0 +1,34 @@
+// Bentuk konten yang dipakai halaman (PRD 11.3). Nama field Sanity (snake_case) berhenti di pemetaan.
+
+export const OUTLET_SLUGS = ["buah-batu", "dago"] as const;
+export type OutletSlug = (typeof OUTLET_SLUGS)[number];
+
+/** Jam satu hari dalam WIB. weekday 1 = Senin, 7 = Minggu. */
+export interface DayHours {
+  weekday: number;
+  opensAt: string;
+  closesAt: string;
+}
+
+export interface Outlet {
+  slug: OutletSlug;
+  name: string;
+  address: string;
+  mapsUrl: string;
+  gofoodUrl: string | null;
+  temporarilyClosed: boolean;
+  /** Hari yang jamnya belum diisi tidak ada di daftar (kasus tepi 7.2). */
+  hours: DayHours[];
+}
+
+export interface SiteSettings {
+  whatsappNumber: string | null;
+  instagramUrl: string;
+  menuPdfUrl: string | null;
+}
+
+/** Konten yang dibutuhkan setiap halaman: navigasi dan footer. */
+export interface SiteShell {
+  outlets: Outlet[];
+  settings: SiteSettings;
+}

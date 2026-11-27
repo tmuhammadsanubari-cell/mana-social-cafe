@@ -1,13 +1,21 @@
 ---
-// Kerangka semua halaman. Header, WhatsAppButton, footer, banner cookie, dan meta SEO
-// ditambahkan di M-02 (US-07, US-10, US-12, US-13).
+// Kerangka semua halaman. WhatsAppButton, banner cookie, dan meta SEO menyusul
+// bersama US-07, US-12, dan US-13.
+import "@fontsource/anton/latin-400.css";
+import "@fontsource/archivo/latin-400.css";
+import "@fontsource/archivo/latin-700.css";
 import "../styles/tokens.css";
+import "../styles/base.css";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { getSiteShell } from "../lib/content/getSiteShell";
 
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+const shell = await getSiteShell();
 ---
 
 <!doctype html>
@@ -18,17 +26,10 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <SiteHeader />
+    <main class="container page">
+      <slot />
+    </main>
+    <SiteFooter shell={shell} />
   </body>
 </html>
-
-<style is:global>
-  body {
-    margin: 0;
-    background: var(--color-bg);
-    color: var(--color-ink);
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    line-height: var(--leading-body);
-  }
-</style>
