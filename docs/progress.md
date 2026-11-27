@@ -44,7 +44,7 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 
 | Story | Fitur | FR | Status |
 |-------|-------|----|--------|
-| US-01 | Hero dan pemilih outlet | FR-01, FR-02 | done secara lokal (AC1 sampai AC3 lulus di Chromium); CI tiga browser menunggu push. Kalimat positioning masih sementara (Q-12); foto ruang masih placeholder (Q-06) |
+| US-01 | Hero dan pemilih outlet | FR-01, FR-02 | done (CI lulus 120 uji di tiga browser, PR #4). Kalimat positioning masih sementara (Q-12); foto ruang masih placeholder (Q-06) |
 | US-02 | Jam buka dan status buka | FR-03 | done di S-02 dan S-03 (CI lulus 87 uji di tiga browser, PR #3). S-01 terpasang bersama US-01; tautan tanya jam saat jam kosong di US-07 |
 | US-03 | Lokasi dan petunjuk arah | FR-04 | todo |
 | US-04 | Menu Buah Batu | FR-05 | todo |
@@ -112,7 +112,7 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 
 Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
 
-- 2026-11-27: US-01. Hero tanpa tombol dan pemilih outlet (dua chip, satu panel) di Beranda; `whatsapp.ts` (BR-03, dipakai ulang di US-07); sumber foto dan fasilitas panel di ADR 0008. US-01.AC1 sampai AC3 dan kasus tepi 7.1 lulus (70 uji unit web, 40 uji E2E Chromium; build dari `staging` berhasil). Kalimat pendamping hero dan kicker "Kafe kota" dari desain tidak dipakai karena belum disetujui pemilik. Di branch `feat/us-01-pemilih-outlet`. Berikutnya: US-03.
+- 2026-11-27: US-01. Hero tanpa tombol dan pemilih outlet (dua chip, satu panel) di Beranda; `whatsapp.ts` (BR-03, dipakai ulang di US-07); sumber foto dan fasilitas panel di ADR 0008. US-01.AC1 sampai AC3 dan kasus tepi 7.1 lulus (70 uji unit web, 40 uji E2E Chromium; build dari `staging` berhasil). Kalimat pendamping hero dan kicker "Kafe kota" dari desain tidak dipakai karena belum disetujui pemilik. CI lulus 120 uji di Chromium, Firefox, dan WebKit (PR #4, branch `feat/us-01-pemilih-outlet`). Berikutnya: US-03.
 
 - 2026-11-27: US-02. `openStatus.ts` (BR-01, WIB), status buka dan tabel jam di `/buah-batu` dan `/dago`. US-02.AC1 sampai AC4 lulus (53 uji unit web, 29 uji E2E Chromium). Kalimat "Jam hari libur dan Ramadan diumumkan di Instagram" dari desain tidak dipakai karena belum dikonfirmasi pemilik. Di branch `feat/us-02-status-buka`. Berikutnya: US-01.
 
