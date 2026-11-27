@@ -1,0 +1,179 @@
+---
+// Galeri ruang di halaman outlet dan Beranda (FR-06, US-05). Tanpa JavaScript tiap foto adalah
+// tautan ke file fotonya.
+import type { Photo } from "../lib/content/types";
+import { galleryPhotos } from "../lib/gallery";
+import { photoSources } from "../lib/image";
+import GalleryViewer from "./GalleryViewer.astro";
+
+interface Props {
+  /** Awalan id, unik per halaman. */
+  id: string;
+  title: string;
+  photos: Photo[];
+  /** "collage" untuk Beranda (desain C1): digeser di ponsel, kolase di layar lebar. */
+  layout?: "grid" | "collage";
+  class?: string;
+}
+
+const { id, title, layout = "grid", class: className } = Astro.props;
+const photos = galleryPhotos(Astro.props.photos);
+const titleId = `${id}-title`;
+---
+
+{photos.length > 0 && (
+  <section class:list={["gallery", layout, className]} aria-labelledby={titleId} data-gallery>
+    <div class="heading">
+      <h2 id={titleId}>{title}</h2>
+      <p>Ketuk foto untuk melihat layar penuh.</p>
+    </div>
+    <ul>
+      {photos.map((photo, index) => {
+        const sources = photoSources(photo.url);
+        return (
+          <li>
+            <a href={sources.largest} data-gallery-open={index}>
+              <span class="fallback" data-fallback hidden>
+                {photo.alt}
+              </span>
+              <img
+                src={sources.src}
+                srcset={sources.srcset}
+                sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+                alt={photo.alt}
+                loading="lazy"
+                data-gallery-photo
+              />
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+    <GalleryViewer title={title} photos={photos} />
+  </section>
+)}
+
+<script>
+  import { setUpGalleries } from "./galleryScript";
+
+  setUpGalleries();
+</script>
+
+<style>
+  .gallery {
+    margin-top: var(--space-16);
+  }
+
+  .heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    column-gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  p {
+    color: var(--color-ink-muted);
+  }
+
+  ul {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    position: relative;
+    display: block;
+    aspect-ratio: var(--gallery-ratio);
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--color-cream);
+  }
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  img[hidden],
+  .fallback[hidden] {
+    display: none;
+  }
+
+  .fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: var(--space-4);
+    text-align: center;
+  }
+
+  /* Beranda di ponsel: satu baris yang digeser. */
+  .collage {
+    margin-top: 0;
+    padding-bottom: var(--space-16);
+  }
+
+  .collage ul {
+    grid-auto-columns: var(--gallery-card-width);
+    grid-auto-flow: column;
+    overflow-x: auto;
+    padding-block: var(--space-1);
+    scroll-snap-type: x mandatory;
+  }
+
+  .collage li {
+    scroll-snap-align: start;
+  }
+
+  .collage a {
+    aspect-ratio: var(--gallery-ratio-tall);
+  }
+
+  @media (min-width: 640px) {
+    ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .collage ul {
+      display: block;
+      columns: 2;
+      column-gap: var(--space-3);
+      overflow: visible;
+    }
+
+    .collage li {
+      margin-bottom: var(--space-3);
+      break-inside: avoid;
+    }
+
+    /* Tinggi berselang-seling: tiap kolom berisi satu foto tinggi dan satu pendek. */
+    .collage li:nth-child(4n + 2) a,
+    .collage li:nth-child(4n + 3) a {
+      aspect-ratio: var(--gallery-ratio-short);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    ul {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .collage ul {
+      columns: 3;
+    }
+  }
+</style>

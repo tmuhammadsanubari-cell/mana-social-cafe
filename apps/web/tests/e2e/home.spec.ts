@@ -50,7 +50,10 @@ test.describe("ponsel 360 px", () => {
 
   test("NFR-06: chip dan tautan panel minimal 44 px, tanpa gulir samping", async ({ page }) => {
     await visit(page);
-    const targets = page.getByRole("main").locator("a:visible, button:visible");
+    // Target galeri di bawahnya diperiksa di gallery.spec.ts.
+    const targets = page
+      .getByRole("region", { name: "Mau ketemu di mana?" })
+      .locator("a:visible, button:visible");
     await expect(targets).toHaveCount(5);
 
     for (const target of await targets.all()) {

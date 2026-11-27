@@ -23,8 +23,10 @@ export function thumbSources(url: string): { src: string; srcset: string } {
   };
 }
 
-export function photoSources(url: string): { src: string; srcset: string } {
+/** `largest` dipakai sebagai tautan ke file foto, misalnya di galeri tanpa JavaScript. */
+export function photoSources(url: string): { src: string; srcset: string; largest: string } {
   return {
+    largest: resized(url, LARGE_WIDTH),
     src: resized(url, DEFAULT_WIDTH),
     srcset: WIDTHS.map((width) => `${resized(url, width)} ${width}w`).join(", "),
   };

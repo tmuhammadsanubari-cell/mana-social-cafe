@@ -37,10 +37,11 @@ describe("parseSiteShell", () => {
     expect(hours.map((day) => day.weekday)).toEqual([2, 3, 4, 5, 6, 7]);
   });
 
-  it("FR-02: memetakan foto ruang pertama dan fasilitas outlet", () => {
+  it("FR-02, FR-06: memetakan foto galeri sesuai urutan dan fasilitas outlet", () => {
     const outlet = getOutlet(parseSiteShell(fixture), "buah-batu");
 
-    expect(outlet.photo).toEqual({
+    expect(outlet.gallery).toHaveLength(12);
+    expect(outlet.gallery[0]).toEqual({
       url: "https://foto.invalid/ruang-buah-batu.jpg",
       alt: "[DATA UJI] Void melingkar Buah Batu",
     });
@@ -62,7 +63,7 @@ describe("parseSiteShell", () => {
   });
 
   it("outlet tanpa foto dan fasilitas tetap valid", () => {
-    expect(getOutlet(parseSiteShell(fixture), "dago")).toMatchObject({ photo: null, facilities: [] });
+    expect(getOutlet(parseSiteShell(fixture), "dago")).toMatchObject({ gallery: [], facilities: [] });
   });
 
   it("US-06.AC2: fasilitas yang dimatikan ditandai tidak tersedia", () => {
@@ -72,11 +73,11 @@ describe("parseSiteShell", () => {
     expect(getOutlet(parseSiteShell(raw), "buah-batu").facilities[0]?.isAvailable).toBe(false);
   });
 
-  it("foto tanpa file dianggap belum ada", () => {
+  it("foto tanpa file dilewati", () => {
     const raw = changed((copy) => {
-      copy.outlets[0]!.photo!.url = "";
+      copy.outlets[0]!.gallery[0]!.url = "";
     });
-    expect(getOutlet(parseSiteShell(raw), "buah-batu").photo).toBeNull();
+    expect(getOutlet(parseSiteShell(raw), "buah-batu").gallery).toHaveLength(11);
   });
 
   it("kasus tepi 7.6: nomor WhatsApp dan URL menu PDF boleh kosong", () => {
@@ -102,6 +103,11 @@ describe("parseSiteShell menolak konten rusak (PRD 13.6)", () => {
     ["hanya latitude terisi", changed((c) => Object.assign(c.outlets[0]!, { longitude: null })), "bersama"],
     ["latitude di luar rentang", changed((c) => (c.outlets[0]!.latitude = 107.6)), "latitude"],
     ["longitude di luar rentang", changed((c) => (c.outlets[0]!.longitude = 200)), "longitude"],
+    [
+      "US-05.AC1: foto tanpa teks alternatif",
+      changed((copy) => (copy.outlets[0]!.gallery[3]!.alt_text = " ")),
+      "alt_text",
+    ],
     [
       "URL bukan http",
       changed((copy) => (copy.outlets[0]!.maps_url = "javascript:alert(1)")),

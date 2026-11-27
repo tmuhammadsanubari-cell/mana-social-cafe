@@ -1,0 +1,176 @@
+---
+// Tampilan penuh galeri (US-05.AC2). <dialog> bawaan mengurung fokus dan menutup lewat Escape.
+// Foto digeser dengan scroll-snap, tombol, atau tombol panah. Perilaku ada di galleryScript.ts.
+import type { Photo } from "../lib/content/types";
+import { photoSources } from "../lib/image";
+
+interface Props {
+  title: string;
+  photos: Photo[];
+}
+
+const { title, photos } = Astro.props;
+---
+
+<dialog aria-label={`Foto ${title}`} data-viewer data-dark>
+  <div class="bar">
+    <p aria-live="polite" data-viewer-count></p>
+    <button type="button" data-viewer-close autofocus>
+      Tutup
+    </button>
+  </div>
+  <div class="track" role="group" aria-label="Foto" tabindex="0" data-viewer-track>
+    {photos.map((photo) => {
+      const sources = photoSources(photo.url);
+      return (
+        <div class="slide" data-viewer-slide>
+          <span class="fallback" data-fallback hidden>
+            {photo.alt}
+          </span>
+          <img
+            src={sources.src}
+            srcset={sources.srcset}
+            sizes="100vw"
+            alt={photo.alt}
+            loading="lazy"
+            data-gallery-photo
+          />
+        </div>
+      );
+    })}
+  </div>
+  <div class="bar">
+    <button type="button" data-viewer-step="-1">
+      Sebelumnya
+    </button>
+    <button type="button" data-viewer-step="1">
+      Berikutnya
+    </button>
+  </div>
+</dialog>
+
+<style>
+  dialog {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--color-ink);
+    color: var(--color-on-dark);
+    opacity: 0;
+    transition:
+      opacity var(--duration-fade),
+      overlay var(--duration-fade) allow-discrete,
+      display var(--duration-fade) allow-discrete;
+  }
+
+  dialog[open] {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+  }
+
+  /* Fade saat buka (PRD 8.7). */
+  @starting-style {
+    dialog[open] {
+      opacity: 0;
+    }
+  }
+
+  /* Halaman di belakang tidak ikut tergulir. */
+  :global(html:has(dialog[open])) {
+    overflow: hidden;
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--gutter);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  button {
+    min-width: var(--tap-min);
+    min-height: var(--button-s);
+    padding-inline: var(--space-4);
+    border: var(--border-control) solid var(--color-on-dark);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color var(--duration-press);
+  }
+
+  button:hover {
+    background: var(--color-ink-hover);
+  }
+
+  button:active {
+    background: var(--color-ink-press);
+  }
+
+  button[aria-disabled="true"] {
+    border-color: var(--color-ink-muted);
+    background: transparent;
+    color: var(--color-on-dark-muted);
+    cursor: default;
+  }
+
+  .track {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    overflow-x: auto;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  /* Garis fokus di dalam, karena jalur foto selebar layar. */
+  .track:focus-visible {
+    outline-offset: calc(-1 * var(--focus-width));
+  }
+
+  .slide {
+    position: relative;
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  img[hidden],
+  .fallback[hidden] {
+    display: none;
+  }
+
+  .fallback {
+    position: absolute;
+    inset: var(--space-4);
+    display: grid;
+    place-items: center;
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-cream);
+    color: var(--color-ink);
+    text-align: center;
+  }
+</style>
