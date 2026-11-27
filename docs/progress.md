@@ -46,7 +46,7 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 |-------|-------|----|--------|
 | US-01 | Hero dan pemilih outlet | FR-01, FR-02 | done (CI lulus 120 uji di tiga browser, PR #4). Kalimat positioning masih sementara (Q-12); foto ruang masih placeholder (Q-06) |
 | US-02 | Jam buka dan status buka | FR-03 | done di S-02 dan S-03 (CI lulus 87 uji di tiga browser, PR #3). S-01 terpasang bersama US-01; tautan tanya jam saat jam kosong di US-07 |
-| US-03 | Lokasi dan petunjuk arah | FR-04 | todo |
+| US-03 | Lokasi dan petunjuk arah | FR-04 | doing: AC1 sampai AC3 dan kasus tepi 7.3 lulus lokal (Chromium). AC4: kait event terpasang dan teruji dengan `gtag` tiruan; pengiriman ke GA4 diverifikasi di US-13. Peta asli ditunda: `PUBLIC_MAPS_EMBED_KEY` butuh akun penagihan dengan kartu |
 | US-04 | Menu Buah Batu | FR-05 | todo |
 | US-05 | Galeri ruang | FR-06 | todo |
 | US-06 | Fasilitas outlet | FR-07 | todo |
@@ -83,12 +83,12 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 
 | ID | Topik | Menghambat | Jawaban |
 |----|-------|------------|---------|
-| Q-01 | Data cottage asli, catatan akses jalan, tautan Trip.com | FR-09, FR-10 | belum |
+| Q-01 | Data cottage asli, catatan akses jalan, tautan Trip.com | FR-09, FR-10 | sebagian. 2026-11-27 pengguna meminta daftar harga 2022 di `seed/images/cottage/` (harga, tambahan orang, sarapan, welcome drink) dianggap masih berlaku sampai diketahui berubah; belum dikonfirmasi pemilik. Catatan akses dan tautan Trip.com belum |
 | Q-02 | Menu Dago | FR-05 | belum |
 | Q-03 | Nomor WhatsApp terpisah dan jam balas | FR-08, FR-10 | belum |
 | Q-04 | Domain | FR-13 | belum |
 | Q-05 | Kuning final #F9EE54 atau #DACF56; lisensi web Acumin | PRD 8.2 | belum |
-| Q-06 | Jadwal sesi foto ruang | FR-06 | belum |
+| Q-06 | Jadwal sesi foto ruang | FR-06 | sebagian. Foto cottage ada di `seed/images/cottage/` dan menurut pengguna boleh dipakai (2026-11-27). Foto ruang Buah Batu dan kafe Dago belum |
 | Q-07 | Izin dan file asli foto produk menu | FR-05, FR-14 | belum |
 | Q-08 | Pajak di harga; harga Barista Signature V4 dan Strawberry Blossom | FR-05 | belum |
 | Q-09 | Akun TikTok resmi | FR-11 | belum |
@@ -104,7 +104,8 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 - **Foto produk** di `seed/images/menu/` hanya untuk desain dan pengembangan sampai Q-07 dijawab. 2026-11-26: atas keputusan pengguna, foto juga diunggah ke dataset `production` agar pemilik melihat Studio sudah lengkap. Q-07 tetap perlu dijawab sebelum situs publik menampilkan foto ini (ADR 0002).
 - **Fasilitas belum ada di Sanity.** Tidak ada dokumen Fasilitas, jadi panel Beranda dari `staging` menampilkan `[FASILITAS ... DARI PEMILIK]`, termasuk Buah Batu yang daftarnya sudah ada di brief. Isi lewat seed di US-06.
 - **Galeri dan teaser cottage di Beranda belum punya story.** PRD 8.6 memintanya, tetapi US-05 dan US-08 hanya mencakup halaman outlet. Diputuskan 2026-11-27: dikerjakan bersama US-05 (galeri) dan US-08 (teaser cottage).
-- **Foto, video, dan daftar harga cottage** ditambahkan pengguna di `seed/images/cottage/` (18 JPG, 2 MP4, ekspor Instagram, belum di-commit). Dua gambar adalah daftar harga unggahan 2022: Couple 2 orang Rp500.000 (hari kerja) dan Rp600.000 (akhir pekan), Family 4 orang Rp1.000.000 dan Rp1.200.000, harga coret Rp1.000.000 dan Rp2.000.000; Family bisa tambah 2 orang x Rp75.000; fasilitas AC, TV, pemanas air, pengering rambut, handuk, sabun dan sampo, sarapan 2 orang, welcome drink. Ini berbeda dari data DUMMY (Rp850.000 dan Rp1.350.000) dan skema belum membedakan harga hari kerja dan akhir pekan. Data DUMMY tidak diubah sampai pemilik mengonfirmasi (Q-01).
+- **Foto, video, dan daftar harga cottage** ditambahkan pengguna di `seed/images/cottage/` (18 JPG, 2 MP4, ekspor Instagram, belum di-commit). Dua gambar adalah daftar harga unggahan 2022: Couple 2 orang Rp500.000 (hari kerja) dan Rp600.000 (akhir pekan), Family 4 orang Rp1.000.000 dan Rp1.200.000, harga coret Rp1.000.000 dan Rp2.000.000; Family bisa tambah 2 orang x Rp75.000; fasilitas AC, TV, pemanas air, pengering rambut, handuk, sabun dan sampo, sarapan 2 orang, welcome drink. Ini berbeda dari data DUMMY (Rp850.000 dan Rp1.350.000) dan skema belum membedakan harga hari kerja dan akhir pekan. 2026-11-27: pengguna meminta harga dan fasilitas ini dianggap masih berlaku, dan foto cottage boleh dipakai. Diterapkan di US-08. Disetujui pengguna 2026-11-27: saat US-08, PRD (11.3, BR-04, 7.7), skema, seed, dan hitungan estimasi diubah menjadi dua harga per tipe (hari kerja dan akhir pekan); akhir pekan berarti malam Jumat dan malam Sabtu. Masih perlu diputuskan apakah `is_placeholder` tetap `true` sampai pemilik mengonfirmasi (BR-06); bawaannya tetap `true`.
+- **Kunci Maps Embed belum ada.** Ditunda atas keputusan pengguna 2026-11-27 karena Google Cloud meminta kartu. Selesaikan sebelum rilis: isi `PUBLIC_MAPS_EMBED_KEY` di `apps/web/.env` dan di hosting (kunci dibatasi ke domain situs), atau ganti cara menampilkan peta (perlu ADR baru). Tanpa kunci, halaman outlet menampilkan alamat dan pesan peta tidak dapat dimuat (ADR 0009).
 - **Deskripsi menu** di seed baru 4 item (contoh Lampiran A). Sisanya ada di PDF sebagai gambar. Lihat `seed/README.md`.
 - **Paket gratis Sanity tanpa peran Editor.** Semua staf jadi Administrator di Sanity; Studio mengunci Pengaturan Situs dan hapus Outlet untuk yang bukan admin situs (ADR 0006). Bila Q-11 butuh kontrol akses sungguhan, pertimbangkan paket Growth.
 
@@ -112,6 +113,7 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 
 Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
 
+- 2026-11-27: PR #4 (US-01) di-merge ke `main`. US-03: tombol "Petunjuk Arah" dan bagian "Cara ke sini" dengan peta di `/buah-batu` dan `/dago`, catatan akses Dago (placeholder Q-01), kait `click_directions` (ADR 0009). 83 uji unit web dan 53 uji E2E Chromium lulus. Di branch `feat/us-03-petunjuk-arah`. Berikutnya: US-04.
 - 2026-11-27: US-01. Hero tanpa tombol dan pemilih outlet (dua chip, satu panel) di Beranda; `whatsapp.ts` (BR-03, dipakai ulang di US-07); sumber foto dan fasilitas panel di ADR 0008. US-01.AC1 sampai AC3 dan kasus tepi 7.1 lulus (70 uji unit web, 40 uji E2E Chromium; build dari `staging` berhasil). Kalimat pendamping hero dan kicker "Kafe kota" dari desain tidak dipakai karena belum disetujui pemilik. CI lulus 120 uji di Chromium, Firefox, dan WebKit (PR #4, branch `feat/us-01-pemilih-outlet`). Berikutnya: US-03.
 
 - 2026-11-27: US-02. `openStatus.ts` (BR-01, WIB), status buka dan tabel jam di `/buah-batu` dan `/dago`. US-02.AC1 sampai AC4 lulus (53 uji unit web, 29 uji E2E Chromium). Kalimat "Jam hari libur dan Ramadan diumumkan di Instagram" dari desain tidak dipakai karena belum dikonfirmasi pemilik. Di branch `feat/us-02-status-buka`. Berikutnya: US-01.
