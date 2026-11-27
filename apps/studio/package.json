@@ -11,6 +11,7 @@
     "seed": "sanity exec scripts/importSeed.ts --with-user-token",
     "seed:replace": "sanity exec scripts/importSeed.ts --with-user-token -- --replace",
     "seed:production": "sanity exec scripts/importSeed.ts --with-user-token -- --production --with-images",
+    "seed:gallery": "sanity exec scripts/importSeed.ts --with-user-token -- --gallery-only",
     "migrate:coordinates": "sanity exec scripts/fillCoordinates.ts --with-user-token"
   },
   "dependencies": {

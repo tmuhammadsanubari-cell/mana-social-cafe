@@ -37,7 +37,7 @@ Paket gratis Sanity tidak punya peran Editor. Semua staf berperan Administrator 
 | `access/` | `isSiteAdmin` dan aturan tombol aksi dokumen |
 | `schemas/fields.ts` | Field bersama: referensi outlet, urutan, jam `HH:mm`, foto maks 10 MB, `is_placeholder` |
 | `seeding/` | Mengubah `seed/*.json` jadi dokumen Sanity (murni, teruji) |
-| `scripts/importSeed.ts` | `npm run seed`: tulis dokumen, unggah foto produk bila dataset bukan `production` (Q-07) |
+| `scripts/importSeed.ts` | `npm run seed`: tulis dokumen, unggah foto bila dataset bukan `production` (Q-07). `seed:gallery` hanya foto galeri |
 | `scripts/fillCoordinates.ts` | `npm run migrate:coordinates`: isi koordinat peta outlet yang masih kosong (ADR 0010) |
 | `tests/` | Vitest |
 

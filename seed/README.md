@@ -8,6 +8,9 @@ Data awal yang diimpor ke Sanity saat M-01 (PRD 11.5). Skrip impor dijalankan ke
 | `images/menu/` | 58 foto produk WebP dan `manifest.json` (nama file ke nama item) | Dipotong dari PDF menu Juni 2026 saat desain | ada, hanya untuk pengembangan sampai Q-07 dijawab |
 | `cottage-dummy.json` | Couple Cottage dan Family Cottage, semua `is_placeholder: true` | PRD 7.7 | ada |
 | `site-base.json` | Dua outlet, jam buka 7 hari, Pengaturan Situs | PRD 11.3, US-03, BR-03, US-10, ADR 0002 | ada |
+| `gallery.json` | Foto ruang per outlet: file, teks alternatif, urutan (8 Buah Batu, 6 Dago) | Teks alternatif ditulis dari isi foto | ada, sementara |
+| `images/galeri buah batu/`, `images/galeri dago/` | File `SnapInsta` dari Instagram; file `.png` dibuat ulang oleh AI dari foto Google Maps | Dari pengguna | sementara sampai ada foto asli pemilik (Q-06, ADR 0012) |
+| `images/cottage/` | Foto, video, dan daftar harga cottage | Ekspor Instagram, dari pengguna | belum diimpor (US-08) |
 
 ## Aturan data
 
@@ -27,9 +30,10 @@ Dari root proyek, setelah `apps/studio/.env` terisi dan `npx sanity login` dari 
 ```sh
 npm run seed                          # buat dokumen yang belum ada; isian staf tidak tersentuh
 npm run seed:replace                  # timpa semua dokumen seed dengan isi file
+npm run seed:gallery -w apps/studio   # hanya foto galeri; dokumen lain tidak disentuh
 ```
 
-ID dokumen tetap (`menuItem-buah-batu-nasi-goreng-mana`, `outlet-dago`), jadi impor ulang tidak menggandakan. Foto produk hanya diunggah bila dataset bukan `production`, kecuali lewat `npm run seed:production -w apps/studio` (mengisi `production` beserta foto; dipakai 2026-11-26 atas keputusan pengguna, Q-07 belum dijawab). Jam buka diisi sama untuk 7 hari karena PRD 11.3 belum membedakan per hari.
+ID dokumen tetap (`menuItem-buah-batu-nasi-goreng-mana`, `outlet-dago`), jadi impor ulang tidak menggandakan. Foto produk dan galeri hanya diunggah bila dataset bukan `production`, kecuali lewat `npm run seed:production -w apps/studio` (mengisi `production` beserta foto; dipakai 2026-11-26 atas keputusan pengguna, Q-07 belum dijawab). Menjalankannya lagi juga akan mengisi galeri `production`, termasuk foto buatan AI. Jam buka diisi sama untuk 7 hari karena PRD 11.3 belum membedakan per hari.
 
 ## Belum lengkap
 

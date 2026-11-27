@@ -3,6 +3,7 @@
 
 import type {
   CottageSeed,
+  GallerySeed,
   MenuSeed,
   MenuSeedAddOn,
   MenuSeedCategory,
@@ -17,6 +18,7 @@ const MAPS_DIR_URL = "https://www.google.com/maps/dir/?api=1&destination=";
 
 const ref = (id: string) => ({ _type: "reference", _ref: id });
 export const outletId = (slug: string) => `outlet-${slug}`;
+const menuImage = (file: string) => `menu/${file}`;
 
 function addOnEntry(addOn: MenuSeedAddOn) {
   return {
@@ -59,21 +61,41 @@ function categoryDocs(category: MenuSeedCategory, outletSlug: string, order: num
     sort_order: order,
     add_ons: category.add_ons?.map(addOnEntry),
   });
-  if (category.image) result.images.push({ documentId: categoryId, field: "image", file: category.image });
+  if (category.image) {
+    result.images.push({ documentId: categoryId, field: "image", file: menuImage(category.image) });
+  }
   category.add_ons?.forEach((addOn) => {
     if (addOn.image) {
       result.images.push({
         documentId: categoryId,
         field: `add_ons[_key=="${addOn.key}"].image`,
-        file: addOn.image,
+        file: menuImage(addOn.image),
       });
     }
   });
   category.items.forEach((item, index) => {
     const doc = menuItemDoc(item, categoryId, outletSlug, index + 1);
     result.documents.push(doc);
-    if (item.image) result.images.push({ documentId: doc._id, field: "image", file: item.image });
+    if (item.image) {
+      result.images.push({ documentId: doc._id, field: "image", file: menuImage(item.image) });
+    }
   });
+}
+
+function galleryDocs(gallery: GallerySeed, result: SeedResult) {
+  for (const { outlet, folder, photos } of gallery.outlets) {
+    photos.forEach((photo, index) => {
+      const documentId = `galleryImage-${outlet}-${photo.key}`;
+      result.documents.push({
+        _id: documentId,
+        _type: "galleryImage",
+        outlet: ref(outletId(outlet)),
+        alt_text: photo.alt_text,
+        sort_order: index + 1,
+      });
+      result.images.push({ documentId, field: "image", file: `${folder}/${photo.file}` });
+    });
+  }
 }
 
 function siteBaseDocs(base: SiteBaseSeed): SanityDoc[] {
@@ -123,10 +145,23 @@ function dropEmpty(doc: SanityDoc): SanityDoc {
   ) as SanityDoc;
 }
 
-export function buildSeedDocuments(base: SiteBaseSeed, menu: MenuSeed, cottage: CottageSeed): SeedResult {
+export function buildSeedDocuments(
+  base: SiteBaseSeed,
+  menu: MenuSeed,
+  cottage: CottageSeed,
+  gallery: GallerySeed,
+): SeedResult {
   const result: SeedResult = { documents: siteBaseDocs(base), images: [] };
   menu.categories.forEach((category, index) => categoryDocs(category, menu.outlet, index + 1, result));
   result.documents.push(...cottageDocs(cottage));
+  galleryDocs(gallery, result);
   result.documents = result.documents.map(dropEmpty);
   return result;
+}
+
+/** Satu jenis dokumen beserta fotonya, supaya impor tidak menyentuh dokumen lain. */
+export function onlyType({ documents, images }: SeedResult, type: string): SeedResult {
+  const selected = documents.filter((doc) => doc._type === type);
+  const ids = new Set(selected.map((doc) => doc._id));
+  return { documents: selected, images: images.filter((image) => ids.has(image.documentId)) };
 }
