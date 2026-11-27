@@ -45,7 +45,7 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 | Story | Fitur | FR | Status |
 |-------|-------|----|--------|
 | US-01 | Hero dan pemilih outlet | FR-01, FR-02 | todo |
-| US-02 | Jam buka dan status buka | FR-03 | todo |
+| US-02 | Jam buka dan status buka | FR-03 | done di S-02 dan S-03 (lokal Chromium; Firefox dan WebKit menunggu CI). S-01 dipasang di US-01; tautan tanya jam saat jam kosong di US-07 |
 | US-03 | Lokasi dan petunjuk arah | FR-04 | todo |
 | US-04 | Menu Buah Batu | FR-05 | todo |
 | US-05 | Galeri ruang | FR-06 | todo |
@@ -108,6 +108,8 @@ Detail pertanyaan di PRD 20.3. Saat dijawab, tulis jawabannya di sini dan tanyak
 ## Catatan sesi
 
 Tambahkan satu baris per sesi, terbaru di atas: tanggal, yang dikerjakan, yang tersisa.
+
+- 2026-11-27: US-02. `openStatus.ts` (BR-01, WIB), status buka dan tabel jam di `/buah-batu` dan `/dago`. US-02.AC1 sampai AC4 lulus (53 uji unit web, 29 uji E2E Chromium). Kalimat "Jam hari libur dan Ramadan diumumkan di Instagram" dari desain tidak dipakai karena belum dikonfirmasi pemilik. Di branch `feat/us-02-status-buka`. Berikutnya: US-01.
 
 - 2026-11-27: fondasi web M-02. Pembaca Sanity, header, footer, kerangka tiga halaman, data uji tetap (ADR 0007), Playwright dan job `e2e` di CI. Unduhan browser Playwright terlalu lambat, jadi E2E lokal memakai `PLAYWRIGHT_CHANNEL=chrome` (proyek `chromium` saja). US-10 baru sebagian (footer; AC-nya sudah ada di `shell.spec.ts`). Dikerjakan di branch `feat/m02-fondasi-web`. Berikutnya: US-02, lalu US-01.
 
