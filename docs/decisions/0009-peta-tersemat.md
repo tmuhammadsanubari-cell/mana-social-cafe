@@ -1,7 +1,7 @@
 # 0009: Peta tersemat dan penanganan gagal muat
 
 - Tanggal: 2026-11-27
-- Status: diterima
+- Status: diterima; bagian Maps Embed API dan kunci diganti oleh 0010
 - Rujukan PRD: FR-04, US-03, kasus tepi 7.3, 12.3, 13.5
 
 ## Konteks
