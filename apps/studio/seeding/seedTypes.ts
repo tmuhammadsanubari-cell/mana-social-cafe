@@ -51,6 +51,16 @@ export interface CottageSeed {
   }>;
 }
 
+export interface GallerySeed {
+  outlets: Array<{
+    outlet: string;
+    /** Folder di seed/images. */
+    folder: string;
+    /** Urutan daftar menjadi sort_order; foto pertama tampil di panel Beranda (ADR 0008). */
+    photos: Array<{ key: string; file: string; alt_text: string }>;
+  }>;
+}
+
 export interface SiteBaseSeed {
   outlets: Array<{
     slug: string;
@@ -76,6 +86,7 @@ export interface SanityDoc {
 export interface SeedImage {
   documentId: string;
   field: string;
+  /** Path relatif terhadap seed/images. */
   file: string;
 }
 

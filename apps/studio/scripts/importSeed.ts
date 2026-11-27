@@ -1,7 +1,8 @@
 // Impor data awal dari seed/ ke Sanity (PRD 11.5). Jalankan dari apps/studio:
 //   npm run seed                 -> hanya membuat dokumen yang belum ada; isian staf tidak tersentuh
 //   npm run seed:replace         -> menimpa semua dokumen seed dengan isi file (hati-hati)
-//   npm run seed:production      -> seperti seed, ke dataset production, termasuk foto produk
+//   npm run seed:production      -> seperti seed, ke dataset production, termasuk foto
+//   npm run seed:gallery         -> seperti seed, tetapi hanya foto galeri; dokumen lain tidak disentuh
 // Tanpa --production, dataset diambil dari SANITY_STUDIO_DATASET (bawaan: staging).
 // Memakai token login kamu (sanity login), jadi tidak ada token yang disimpan.
 // Foto produk ke production hanya dengan --with-images (dipakai seed:production atas keputusan
@@ -12,14 +13,15 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { getCliClient } from "sanity/cli";
 import { API_VERSION } from "../env";
-import { buildSeedDocuments } from "../seeding/buildSeedDocuments";
-import type { CottageSeed, MenuSeed, SeedImage, SiteBaseSeed } from "../seeding/seedTypes";
+import { buildSeedDocuments, onlyType } from "../seeding/buildSeedDocuments";
+import type { CottageSeed, GallerySeed, MenuSeed, SeedImage, SiteBaseSeed } from "../seeding/seedTypes";
 
 const SEED_DIR = path.resolve(process.cwd(), "../../seed");
-const IMAGE_DIR = path.join(SEED_DIR, "images/menu");
+const IMAGE_DIR = path.join(SEED_DIR, "images");
 
 const replace = process.argv.includes("--replace");
 const withImages = process.argv.includes("--with-images");
+const galleryOnly = process.argv.includes("--gallery-only");
 const cliClient = getCliClient({ apiVersion: API_VERSION });
 const client = process.argv.includes("--production")
   ? cliClient.withConfig({ dataset: "production" })
@@ -36,7 +38,7 @@ async function uploadImages(images: SeedImage[]): Promise<number> {
     let assetId = assetIds.get(image.file);
     if (!assetId) {
       const asset = await client.assets.upload("image", createReadStream(path.join(IMAGE_DIR, image.file)), {
-        filename: image.file,
+        filename: path.basename(image.file),
       });
       assetId = asset._id;
       assetIds.set(image.file, assetId);
@@ -49,13 +51,19 @@ async function uploadImages(images: SeedImage[]): Promise<number> {
   return assetIds.size;
 }
 
-async function main() {
-  const { dataset } = client.config();
-  const { documents, images } = buildSeedDocuments(
+async function readSeed() {
+  const seed = buildSeedDocuments(
     await readJson<SiteBaseSeed>("site-base.json"),
     await readJson<MenuSeed>("menu-buah-batu-2026-06.json"),
     await readJson<CottageSeed>("cottage-dummy.json"),
+    await readJson<GallerySeed>("gallery.json"),
   );
+  return galleryOnly ? onlyType(seed, "galleryImage") : seed;
+}
+
+async function main() {
+  const { dataset } = client.config();
+  const { documents, images } = await readSeed();
 
   const transaction = client.transaction();
   documents.forEach((doc) =>
@@ -67,7 +75,7 @@ async function main() {
   );
 
   if (dataset === "production" && !withImages) {
-    log("Foto produk dilewati di production. Tambahkan --with-images untuk mengunggahnya.");
+    log("Foto dilewati di production. Tambahkan --with-images untuk mengunggahnya.");
     return;
   }
   const uploaded = await uploadImages(images);

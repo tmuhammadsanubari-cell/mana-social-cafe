@@ -1,0 +1,86 @@
+{
+  "outlets": [
+    {
+      "outlet": "buah-batu",
+      "folder": "galeri buah batu",
+      "photos": [
+        {
+          "key": "void-melingkar",
+          "file": "SnapInsta.to_657694854_18459846145097686_5080428283908039853_n.jpg",
+          "alt_text": "Void melingkar berpagar dengan tanaman di bawah bukaan bundar ke langit, Buah Batu"
+        },
+        {
+          "key": "tribun",
+          "file": "SnapInsta.to_655109965_18113838577733813_2761897642544464187_n.jpg",
+          "alt_text": "Tribun duduk bertingkat mengelilingi taman bundar di bawah langit terbuka, Buah Batu"
+        },
+        {
+          "key": "tanaman-gantung",
+          "file": "SnapInsta.to_656274289_18101853868939284_6363279274520047779_n.jpg",
+          "alt_text": "Meja kayu dan bangku bar di sekitar kolom putih dengan tanaman gantung, Buah Batu"
+        },
+        {
+          "key": "meja-bar",
+          "file": "SnapInsta.to_655737535_18089802646925914_997050311175673275_n.jpg",
+          "alt_text": "Meja bar kayu melengkung dengan bangku tinggi di samping tangga, Buah Batu"
+        },
+        {
+          "key": "area-bangku-besi",
+          "file": "SnapInsta.to_652771613_18095940953089473_3019283314801406594_n.jpg",
+          "alt_text": "Area luar dengan bangku dan meja besi di atas kerikil, berdinding kisi, Buah Batu"
+        },
+        {
+          "key": "coffee-bar",
+          "file": "Warm Modern Café Counter Interior.png",
+          "alt_text": "Coffee bar melengkung berkeramik putih dengan panel kayu dan lampu gantung, Buah Batu"
+        },
+        {
+          "key": "ruang-skylight",
+          "file": "Minimalist Cafe with Skylight Garden.png",
+          "alt_text": "Ruang berlantai terang dengan taman kecil di bawah bukaan bundar, Buah Batu"
+        },
+        {
+          "key": "pintu-masuk",
+          "file": "Sunlit Minimalist Café Entrance.png",
+          "alt_text": "Fasad putih dengan pintu masuk, papan nama kuning, dan tanaman, Buah Batu"
+        }
+      ]
+    },
+    {
+      "outlet": "dago",
+      "folder": "galeri dago",
+      "photos": [
+        {
+          "key": "dudukan-bertingkat",
+          "file": "SnapInsta.to_746147543_18170619316441302_8248561710373255004_n.jpg",
+          "alt_text": "Dudukan besi bertingkat di antara ilalang dengan atap tenda dan lampu gantung, Dago"
+        },
+        {
+          "key": "teras-meja-merah-muda",
+          "file": "Pastel Garden Café Under String Lights.png",
+          "alt_text": "Area luar berkerikil dengan meja merah muda, kanopi, dan lampu gantung, Dago"
+        },
+        {
+          "key": "ruang-berdinding-kaca",
+          "file": "Modern Tropical Glasshouse Café.png",
+          "alt_text": "Ruang semi-terbuka beratap miring dan berkaca dengan tanaman pot, Dago"
+        },
+        {
+          "key": "taman-meja",
+          "file": "Sunlit Garden Café Terrace.png",
+          "alt_text": "Meja bundar dan bangku di taman berumput di antara ilalang, Dago"
+        },
+        {
+          "key": "halaman-skuter",
+          "file": "Sunny Patio with Scooters and String Lights.png",
+          "alt_text": "Halaman dengan skuter terparkir, ilalang, lampu gantung, dan bukit di kejauhan, Dago"
+        },
+        {
+          "key": "gerbang-taman",
+          "file": "Tropical Garden Gate and Modern Homes.png",
+          "alt_text": "Jalan setapak menuju gerbang dan dua bangunan beratap pelana di balik pepohonan, Dago"
+        }
+      ]
+    }
+  ]
+}
