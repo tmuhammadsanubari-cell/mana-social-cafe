@@ -45,7 +45,7 @@ Kriteria selesai: staf bisa login ke Studio dan mengubah satu harga; 75 item men
 | Story | Fitur | FR | Status |
 |-------|-------|----|--------|
 | US-01 | Hero dan pemilih outlet | FR-01, FR-02 | todo |
-| US-02 | Jam buka dan status buka | FR-03 | done di S-02 dan S-03 (lokal Chromium; Firefox dan WebKit menunggu CI). S-01 dipasang di US-01; tautan tanya jam saat jam kosong di US-07 |
+| US-02 | Jam buka dan status buka | FR-03 | done di S-02 dan S-03 (CI lulus 87 uji di tiga browser, PR #3). S-01 dipasang di US-01; tautan tanya jam saat jam kosong di US-07 |
 | US-03 | Lokasi dan petunjuk arah | FR-04 | todo |
 | US-04 | Menu Buah Batu | FR-05 | todo |
 | US-05 | Galeri ruang | FR-06 | todo |
